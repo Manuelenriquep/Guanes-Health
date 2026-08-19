@@ -1,0 +1,19 @@
+# Caché de compilación de Python
+**/__pycache__/
+*.py[cod]
+*$py.class
+
+# Entornos virtuales locales
+.venv/
+venv/
+ENV/
+env/
+
+# Archivos temporales de sistema y editores
+.DS_Store
+.vscode/
+.idea/
+*.log
+
+# Evitar subir reportes duplicados de scratch
+/workspace/scratch/
