@@ -1,6 +1,8 @@
 """
-PLACA BASE DE SUBVERSIÓN ONCOLÓGICA
-Modelo determinista de la célula tumoral: DDoS metabólico, camuflaje PD-L1 y veto de apoptosis.
+Tumor-state baseline model used by the Guanes Health prototype.
+
+The implementation is intentionally simplified and focuses on a few
+deterministic state variables relevant to the current toy model.
 """
 
 

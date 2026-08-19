@@ -1,0 +1,139 @@
+Guanes Health Source-Available License v1.1
+
+Copyright (c) 2026 Manuel Enrique Prada Forero.
+All rights reserved.
+
+IMPORTANT NOTICE:
+This is not an open source license. The Software is made available for review,
+private study, internal evaluation, and other non-commercial purposes only,
+subject to the terms below.
+
+1. Definitions
+
+"Licensor" means Manuel Enrique Prada Forero.
+
+"Software" means the source code, documentation, specifications, examples,
+tests, and other materials made available in this repository, including any
+modifications or derivative works based on them.
+
+"Non-Commercial Use" means use solely for personal study, academic review,
+research discussion, internal technical evaluation, or other purposes that are
+not primarily intended for commercial advantage, monetary compensation, paid
+service delivery, or operational deployment in a business environment.
+
+"Commercial Use" means any use of the Software, directly or indirectly, for
+commercial advantage, monetary compensation, revenue generation, paid
+consulting, internal production use by a for-profit entity, client work,
+service delivery, hosting, resale, sublicensing, or incorporation into a
+product, platform, workflow, or offering made available to third parties.
+
+2. Limited License Grant
+
+Subject to your compliance with this License, the Licensor grants you a
+limited, revocable, non-exclusive, non-transferable, non-sublicensable license
+to:
+
+(a) access, view, and download the Software;
+(b) clone the repository for Non-Commercial Use;
+(c) run, test, and modify the Software for Non-Commercial Use; and
+(d) cite, discuss, and reference the Software with appropriate attribution.
+
+No rights are granted except as expressly stated in this License.
+
+3. Restrictions
+
+Without the Licensor's prior written permission, you may not:
+
+(a) use the Software for any Commercial Use;
+(b) sell, license, sublicense, assign, lease, distribute, or otherwise
+commercialize the Software;
+(c) provide the Software, or any substantially similar derivative work, as a
+hosted or managed service;
+(d) incorporate the Software into any product, service, or internal production
+system used by or for a commercial organization;
+(e) redistribute, publish, or share the Software or derivative works in source
+or binary form;
+(f) remove, alter, obscure, or bypass any copyright, attribution, trademark,
+or license notice; or
+(g) misrepresent authorship, origin, or endorsement of the Software.
+
+4. Derivative Works
+
+You may create derivative works of the Software solely for Non-Commercial Use.
+Any such derivative works remain subject to this License and may not be
+distributed, published, licensed, or used for Commercial Use without the
+Licensor's prior written permission.
+
+5. Commercial Licensing
+
+Any person or entity seeking rights for Commercial Use, redistribution,
+deployment, sublicensing, integration into a paid or production environment, or
+other uses beyond Section 2 must obtain a separate written commercial license
+from the Licensor.
+
+6. Ownership and Reservation of Rights
+
+The Software is licensed, not sold. The Licensor retains all right, title, and
+interest in and to the Software, including all intellectual property rights,
+whether existing now or arising in the future. No implied licenses are granted.
+
+7. No Trademark Rights
+
+This License does not grant any right to use the names "Guanes Health",
+"Guanes", or any associated names, logos, marks, or branding, except as
+reasonably necessary for accurate attribution.
+
+8. Term and Termination
+
+This License is effective upon your first access to, download of, use of, or
+modification of the Software and continues until terminated.
+
+This License terminates automatically if you breach any term of it. Upon
+termination, you must cease all use of the Software and destroy all copies in
+your possession or control, except to the extent prohibited by applicable law.
+
+9. Updates and New Versions
+
+The Licensor may publish revised versions of this License for future versions
+of the Software. If a specific version of the Software is made available under
+this License, your rights to that version are governed by the license text
+distributed with that version, subject to applicable law.
+
+10. No Warranty
+
+THE SOFTWARE IS PROVIDED "AS IS" AND "AS AVAILABLE", WITHOUT WARRANTY OF ANY
+KIND, WHETHER EXPRESS, IMPLIED, STATUTORY, OR OTHERWISE, INCLUDING WITHOUT
+LIMITATION ANY WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE,
+NON-INFRINGEMENT, ACCURACY, SCIENTIFIC VALIDITY, REGULATORY ACCEPTABILITY, OR
+FITNESS FOR ANY MEDICAL, CLINICAL, OPERATIONAL, OR COMMERCIAL PURPOSE.
+
+11. Limitation of Liability
+
+TO THE MAXIMUM EXTENT PERMITTED BY APPLICABLE LAW, IN NO EVENT SHALL THE
+LICENSOR BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY,
+CONSEQUENTIAL, OR PUNITIVE DAMAGES, OR FOR ANY LOSS OF DATA, PROFITS, REVENUE,
+GOODWILL, BUSINESS OPPORTUNITY, OR INTERRUPTION, ARISING OUT OF OR RELATED TO
+THE SOFTWARE OR THIS LICENSE, WHETHER IN CONTRACT, TORT, STRICT LIABILITY, OR
+OTHERWISE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGES.
+
+12. Governing Law
+
+This License shall be governed by and construed in accordance with the laws of
+the Republic of Colombia, without regard to conflict of laws principles.
+
+13. Severability
+
+If any provision of this License is held to be invalid or unenforceable, the
+remaining provisions shall remain in full force and effect to the maximum
+extent permitted by law.
+
+14. Entire Agreement
+
+This License constitutes the entire agreement between the Licensor and you with
+respect to the Software as made available under this repository, unless and
+until superseded by a separate written agreement signed by the Licensor.
+
+15. Commercial Licensing Inquiries
+
+For commercial licensing, redistribution rights, deployment approvals, or other
+permissions beyond this License, contact: gerente@guanes.biz

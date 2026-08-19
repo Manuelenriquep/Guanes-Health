@@ -1,79 +1,147 @@
 # Guanes Health
-Pitch Técnico: Arquitectura de Placas Base de Lógica Aplicada a la Oncología Computacional
 
-1. Propósito: El Puente entre Primeros Principios y Sistemas de Control
+An early computational oncology prototype exploring deterministic, state-based modeling of tumor disruption and therapeutic restoration.
 
-En la vanguardia de la ingeniería de sistemas y la biología molecular, el paradigma tradicional ha persistido en tratar a la unidad celular como un ente biológico estocástico y ambiguo. Esta propuesta redefine la célula no como un cúmulo de reacciones químicas azarosas, sino como una máquina viva de procesamiento de información. Bajo este enfoque, la homeostasis no es simplemente un estado de equilibrio, sino la manifestación física de la Autopropiedad celular: el derecho real y algorítmico de la célula sana a mantener su integridad soberana frente a la entropía.
+## Overview
 
-Tal como el trabajo crea al hombre al liberar sus manos para transformar la naturaleza, el trabajo metabólico constante es lo que constituye la soberanía celular. Si la salud es la ejecución fiel de un código original, el cáncer representa una violación de esta milenaria arquitectura biológica; un agente que impone un "doble comando" antinatural. Para alcanzar soluciones deterministas en oncología, es imperativo transitar hacia una ingeniería de control de alta precisión, donde la célula sea gestionada mediante una Placa Base de Lógica. Esta infraestructura supervisa los flujos de información mediante aserciones lógicas inquebrantables, asegurando la idempotencia del sistema y restaurando la capacidad del organismo para imprimir su voluntad sobre su propia materia.
+Guanes Health is a small Python project built around a simple question:
 
-Esta arquitectura de control es la única vía para identificar, con precisión matemática, las vulnerabilidades lógicas que el malware oncológico explota para sabotear el sistema operativo de la vida.
+**Can selected oncological behaviors be represented as explicit failures of cellular control logic, and can therapeutic interventions be modeled as deterministic state-restoration rules?**
 
-2. El Diagnóstico del Exploit: Cáncer como Malware Celular
+This repository does not present a clinical system, a validated scientific simulator, or a production-ready platform. It is an early computational prototype designed to make that question concrete, inspectable, and testable in code.
 
-Desde la perspectiva de la ciberseguridad avanzada y la ingeniería de control, el tumor no es una falla orgánica, sino un agente malicioso que realiza un "hot-patching" sistemático sobre el software celular. Este malware secuestra la maquinaria de procesamiento para eludir los protocolos de seguridad y perpetuar su replicación ilegal.
+Its current value lies in scope discipline rather than scale: a narrow model, explicit assumptions, deterministic behavior, and basic automated tests.
 
-Análisis del Sabotaje de Fusibles (FC-BIO-01 y FC-BIO-02)
+## Origin
 
-El tumor ejecuta técnicas de "monkey-patching" para anular los protocolos de terminación:
+The project did not begin inside computational oncology.
 
-* Fusible FC-BIO-01 (Bcl-2): El exploit realiza un taponamiento físico de la proteína Bcl-2, elevando sus niveles a un factor de x25. Esta saturación de recursos anula la capacidad de ejecución de la apoptosis, impidiendo que el sistema purgue el código corrupto.
-* Fusible FC-BIO-02 (hTERT): Se produce una elusión del límite de Hayflick mediante la sobreexpresión de hTERT, permitiendo una replicación infinita de instrucciones malignas.
+It began with work on a different problem: applying a "motherboard" or "baseboard" style of reasoning to document engineering. That approach focused on structure, control surfaces, assertion layers, failure conditions, and deterministic handling of ambiguity in high-stakes information workflows.
 
-El DDoS Energético y el Firewall Ácido
+After seeing how powerful that framing could be in document systems, I began exploring whether a similar methodology could be used to think about biological systems. I spent time researching cancer biology, tumor metabolism, apoptosis, immune evasion, and related control mechanisms through that lens.
 
-El sistema experimenta un ataque de denegación de servicio (DDoS) energético mediante el Efecto Warburg, donde el tumor demanda y procesa hasta 100x ATP, saturando el bus de datos metabólico. Para proteger esta anomalía, el tumor despliega un "Firewall Ácido" (pH 6.20). Aplicando el principio de Aislamiento de Especialidades, el tumor crea una zona de exclusión semántica donde el pH hostil impide que la "lógica inmunológica" de los linfocitos CD8+ penetre en el "espacio metabólico" tumoral, paralizando el cortafuegos natural del organismo.
+The result was not certainty, but conviction: there seemed to be enough structural coherence in the analogy to justify a computational prototype.
 
-Un exploit de tal sofisticación lógica requiere una contramedida que no opere sobre probabilidades, sino sobre una restauración determinista del estado de fábrica.
+Guanes Health is the first small implementation of that intuition.
 
-3. El Parche de Restauración Lógica: Sinergia Inmunometabólica de Precisión V2.0
+## Thesis
 
-La solución propuesta es un protocolo de restauración de estado de fábrica basado en la sinergia entre el bloqueo metabólico selectivo y la reactivación del cortafuegos inmunológico. El objetivo es forzar una autólisis determinista del malware sin afectar la integridad del sistema circundante.
+The thesis behind this repository is modest in implementation, but ambitious in direction:
 
-Contramedida MCT4 y Autólisis Ácida
+some biological problems may become easier to reason about when they are expressed not only as biochemical narratives, but also as constrained systems with inspectable state transitions, failure modes, and restoration paths.
 
-El mecanismo central de este "parche" es la interrupción del transportador de lactato MCT4. Al bloquear este puerto de salida, el sistema "atrapa" el ácido generado por el Efecto Warburg dentro del propio tumor. Esta acción transforma el arma del tumor en su contra: el cambio de pH se convierte en una aserción lógica satisfactoria que fuerza una autodestrucción interna por acidificación. Mientras el tumor colapsa bajo su propio ácido, el tejido circundante mantiene su pH fisiológico de 7.35, validando la precisión del aislamiento.
+The current prototype treats a narrow cellular scenario as a deterministic model with:
 
-Reconexión del Fusible y Neutralización del Camuflaje
+- a healthy baseline state,
+- a tumor state defined by simplified metabolic, apoptotic, and immune-evasion conditions,
+- an intervention layer that compares isolated immunotherapy against a combined restoration protocol.
 
-Para asegurar la purga total del código maligno, se implementa una terapia combinada de alta precisión:
+This is a computational abstraction, not a claim that biology can be reduced to software metaphors. The purpose is to create a structure that can be criticized, revised, or rejected on technical grounds.
 
-1. Anti-PD-1: Neutraliza el camuflaje PD-L1, eliminando la ofuscación que el tumor utiliza para engañar al sistema de reconocimiento.
-2. Miméticos de BH3: Reconectan el fusible de apoptosis (Bcl-2), permitiendo que la instrucción de muerte celular programada se ejecute sin obstrucciones.
+## What Exists in This Repository
 
-Esta intervención garantiza que la eficiencia citotóxica de los linfocitos CD8+ alcance el 100.0%, devolviendo la soberanía algorítmica al cuerpo. La ejecución de este parche depende de una infraestructura que garantice la idempotencia, asegurando que el resultado sea matemáticamente predecible en cada iteración.
+At the moment, this repository contains an early deterministic simulation written in Python.
 
-4. Propuesta Metodológica: El Framework Guanes de Alta Precisión
+It includes:
 
-Presentamos una infraestructura tecnológica diseñada originalmente para entornos regulatorios de alta complejidad, ahora transpuesta a la biología de sistemas. Este framework garantiza la ejecución de decisiones biológicas con cero alucinaciones y una trazabilidad total.
+- a minimal healthy-cell model,
+- a minimal tumor-cell model,
+- a restoration module simulating isolated and combined intervention paths,
+- fail-closed validation for invalid or physically inconsistent inputs,
+- a small automated unit test suite.
 
-Separación Radical: Semantic Driver vs. Placa Base Determinista
+This makes the project more than a written concept, but still far from a mature scientific system.
 
-Nuestra arquitectura impone una separación estricta de capas para mitigar riesgos:
+## Design Principles
 
-* Semantic Driver (LLM): Utilizado exclusivamente como una herramienta de lectura de alta capacidad para la ingesta y mapeo de datos biológicos masivos.
-* Placa Base Determinista (Python): El motor de cálculo que ejecuta las aserciones lógicas. Opera bajo un estricto protocolo Fail-Closed (FC01-FC03); si una instrucción metabólica o inmunológica no cumple con los parámetros de seguridad biológica, el sistema bloquea la ejecución de forma inmediata.
+The current codebase follows a few strict principles:
 
-Inmutabilidad y Ratio Decidendi (SHA-256)
+- **Determinism:** identical inputs should produce identical outputs.
+- **Inspectability:** assumptions should be visible in code, not hidden in rhetoric.
+- **Fail-closed behavior:** invalid states should halt execution rather than pass silently.
+- **Minimal scope:** the model should remain small enough to audit directly.
+- **Testability:** core claims of the prototype should be expressible as automated tests.
 
-Para asegurar la integridad de la Ratio Decidendi —la lógica fundamental e inalterable detrás de cada decisión de control— empleamos algoritmos criptográficos SHA-256. Cada simulación y cada ajuste del sistema de control queda registrado en un registro inmutable, garantizando una distorsión del 0.00% en los fundamentos determinantes de la decisión biológica. Esta tecnología purga la fricción del error humano y el ruido estocástico, edificando un "Suelo Firme" para la supervivencia.
+These constraints are intentional. If the abstraction cannot remain coherent at small scale, it does not yet deserve to grow.
 
-5. Invitación al Diálogo Científico
+## What This Repository Does Not Claim
 
-La convergencia entre la lógica algorítmica y la ingeniería de control aplicada a la oncología representa la mayor oportunidad para Google DeepMind e Isomorphic Labs. No planteamos una colaboración comercial estándar, sino una sesión de ingeniería forense para validar una arquitectura capaz de blindar la vida.
+This project does **not** currently claim:
 
-Propuesta de Sesión Técnica Privada
+- clinical validity,
+- experimental validation,
+- molecular simulation fidelity,
+- pharmacokinetic or pharmacodynamic realism,
+- integration with biological datasets,
+- regulatory-grade guarantees,
+- a complete or final theory of oncological control.
 
-Solicitamos una revisión profunda de nuestro framework centrada en tres pilares:
+Those are future research and engineering questions, not present accomplishments.
 
-* Auditoría de Motores Deterministas: Revisión del código Python encargado de ejecutar las aserciones sobre flujos metabólicos.
-* Validación de Protocolos Fail-Closed: Análisis de los bloqueos automáticos aplicados al control del pH y la apoptosis.
-* Simulaciones Numéricas de Autólisis: Evaluación de los modelos de restauración de estado de fábrica.
+## Why Publish It Publicly
 
-Nuestra misión es la defensa del "oxígeno de la libertad" mediante la tecnología. Preservar la integridad algorítmica de la vida es el imperativo biológico más brillante de nuestra especie. Estamos listos para someter estos modelos a los más altos estándares de revisión científica y computacional.
+This repository is public because early ideas improve when they are exposed to serious scrutiny.
 
-Atentamente,
+Publishing the prototype forces precision. It makes assumptions legible. It allows critique to attach to code rather than to vague ambition. It also creates a record of what exists today, what is only hypothesized, and what still needs to be earned through deeper work.
 
-Principal Systems Bio-Engineer & Information Architect Guanes Framework / Control Systems Division
+If the underlying idea has value, it should become clearer under criticism, not weaker.
+
+## Repository Structure
+
+- `01_Especificaciones_SSoT/`  
+  Conceptual and technical working documents.
+
+- `03_Motor_Oncologico/`  
+  Core Python implementation of the current deterministic prototype.
+
+- `04_Bateria_Inviolable/`  
+  Unit tests covering the main modeled scenarios.
+
+## Running the Prototype
+
+From the repository root:
+
+```bash
+py "03_Motor_Oncologico/parche_restauracion.py"
+```
+
+This runs the current deterministic demonstration and prints the healthy baseline, the isolated immunotherapy path, and the combined restoration scenario.
+
+## Running the Tests
+
+From the repository root:
+
+```bash
+py -m unittest discover -s "04_Bateria_Inviolable" -v
+```
+
+The current test suite is intentionally small and focused on the main modeled scenarios.
+
+## License
+
+This repository is distributed under the `Guanes Health Source-Available License v1.1`.
+
+The code is public for inspection, private study, and non-commercial evaluation. Commercial use, redistribution, sublicensing, and productization require prior written permission from the author. See `LICENSE` for details.
+
+Commercial licensing inquiries: `gerente@guanes.biz`
+
+## What Feedback Would Be Most Valuable
+
+The most valuable feedback at this stage is direct and technical.
+
+I am especially interested in critique on:
+
+- whether the abstraction is coherent,
+- whether the modeled states are too crude to be meaningful,
+- whether the deterministic framing clarifies or distorts the biology,
+- whether the current implementation has a credible path toward stronger formalism and reproducibility.
+
+## Status
+
+**Current stage:** early public prototype for technical scrutiny.
+
+This repository should be evaluated as a formalized hypothesis under construction: small in code, limited in claims, but deliberate in structure.
+
+## Author
 
 Manuel Enrique Prada Forero

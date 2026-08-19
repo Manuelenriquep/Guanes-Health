@@ -1,6 +1,8 @@
 """
-PLACA BASE DE RESTAURACIÓN ONCOLÓGICA
-Parche combinado: inhibición MCT4 + miméticos BH3 + anti-PD-1.
+Deterministic restoration routines for the current oncology prototype.
+
+This module compares a simplified isolated immunotherapy path against a
+combined intervention that restores a subset of modeled tumor states.
 """
 
 from placa_cancer import CelulaTumoral

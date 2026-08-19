@@ -1,73 +1,97 @@
-# Playbook de Restauración Lógica Guanes Health (v2.1)
-## Protocolo Clínico de Precisión: Validación de la Cohorte C (Secuencial Óptima) y Sinergia Inmunometabólica Determinista
+# Working Note: Restoration Protocol Model (v3)
+## Speculative scenario design for a deterministic oncology prototype
 
-Este documento consolida las especificaciones biokinéticas, los coeficientes estequiométricos de transición de estado y la formulación computacional de la **versión 2.1** del motor de simulación molecular de Guanes Health. 
+This document records a working scenario used to shape the current Guanes Health prototype.
 
-El modelo valida numéricamente la de-acidificación selectiva del microambiente tumoral y la posterior reactivación inmunitaria sin toxicidad periférica sistémica.
+It is not a clinical protocol, not a validated pharmacological model, and not evidence of experimental efficacy. The purpose of the document is narrower: to describe the assumptions, state transitions, and comparison cases that inform the current codebase.
 
----
-
-### I. RECONOCIMIENTO FORENSE DEL EXPLOIT (Fase de Colisión)
-
-1. **Sabotaje del Veto FC-BIO-01 (Apoptosis)**:
-   * El tumor despliega una sobreexpresión constitutiva de la proteína de supervivencia mitocondrial Bcl-2/Bcl-xL (basal: x25) que actúa como un tapón hidrofóbico en el bolsillo BH3. Esto bloquea mecánicamente la permeabilización de la membrana mitocondrial externa (MOMP), impidiendo la liberación de Citocromo c incluso ante estrés genómico severo o detección de daño por la proteína p53.
-
-2. **DDoS Metabólico (Efecto Warburg y Escudo Ácido)**:
-   * El tumor secuestra la maquinaria de glucólisis, elevando la tasa de consumo de glucosa y producción de ATP (100x, hasta 10,000 unidades de ATP de forma desordenada). El desecho resultante (lactato y protones) se drena al exterior a través de la compuerta de alta capacidad **MCT4 (SLC16A3)**, creando un microambiente ácido estromal hostil (pH 6.20) que sirve como barrera de protección biofísica.
-
-3. **Spoofing de Identidad (Bypass del Cortafuegos Inmune)**:
-   * El pH ácido extracelular de 6.20 altera el potencial de membrana y anula mecánicamente la señalización de activación de los linfocitos T citotóxicos (CD8+) y células NK. De forma paralela, la célula tumoral presenta el ligando PD-L1 en su superficie, ejecutando un apretón de manos criptográfico de desactivación con el receptor PD-1 del linfocito, reduciendo su eficiencia citotóxica basal a un crítico 10.0%.
+The numbers below should be read as **model parameters inside a conceptual simulation**, not as externally validated biomedical results.
 
 ---
 
-### II. ESTUDIO COMPARATIVO DE LAS 4 COHORTES CLÍNICAS (Validación Numérica v2.1)
+### I. Modeling Frame
 
-El motor de simulación de Guanes Health evaluó cuatro alternativas lógicas de sincronización de parches moleculares para encontrar el óptimo de control de sistemas:
+The current prototype treats a narrow tumor-control problem as a state-transition model with three simplified dimensions:
 
-#### Cohorte A: Terapia Simultánea (MCT4 + anti-PD1 aplicados en $t = 0\text{ h}$)
-* **Análisis de Flujo**: Se aplican ambos fármacos al mismo tiempo. El pH extracelular inicia su normalización, pero los linfocitos CD8+ ya están expuestos a la acidez extracelular remanente antes de que el amortiguador haga efecto completo.
-* **Resultado**: Los linfocitos sufren anergia transitoria inducida por el lactato acumulado que aún no ha sido depurado. El sistema experimenta una **ineficiencia inmunitaria del 18.5%**, permitiendo un escape tumoral parcial del 15% por viabilidad metabólica residual.
+1. **Apoptotic blockade**
+   - The tumor state is modeled as resistant to apoptosis through elevated anti-apoptotic signaling.
 
-#### Cohorte B: Monoterapia Estándar (Solo anticuerpo Anti-PD1)
-* **Análisis de Flujo**: Se bloquea el camuflaje PD-1/PD-L1 sin alterar la acidez del microambiente.
-* **Resultado**: **Fallo total de respuesta**. El pH del estroma se mantiene en 6.20. La acidez paraliza mecánicamente a los linfocitos T a nivel biofísico. La eficiencia citotóxica CD8+ no supera el **10.0%**. El tumor sigue proliferando y agotando los recursos sistémicos.
+2. **Metabolic acidification**
+   - The tumor state is modeled as maintaining an acidic extracellular microenvironment and a distorted energetic profile.
 
-#### Cohorte C: Secuencial Óptima (Sincronización de Parches a las $t = 12\text{ h}$) — *LA CLAVE DE TODO*
-* **Análisis de Flujo**: En $t = 0\text{ h}$ se bloquea selectivamente el transportador MCT4. Durante las siguientes 12 horas, la célula tumoral sufre un colapso ácido interno por acumulación logarítmica de ácido láctico. En $t = 12\text{ h}$, la concentración de **Calreticulina externa** (la señal inmunogénica de "Eat-Me" gatillada por la vía celular estrés PERK-eIF2$\alpha$) y el factor de carga de neoantígenos en MHC-I alcanzan su pico óptimo de **4.8x**, coincidiendo exactamente con la normalización completa del pH extracelular a **7.35**.
-* **Resultado**: Al inyectar el anticuerpo anti-PD-1 exactamente en este hito temporal, los linfocitos CD8+ actúan en un entorno óptimo y libre de acidez. Se alcanza el **100% de eficiencia de eliminación CD8+**, la caída del ATP tumoral a **30 u.**, y la erradicación celular tumoral absoluta sin inducir toxicidad o agotamiento clonal.
+3. **Immune evasion**
+   - The tumor state is modeled as remaining partially inaccessible to cytotoxic immune response under acidic conditions, even when checkpoint camouflage is reduced.
 
-#### Cohorte D: Secuencial Tardía (Sincronización de Parches a las $t = 24\text{ h}$)
-* **Análisis de Flujo**: El anticuerpo anti-PD-1 se inyecta de forma retardada a las 24 horas del bloqueo de MCT4.
-* **Resultado**: Aunque el ATP celular cae a un rango crítico de 20 u., el retraso prolongado de la inmunoterapia provoca una muerte celular desordenada por necrosis secundaria masiva. Esta lisis libera detritos intracelulares no controlados, gatillando una respuesta inflamatoria estromal crónica no específica que disminuye la eficiencia de eliminación CD8+ al **74.0%** debido a la inducción de un agotamiento clonal acelerado en el estroma.
+These simplifications are deliberately coarse. Their role is to create a deterministic prototype that can be inspected and tested, not to reproduce full tumor biology.
 
 ---
 
-### III. BALANCE ENERGÉTICO Y CINÉTICO COMPARATIVO
+### II. Scenario Comparison
 
-La siguiente matriz estequiométrica consolida la transición de estados del sistema celular bajo los diferentes escenarios:
+The document tracks four conceptual intervention schedules that motivated the structure of the prototype:
 
-| Estado del Sistema | pH Intracelular (pHi) | pH Extracelular (pHe) | Unidades de ATP | Eficiencia CD8+ | Vía de Apoptosis / Muerte Celular |
+#### Cohort A: Simultaneous intervention
+- Metabolic and immune intervention are applied together at the same initial step.
+- In the model, this may improve the environment, but not necessarily fast enough to produce the best immune response.
+
+#### Cohort B: Isolated immunotherapy
+- Checkpoint inhibition is modeled without correcting the acidic environment.
+- In the prototype, this case is intentionally weak and helps illustrate why microenvironment conditions matter in the current abstraction.
+
+#### Cohort C: Sequential combined intervention
+- Metabolic disruption is applied first.
+- Immune restoration is introduced only after the modeled environment becomes more permissive.
+- This is the main scenario represented by the current implementation.
+
+#### Cohort D: Delayed sequential intervention
+- Immune restoration is introduced after an extended delay.
+- In the conceptual model, this case explores the cost of poor timing in a deterministic intervention schedule.
+
+These cohorts are comparative modeling constructs. At present, only a subset of their logic is implemented directly in code.
+
+---
+
+### III. Simplified State Table
+
+The following table summarizes the current toy-model state transitions that inspired the prototype:
+
+| State | Intracellular pH | Extracellular pH | ATP | CD8 Efficiency | Interpretation |
 | :--- | :---: | :---: | :---: | :---: | :--- |
-| **Homeostasis (Célula Sana)** | 7.20 | 7.35 | 100 u. | Nominales | Inactiva (Fisiológica) |
-| **Secuestrado (Cáncer Activo)** | 7.40 | 6.20 | 10,000 u. | 10.0% | Bloqueada por Bcl-2/Bcl-xL (x25) |
-| **Cohorte A (Simultánea)** | 6.80 | 6.90 | 2,500 u. | 81.5% | Apoptosis mixta e incompleta |
-| **Cohorte B (Monoterapia)** | 7.40 | 6.20 | 10,000 u. | 10.0% | Bloqueada (Anergia Inmunitaria) |
-| **Cohorte C (Secuencial Óptima)** | **5.20** | **7.35** | **30 u.** | **100.0%** | **RESTAURADO (Apoptosis/Autólisis)** |
-| **Cohorte D (Secuencial Tardía)** | 4.90 | 7.35 | 20 u. | 74.0% | Necrosis secundaria (Lisis desordenada) |
+| Healthy baseline | 7.20 | 7.35 | 100 | nominal | Stable homeostasis |
+| Tumor baseline | 7.20-7.40 | 6.20 | 10,000 | 10.0% | Acidic, immune-resistant, apoptosis-limited |
+| Cohort A | modeled | modeled | modeled | modeled | Simultaneous intervention comparison |
+| Cohort B | 7.20-7.40 | 6.20 | 10,000 | 10.0% | Checkpoint intervention without environmental restoration |
+| Cohort C | 5.20 | 7.35 | 30 | 100.0% in-model | Combined restoration path represented in code |
+| Cohort D | modeled | modeled | modeled | modeled | Delayed intervention comparison |
+
+Several values above are intentionally fixed constants used to make the simulation deterministic and easy to test. They should not be interpreted as experimentally grounded measurements.
 
 ---
 
-### IV. AJUSTE FARMACODINÁMICO DE PRECISIÓN Y EVITACIÓN DE irAEs
+### IV. Implementation Relationship
 
-La de-acidificación lograda en el microambiente extracelular de la **Cohorte C** tiene un beneficio farmacodinámico colateral crítico. Al normalizar el pH estromal a 7.35, se evita la protonación anómala de los residuos de aminoácidos cargados en los bucles CDR de la porción Fab del anticuerpo anti-PD-1. 
+The current Python implementation is much smaller than the full conceptual space described here.
 
-Esto estabiliza la conformación tridimensional del anticuerpo y restablece su constante de disociación a valores nominales ultra-afines ($K_D \approx 10^{-9}\text{ M}$). 
+What the code currently does:
 
-*   **Evitación de Inmunotoxicidad periférica (irAEs):** Al operar a máxima afinidad molecular, el sistema valida la **reducción del 70% de la dosis terapéutica sistémica estándar**. Esto elimina de manera proporcional los efectos adversos autoinmunes graves en tejidos sanos periféricos que tradicionalmente condenan los ensayos clínicos de combinación.
+- model a healthy baseline state,
+- model a tumor baseline state,
+- simulate isolated anti-PD-1 behavior under acidic conditions,
+- simulate a combined restoration path with explicit state changes,
+- reject invalid or physically inconsistent inputs using fail-closed checks.
+
+What the code does not yet do:
+
+- simulate continuous kinetics,
+- calibrate parameters against external data,
+- represent all cohorts with equal detail,
+- model toxicity, dosing, or mechanistic uncertainty at realistic depth.
 
 ---
 
-### V. ALGORITMO DE ASERCIÓN CLÍNICA EN PYTHON (Batería Inviolable v2.1)
+### V. Reference Pseudocode
+
+The following pseudocode illustrates the logic of the main modeled path. It is included as a conceptual summary of the prototype rather than as a claim of biological completeness.
 
 ```python
 # ==============================================================================
@@ -127,4 +151,4 @@ def simular_protocolo_v2_1(celula: CelulaCelular, cohorte="C"):
     return {"apoptosis_activa": False, "eficiencia_CD8": 10.0, "atp_tumoral": celula.atp}
 ```
 
-Este es un registro técnico clasificado. La inmutabilidad matemática y la soberanía de los datos biokinéticos quedan resguardadas localmente bajo firmas criptográficas.
+This working note should be read as a design artifact for an early computational model. Future revisions should either deepen its formalism or narrow its claims further.

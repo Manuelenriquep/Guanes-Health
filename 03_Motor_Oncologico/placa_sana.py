@@ -1,6 +1,8 @@
 """
-PLACA BASE DE LA CÉLULA SANA
-Estructura de control lógico determinista para el mantenimiento de la homeostasis celular.
+Healthy-cell baseline model used by the Guanes Health prototype.
+
+This module encodes a small deterministic representation of cellular
+homeostasis for comparison against the tumor-state model.
 """
 
 
