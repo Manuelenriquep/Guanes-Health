@@ -1,2 +1,25 @@
-# Auto detect text files and perform LF normalization
-* text=auto
+# Text: store and checkout as LF (consistent on Windows/macOS/Linux).
+# Overrides local core.autocrlf for files in this repository.
+* text=auto eol=lf
+
+# Explicit source / docs
+*.py text eol=lf
+*.md text eol=lf
+*.txt text eol=lf
+*.json text eol=lf
+*.yml text eol=lf
+*.yaml text eol=lf
+*.toml text eol=lf
+*.gitignore text eol=lf
+*.gitattributes text eol=lf
+
+# Binary (no conversion)
+*.png binary
+*.jpg binary
+*.jpeg binary
+*.gif binary
+*.webp binary
+*.ico binary
+*.pdf binary
+*.pyc binary
+*.pyo binary

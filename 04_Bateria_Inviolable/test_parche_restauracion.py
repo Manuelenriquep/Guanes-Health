@@ -36,13 +36,13 @@ class TestGuanesHealthOncologia(unittest.TestCase):
         self.assertLessEqual(eficiencia_cd8, 10.0)
 
     def test_caso_C_sinergia_determinista_total(self):
-        """Verifica que el parche combinado logre 100% eficiencia y colapse el ATP tumoral"""
-        # Aplicamos el contra-hackeo (MCT4 bloqueado + anti-PD1)
+        """Verifica transiciones deterministas del protocolo combinado en el toy model"""
+        # MCT4 bloqueado + anti-PD1 (estado modelado; no claim clínico)
         resultado = self.parche.aplicar_protocolo_combinado(self.celula_tumoral)
-        
-        self.assertEqual(resultado['pH_final'], 7.35)  # pH normalizado
-        self.assertEqual(resultado['eficiencia_CD8'], 100.0)  # Depuración al 100%
-        self.assertEqual(resultado['ATP_tumoral_restante'], 30)  # Colapso energético
+
+        self.assertEqual(resultado['pH_final'], 7.35)
+        self.assertEqual(resultado['eficiencia_CD8'], 100.0)
+        self.assertEqual(resultado['ATP_tumoral_restante'], 30)
         self.assertTrue(resultado['autolisis_acida_activada'])
 
     def test_caso_D_doctrina_fail_closed(self):

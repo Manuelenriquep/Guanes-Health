@@ -1,8 +1,10 @@
 """
-Healthy-cell baseline model used by the Guanes Health prototype.
+Placa-instrumento: modelo determinista de línea base "célula sana".
 
-This module encodes a small deterministic representation of cellular
-homeostasis for comparison against the tumor-state model.
+Artefacto de investigación Guanes Health (no ontología: la célula no "es"
+una placa de silicio). Codifica un subconjunto pequeño de homeostasis para
+comparar contra el estado tumoral modelado. Ver SSoT:
+`placa_base_instrumento_investigacion.md`.
 """
 
 

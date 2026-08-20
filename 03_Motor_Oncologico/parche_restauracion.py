@@ -1,8 +1,9 @@
 """
 Deterministic restoration routines for the current oncology prototype.
 
-This module compares a simplified isolated immunotherapy path against a
-combined intervention that restores a subset of modeled tumor states.
+Model-layer comparison: isolated immunotherapy path vs combined intervention
+that restores a subset of *modeled* tumor states. Not a clinical protocol.
+See SSoT: placa_base_instrumento_investigacion.md
 """
 
 from placa_cancer import CelulaTumoral
@@ -20,8 +21,9 @@ class ParcheRestauracion:
 
     def simular_inmunoterapia_aislada(self, celula_tumoral):
         """
-        Monoterapia anti-PD-1.
-        Neutraliza el camuflaje, pero el microambiente ácido paraliza CD8+.
+        Camino modelado: monoterapia anti-PD-1.
+        Neutraliza camuflaje PD-L1 en el estado; el pH ácido modelado
+        reduce la eficiencia CD8+ simulada.
         """
         self._assert_celula_valida(celula_tumoral)
         celula_tumoral.camuflaje_pd_l1 = False
@@ -31,8 +33,9 @@ class ParcheRestauracion:
 
     def aplicar_protocolo_combinado(self, celula_tumoral):
         """
-        Terapia combinada Guanes: MCT4 + BH3 + anti-PD-1.
-        Restaura pH perimetral, colapsa ATP tumoral y fuerza autólisis.
+        Camino modelado combinado: bloqueo MCT4 + ajuste BCL-2 + anti-PD-1.
+        Actualiza variables del toy model (pH, ATP relativo, apoptosis).
+        No constituye indicación clínica.
         """
         self._assert_celula_valida(celula_tumoral)
 
@@ -77,25 +80,26 @@ class ParcheRestauracion:
 
 def simular_sistema_completo():
     print("==================================================")
-    print("SIMULACIÓN DE TRATAMIENTO POR RESTAURACIÓN LÓGICA")
+    print("SIMULACIÓN IN SILICO — RESTAURACIÓN DE ESTADO (MODELO)")
+    print("Placa = instrumento; no ontología celular.")
     print("==================================================")
 
     sana = CelulaSana()
-    print("\n--- HOMEOSTASIS ---")
-    print(f"  Célula sana -> {sana.obtener_estado()}")
+    print("\n--- HOMEOSTASIS (placa sana) ---")
+    print(f"  Estado modelado -> {sana.obtener_estado()}")
 
     tumor = CelulaTumoral()
     parche = ParcheRestauracion()
 
-    print("\n--- MONOTERAPIA ANTI-PD-1 ---")
+    print("\n--- MONOTERAPIA ANTI-PD-1 (modelo) ---")
     eficiencia = parche.simular_inmunoterapia_aislada(tumor)
     print(f"  pH extracelular: {tumor.pH_extracelular:.2f}")
-    print(f"  Eficiencia CD8+: {eficiencia}%")
+    print(f"  Eficiencia CD8+ simulada: {eficiencia}%")
 
     tumor = CelulaTumoral()
     resultado = parche.aplicar_protocolo_combinado(tumor)
-    print("\n--- PROTOCOLO COMBINADO ---")
-    print(f"  Resultado clínico -> {resultado}")
+    print("\n--- PROTOCOLO COMBINADO (modelo) ---")
+    print(f"  Resultado del modelo -> {resultado}")
     print("==================================================")
 
 

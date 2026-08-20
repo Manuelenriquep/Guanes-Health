@@ -1,4 +1,4 @@
-"""Compatibilidad: la placa sana vive en placa_sana.py."""
+"""Compatibilidad: reexporta la placa-instrumento sana (`placa_sana.py`)."""
 
 from placa_sana import CelulaSana
 

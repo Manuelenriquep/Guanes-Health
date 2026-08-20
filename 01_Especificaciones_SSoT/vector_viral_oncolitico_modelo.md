@@ -40,7 +40,7 @@ When the modeled tumor state is detected, the vector is imagined as carrying two
 Under this hypothesis, restored apoptosis would be expected to collapse tumor energetics and favor ordered cellular clearance:
 * El colapso del potencial de membrana mitocondrial anula la síntesis de ATP, desplomando su ledger energético de **10,000 unidades a <10 unidades relativas**.
 * Sin energía para alimentar la bomba Na+/K+ ATPasa, el potencial de reposo de la membrana plasmática se despolariza por encima de los **-15 mV**.
-* Esto ejecuta el veto fisiológico final de la placa base (**VETO FC-BIO-03**): se transloca de forma activa la **fosfatidilserina a la lámina externa de la membrana plasmática** (la señal \"Eat-Me\" de efferocitosis). Las células dendríticas fagocitan limpiamente la célula tumoral moribunda antes de que ocurra una necrosis desordenada que genere inflamación crónica o escape inmunológico.
+* Esto ejecuta, *en el modelo de placa*, el veto fisiológico final (**VETO FC-BIO-03**): se transloca de forma activa la **fosfatidilserina a la lámina externa de la membrana plasmática** (la señal \"Eat-Me\" de efferocitosis). Las células dendríticas fagocitan limpiamente la célula tumoral moribunda antes de que ocurra una necrosis desordenada que genere inflamación crónica o escape inmunológico. (La placa es instrumento de modelado, no identidad de la célula; ver `placa_base_instrumento_investigacion.md`.)
 
 ---
 

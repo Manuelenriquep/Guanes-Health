@@ -16,11 +16,13 @@ Its current value lies in scope discipline rather than scale: a narrow model, ex
 
 The project did not begin inside computational oncology.
 
-It began with work on a different problem: applying a "motherboard" or "baseboard" style of reasoning to document engineering. That approach focused on structure, control surfaces, assertion layers, failure conditions, and deterministic handling of ambiguity in high-stakes information workflows.
+It began with work on a different problem: applying a "motherboard" or "baseboard" (*placa base*) style of reasoning to document engineering. That approach focused on structure, control surfaces, assertion layers, failure conditions, and deterministic handling of ambiguity in high-stakes information workflows.
 
-After seeing how powerful that framing could be in document systems, I began exploring whether a similar methodology could be used to think about biological systems. I spent time researching cancer biology, tumor metabolism, apoptosis, immune evasion, and related control mechanisms through that lens.
+After seeing how powerful that framing could be as a **research instrument**, I began exploring whether a similar methodology could help think about biological systems. I spent time researching cancer biology, tumor metabolism, apoptosis, immune evasion, and related control mechanisms through that lens.
 
-The result was not certainty, but conviction: there seemed to be enough structural coherence in the analogy to justify a computational prototype.
+**Important:** the placa is a tool for organizing hypotheses and inspectable state. It is **not** a claim that a living cell *is* a silicon motherboard. Biology remains stochastic; the placa remains an engineering abstraction. See `01_Especificaciones_SSoT/placa_base_instrumento_investigacion.md`.
+
+The result was not certainty, but conviction: there seemed to be enough structural coherence in the *method* to justify a computational prototype.
 
 Guanes Health is the first small implementation of that intuition.
 
@@ -88,11 +90,17 @@ If the underlying idea has value, it should become clearer under criticism, not 
 
 ## Repository Structure
 
+- `AGENTS.md`  
+  Binding contract for AI collaborators (placa = instrument; no clinical overclaim).
+
 - `01_Especificaciones_SSoT/`  
-  Conceptual and technical working documents.
+  Operational SSoT. Start at `00_INDICE.md`. Includes epistemology of the *placa* and the three-agent pipeline contract. Broad narrative of the method belongs in a future book, not here.
+
+- `02_Simulaciones_Visuales/`  
+  Charts from model runs (illustrative, not clinical evidence).
 
 - `03_Motor_Oncologico/`  
-  Core Python implementation of the current deterministic prototype.
+  Core Python prototype (`placa_*.py` = model artifacts, not biological identity claims).
 
 - `04_Bateria_Inviolable/`  
   Unit tests covering the main modeled scenarios.
@@ -136,11 +144,16 @@ I am especially interested in critique on:
 - whether the deterministic framing clarifies or distorts the biology,
 - whether the current implementation has a credible path toward stronger formalism and reproducibility.
 
+## Method vs. book
+
+- **This repo:** runnable prototype, tests, licenses, and operational SSoT (instruments, fail-closed, agent contracts).
+- **Book (separate):** public exposition of the broader idea. Not maintained inside this repository.
+
 ## Status
 
-**Current stage:** early public prototype for technical scrutiny.
+**Current stage:** early public prototype maximized for inspectable operation under a source-available license.
 
-This repository should be evaluated as a formalized hypothesis under construction: small in code, limited in claims, but deliberate in structure.
+Evaluate it as a formalized hypothesis under construction: small in code, limited in claims, deliberate in structure.
 
 ## Author
 

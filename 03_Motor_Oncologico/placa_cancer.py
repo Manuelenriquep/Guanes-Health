@@ -1,8 +1,10 @@
 """
-Tumor-state baseline model used by the Guanes Health prototype.
+Placa-instrumento: modelo determinista de estado tumoral (toy model).
 
-The implementation is intentionally simplified and focuses on a few
-deterministic state variables relevant to the current toy model.
+Artefacto de investigación Guanes Health (no ontología: el tumor no "es"
+malware de silicio). Variables simplificadas (pH, ATP relativo, BCL-2,
+PD-L1) para exploración in silico. Ver SSoT:
+`placa_base_instrumento_investigacion.md`.
 """
 
 

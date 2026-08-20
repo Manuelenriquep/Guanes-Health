@@ -1,4 +1,4 @@
-"""Compatibilidad: la placa tumoral vive en placa_cancer.py."""
+"""Compatibilidad: reexporta la placa-instrumento tumoral (`placa_cancer.py`)."""
 
 from placa_cancer import CelulaTumoral
 
