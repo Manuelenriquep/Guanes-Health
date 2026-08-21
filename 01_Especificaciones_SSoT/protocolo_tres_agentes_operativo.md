@@ -69,3 +69,6 @@ Si faltan hechos, anexos o decisión de ingeniería: **no completar con ficción
 | Pruebas | `04_Bateria_Inviolable/` |
 
 Los nombres `placa_*` son históricos; significan **instrumento de modelado**.
+
+Madurez (canónico vs experimental vs histórico): [`madurez_artefactos_motor.md`](./madurez_artefactos_motor.md).  
+Trazabilidad A→B del núcleo: [`ledger_parametros_nucleo.md`](./ledger_parametros_nucleo.md).

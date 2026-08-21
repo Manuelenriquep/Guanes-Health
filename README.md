@@ -100,10 +100,22 @@ If the underlying idea has value, it should become clearer under criticism, not 
   Charts from model runs (illustrative, not clinical evidence).
 
 - `03_Motor_Oncologico/`  
-  Core Python prototype (`placa_*.py` = model artifacts, not biological identity claims). Hepatic/HBV coupling: see `README-HEPATIC.md`.
+  Core Python prototype (`placa_*.py` = model artifacts, not biological identity claims). Hepatic/HBV coupling: see `README-HEPATIC.md`.  
+  **Maturity map** (canonical / experimental / historical): `01_Especificaciones_SSoT/madurez_artefactos_motor.md`.
 
 - `04_Bateria_Inviolable/`  
   Unit tests covering the main modeled scenarios. Full run: `py -3 04_Bateria_Inviolable/run_tests_pipeline.py`.
+
+## Canonical lines
+
+Two inspectable entry points (neither is a clinical simulator):
+
+| Line | Role | Entry |
+|------|------|--------|
+| **Nucleus (canonical)** | Minimal healthy → tumor → restoration demo | `parche_restauracion.py` (+ `placa_sana.py`, `placa_cancer.py`) |
+| **Dynamic / hepatic (canonical extension)** | Temporal MCT/immune dynamics + hepatocyte coupling | See `README-HEPATIC.md` (`…_homeostasis_v4`, `…_hepatico_v2`) |
+
+Parameter traceability (literature → model constant): `ledger_parametros_nucleo.md` (nucleus), `ledger_parametros_cart_hcc.md` (CAR-T skeleton). Older `homeostasis_v2`/`v3` and `onco_hepatico_v1` are historical — do not extend them.
 
 ## Running the Prototype
 
@@ -113,7 +125,7 @@ From the repository root:
 py "03_Motor_Oncologico/parche_restauracion.py"
 ```
 
-This runs the current deterministic demonstration and prints the healthy baseline, the isolated immunotherapy path, and the combined restoration scenario.
+This runs the **canonical nucleus** demonstration and prints the healthy baseline, the isolated immunotherapy path, and the combined restoration scenario.
 
 ## Running the Tests
 

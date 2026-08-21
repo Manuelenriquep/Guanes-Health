@@ -40,7 +40,7 @@ Si un agente o colaborador **recibe** un archivo llamado `placa_base_sana` / `pl
 | **C. Abierto** | No decidido aún | Backbone viral; calibración empírica de constantes |
 | **D. Prohibido afirmar** | Validación clínica / “la célula es digital” | Eficacia terapéutica humana; ontología silicio↔célula |
 
-Las constantes de `placa_sana.py` / `placa_cancer.py` son **Capa B** salvo que exista trazabilidad explícita a literatura (Capa A) en una tabla fuente.
+Las constantes de `placa_sana.py` / `placa_cancer.py` son **Capa B** salvo que exista trazabilidad explícita a literatura (Capa A) en una tabla fuente. Inventario del núcleo: [`ledger_parametros_nucleo.md`](./ledger_parametros_nucleo.md). Madurez de artefactos: [`madurez_artefactos_motor.md`](./madurez_artefactos_motor.md).
 
 ---
 

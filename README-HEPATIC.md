@@ -21,18 +21,23 @@ Sirve para comparar escenarios numéricos (p. ej. control vs escape MCT2 vs feed
 
 ## 2. Mapa de archivos
 
+Madurez global del motor: [`01_Especificaciones_SSoT/madurez_artefactos_motor.md`](01_Especificaciones_SSoT/madurez_artefactos_motor.md).  
+El **núcleo canónico** (demo README) es `placa_*` + `parche_restauracion.py`; esta línea es la **extensión canónica** onco-hepática.
+
 ### Motores (`03_Motor_Oncologico/`)
 
-| Archivo | Rol |
-|---------|-----|
-| `simulador_onco_homeostasis_v4.py` | Célula sana/tumoral (telómeros, pH, MCT2, inmuno) |
-| `simulador_hepatocito_infeccion.py` | Hepatocito + HBV / NTCP / Myrcludex |
-| `simulador_onco_hepatico_v2.py` | Acoplamiento bidireccional IL-6 / PD-L1 |
-| `grafico_dinamica_temporal.py` | Trayectoria IL-6 / PD-L1 y \(t_{\mathrm{escape}}\) modelado |
-| `simulador_cointervencion_escenarios.py` | Comparativa de 4 escenarios |
-| `simulador_s267f_toxicidad.py` | Barrido Myrcludex WT vs S267F |
-| `simulador_cart_hcc_interaccion.py` | Toy model CAR-T/HCC: Kd–pH, NHE1, GPC3, iCasp9, sGPC3, η_mig |
-| `analisis_sensibilidad_local_cart.py` | Barrido local 1D/2D; rangos asumidos (no IC empírico) |
+| Archivo | Madurez | Rol |
+|---------|---------|-----|
+| `simulador_onco_homeostasis_v4.py` | Canónico (dinámica) | Célula sana/tumoral (telómeros, pH, MCT2, inmuno) |
+| `simulador_hepatocito_infeccion.py` | Canónico (hepático) | Hepatocito + HBV / NTCP / Myrcludex |
+| `simulador_onco_hepatico_v2.py` | Canónico (acoplamiento) | Acoplamiento bidireccional IL-6 / PD-L1 |
+| `grafico_dinamica_temporal.py` | Experimental (visual) | Trayectoria IL-6 / PD-L1 y \(t_{\mathrm{escape}}\) modelado |
+| `simulador_cointervencion_escenarios.py` | Experimental | Comparativa de 4 escenarios |
+| `simulador_s267f_toxicidad.py` | Experimental | Barrido Myrcludex WT vs S267F |
+| `simulador_cart_hcc_interaccion.py` | Experimental | Toy model CAR-T/HCC: Kd–pH, NHE1, GPC3, iCasp9, sGPC3, η_mig |
+| `analisis_sensibilidad_local_cart.py` | Experimental | Barrido local 1D/2D; rangos asumidos (no IC empírico) |
+| `simulador_onco_homeostasis.py` … `_v3.py` | Histórico | No ampliar → usar `_v4` |
+| `simulador_onco_hepatico_v1.py` | Histórico | No ampliar → usar `_v2` |
 
 ### Tests (`04_Bateria_Inviolable/`)
 
@@ -43,7 +48,7 @@ Sirve para comparar escenarios numéricos (p. ej. control vs escape MCT2 vs feed
 | `test_analisis_sensibilidad_local_cart.py` | Fronteras del barrido local CAR-T |
 | `run_tests_pipeline.py` | Suite completa del repo |
 
-Ledger / mapa: `01_Especificaciones_SSoT/ledger_parametros_cart_hcc.md`, `ssot_framework_map-v2.md`.
+Ledger / mapa: `01_Especificaciones_SSoT/madurez_artefactos_motor.md`, `ledger_parametros_nucleo.md`, `ledger_parametros_cart_hcc.md`, `ssot_framework_map-v2.md`.
 
 ### Figuras (`02_Simulaciones_Visuales/`)
 

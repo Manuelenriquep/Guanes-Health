@@ -2,7 +2,7 @@
 
 Guanes Health. Instrumento de cribado *in silico* (placas = herramientas de modelado, no ontología celular).
 
-Complementa: [`placa_base_instrumento_investigacion.md`](./placa_base_instrumento_investigacion.md), [`ledger_parametros_cart_hcc.md`](./ledger_parametros_cart_hcc.md).
+Complementa: [`placa_base_instrumento_investigacion.md`](./placa_base_instrumento_investigacion.md), [`madurez_artefactos_motor.md`](./madurez_artefactos_motor.md), [`ledger_parametros_nucleo.md`](./ledger_parametros_nucleo.md), [`ledger_parametros_cart_hcc.md`](./ledger_parametros_cart_hcc.md).
 
 ---
 
