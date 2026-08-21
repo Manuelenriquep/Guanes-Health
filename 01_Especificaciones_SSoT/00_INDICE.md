@@ -6,6 +6,8 @@ La **narrativa amplia del método** (libro) está fuera de este repo; aquí solo
 | Documento | Rol | Estado |
 |-----------|-----|--------|
 | [`placa_base_instrumento_investigacion.md`](./placa_base_instrumento_investigacion.md) | Epistemología: placa = instrumento, no ontología | **Normativo** |
+| [`estudio_integracion_inmunologica_v3.md`](./estudio_integracion_inmunologica_v3.md) | Integración hepática/inmune/HBV (NTCP, IL-6, Myrcludex) + Capa B | Activo (v3) |
+| [`literatura_referencia.md`](./literatura_referencia.md) | Compendio de referencias PMC de respaldo | Referencia |
 | [`vector_viral_oncolitico_modelo-v2.md`](./vector_viral_oncolitico_modelo-v2.md) | Hallmarks, hipótesis de vector, wet-lab, moat | Activo (v2) |
 | [`vector_viral_oncolitico_modelo.md`](./vector_viral_oncolitico_modelo.md) | Nota especulativa v1 del vector | Histórico / hipótesis |
 | [`protocolo_tres_agentes_operativo.md`](./protocolo_tres_agentes_operativo.md) | Contrato Célula → Cáncer → Oncólogo para agentes | **Normativo** |

@@ -1,14 +1,28 @@
 # ESTUDIO DE INTEGRACIÓN FISIOLÓGICA: ACOPLAMIENTO INMUNE-METABÓLICO EN EL MICROAMBIENTE HEPÁTICO Y ONCO-VIROLÓGICO (v3.0)
-**DOCUMENTO DE ESPECIFICACIÓN CIENTÍFICA Y MODELADO MULTIESCALA DE SISTEMAS BIOLÓGICOS**  
-*Guanes Health - División de Biología de Sistemas e Investigación In Silico*
+**DOCUMENTO DE ESPECIFICACIÓN Y MODELADO MULTIESCALA (SSoT operativo)**  
+*Guanes Health — investigación in silico*  
+**Estado:** Activo (hipótesis + Capa B)  
+**Complementa:** `placa_base_instrumento_investigacion.md`, `literatura_referencia.md`  
+**Código canónico:** `03_Motor_Oncologico/simulador_hepatocito_infeccion.py`  
+**Acoplamiento onco:** `03_Motor_Oncologico/simulador_onco_hepatico_v1.py`  
+**Batería:** `04_Bateria_Inviolable/test_simulador_hepatocito.py`, `test_simulador_onco_hepatico.py`
+
+| Capa | Contenido aquí |
+|------|----------------|
+| **A** | Biología de fondo (NTCP/HBV, IL-6, zonación, pHe, GSH) citada de literatura |
+| **B** | Umbrales y cinéticas del toy model (O2→NTCP, Hill IL-6, Ki Myrcludex, veto GSH) |
+| **C** | Abierto: calibración empírica; feedback hepatocito→tumor |
+
+La “placa” en este documento es **instrumento de investigación**, no ontología celular.  
+Declaración: cribado de hipótesis in silico — no consejo médico ni evidencia clínica.
 
 ---
 
 ## I. INTRODUCCIÓN Y ENFOQUE METODOLÓGICO: LA RED MULTIESCALA DE RESTRICCIONES
 
-El modelado predictivo de la patología humana requiere trascender las descripciones fenomenológicas tradicionales para adoptar una metodología basada en **restricciones biofísicas, leyes de conservación y transiciones de estado delimitadas por el microambiente** [71, 92]. La célula humana no opera de forma aislada ni binaria; constituye un nodo metabólico y electroquímico integrado dentro de un ecosistema celular tridimensional indisoluble, donde la matriz extracelular y los fluidos intersticiales actúan como transductores mecánicos y químicos que dictan el destino fenotípico [86].
+El modelado *in silico* de patología requiere ordenar **restricciones biofísicas, leyes de conservación y transiciones de estado** delimitadas por el microambiente [71, 92]. La célula no se trata aquí como compuerta binaria, sino como nodo metabólico/electroquímico embebido en un ecosistema tridimensional [86].
 
-El presente estudio formaliza la **Placa de Integración Fisiológica v3.0**, unificando el modelo metabólico del parénquima hepático (Hepatocito Sano v1.0) [92], la cinética del receptor de entrada viral NTCP (SLC10A1) [124, 255] y la suite de control estocástico del microambiente inmunitario (Inmunología Celular v2.0) [71]. Este marco nos permite explorar, con rigor molecular e *in silico*, las sinergias y conflictos de viabilidad que emergen durante la infección por el virus de la Hepatitis B (HBV) y la progresión hacia el carcinoma hepatocelular (HCC) bajo presión selectiva y citoquinas inflamatorias [124].
+Este estudio formaliza la **integración fisiológica v3.0** (instrumento de placa): unifica el modelo metabólico del hepatocito (v1.0) [92], la cinética de NTCP (SLC10A1) [124, 255] y el control estocástico del microambiente inmunitario (v2.0) [71]. Sirve para explorar hipótesis sobre infección por HBV y progresión hacia HCC bajo inflamación [124] — siempre como **modelo**, no como validación wet-lab.
 
 ---
 
@@ -32,7 +46,7 @@ La homeostasis del aclaramiento biliar es una prioridad fisiológica del hepatoc
 El procesamiento de xenobióticos lipofílicos nocivos (como el paracetamol) en el retículo endoplásmico liso exige la sincronía obligatoria entre las reacciones de Fase I y Fase II [95]:
 *   **Fase I ( CYP2E1 / CYP3A4)**: Oxida el compuesto original generando un intermediario electrofílico altamente reactivo y de elevada energía libre de Gibbs, la *N-acetil-p-benzoquinona imina* (**NAPQI**) [95].
 *   **Fase II (Glutatión S-Transferasa - GST / UGT)**: Conjuga de manera inmediata al NAPQI con el antioxidante citoplasmático **glutatión reducido (GSH)** para neutralizar su electrofilia y facilitar su excreción hidrofílica [95].
-*   **Mecanismo de Exclusión (Veto de NAPQI Libre - FC-BIO-HEP01)**: El pool nominal de GSH oscila entre **5.0 a 10.0 mM** [99]. Si debido a una sobredosis de xenobióticos o ayuno extremo, el pool de GSH desciende por debajo de un umbral crítico del **30% de su valor nominal**, se veta de forma absoluta la Fase I para detener la producción de NAPQI libre [97]. De forma simultánea y determinista, el sistema celular ejecuta la **permeabilización de la membrana mitocondrial externa (MOMP)**, induciendo la liberación de Citocromo c al citosol para activar la apoptosis por caspasas [97]. Este apagado *fail-closed* previene el daño oxidativo generalizado de membranas que culminaría en lisis lítica desordenada, necrosis celular y liberación descontrolada de DAMPs inflamatorios al parénquima [97].
+*   **Mecanismo de Exclusión (Veto de NAPQI Libre - FC-BIO-HEP-01)**: El pool nominal de GSH oscila entre **5.0 a 10.0 mM** [99]. Si debido a una sobredosis de xenobióticos o ayuno extremo, el pool de GSH desciende por debajo de un umbral crítico del **30% de su valor nominal**, se veta de forma absoluta la Fase I para detener la producción de NAPQI libre [97]. De forma simultánea y determinista, el sistema celular ejecuta la **permeabilización de la membrana mitocondrial externa (MOMP)**, induciendo la liberación de Citocromo c al citosol para activar la apoptosis por caspasas [97]. Este apagado *fail-closed* previene el daño oxidativo generalizado de membranas que culminaría en lisis lítica desordenada, necrosis celular y liberación descontrolada de DAMPs inflamatorios al parénquima [97].
 
 ---
 
@@ -90,148 +104,34 @@ La activación de los receptores de reconocimiento de patrones innatos (PRRs, co
 
 ---
 
-## V. CASOS DE SIMULACIÓN Y SUGERENCIAS DE EXPANSIÓN DEL MODELO IN SILICO
+## V. CASOS DE SIMULACIÓN Y EXPANSIÓN DEL MODELO IN SILICO
 
-Para trasladar de forma rigurosa la Placa Base de Lógica de la Inmunología Celular v2.0 y el módulo del Hepatocito Sano v1.0 a nuestro entorno de ejecución de Python, se propone expandir el motor canónico (`simulador_onco_homeostasis_v4.py`) para unificar la virología molecular, el aclaramiento metabólico y la inmunovigilancia.
+El módulo canónico ya vive en el motor (no duplicar lógica en este markdown):
 
-### Propuesta de Código Unificado de Simulación Hepática e Inmune:
-El siguiente módulo de expansión puede ser integrado o ejecutado de forma aislada para simular el aclaramiento viral frente a la inflamación por IL-6 y el bloqueo competitivo con Myrcludex B:
+- Código hepatocito: `03_Motor_Oncologico/simulador_hepatocito_infeccion.py`
+- Acoplamiento Cohorte C ↔ hepatocito: `03_Motor_Oncologico/simulador_onco_hepatico_v1.py`
+- Tests: `04_Bateria_Inviolable/test_simulador_hepatocito.py`, `test_simulador_onco_hepatico.py`
+- Pipeline: incluido en `04_Bateria_Inviolable/run_tests_pipeline.py`
 
-```python
-import math
-import numpy as np
+### Parámetros Capa B congelados en batería
 
-class HepatocitoInmuneIntegrado:
-    """
-    Simulador multiescala del hepatocito incorporando gradiente de oxigenación,
-    regulación del receptor de entrada NTCP por la vía inflamatoria de IL-6,
-    bloqueo competitivo con Myrcludex B, e infección por viriones de Hepatitis B (HBV).
-    """
-    def __init__(self, gsh_nominal=8.0, o2_pp=60.0):
-        # Constantes Biofísicas del Hepatocito (v1.0)
-        self.ph_intracelular = 7.20
-        self.potencial_membrana = -35.0      # mV (necesario para cotransporte Na+/taurocolato)
-        self.gsh_pool = gsh_nominal          # mM
-        self.gsh_nominal = gsh_nominal
-        self.o2_presion_parcial = o2_pp      # mmHg (Zonación Hepática)
-        
-        # Parámetros del Receptor de Entrada NTCP (SLC10A1)
-        self.ntcp_densidad_basal = 1.0       # Fracción nominal (1.0 = 100%)
-        self.ntcp_densidad_membrana = 1.0
-        self.es_variante_S267F = False       # Si True, refractario a HBV y transporte de sales
-        
-        # Estado de Infección Viral por HBV y Carga Antigénica
-        self.carga_viral_de_novo = 0.0       # Escala lineal de viriones intracelulares
-        self.mhc_i_presentacion = 1.0        # Densidad superficial para CD8+ (antígeno viral)
-        self.viabilidad = 1.0                # 1.0 = sano/funcional, 0.0 = apoptosis
-        
-        # Variables del Microambiente e Inmunología (v2.0)
-        self.il6_concentracion = 0.0         # pg/mL (Citoquina inflamatoria)
-        self.lactato_extracelular = 1.5      # mM
-        self.pHe = 7.40                      # pH estromal/sinusoidal
-        
-        # Farmacodinámica del Inhibidor de Entrada
-        self.myrcludex_b_nM = 0.0            # Concentración del lipopéptido competidor
-        
-        # Aplicar norma de zonación inicial
-        self._aplicar_norma_zonacion()
+| Símbolo / regla | Valor en modelo | Notas |
+|-----------------|-----------------|-------|
+| Zonación NTCP basal | isquemia 0.2 / Z3 0.8 / Z1 1.2 | umbrales pO2 20 y 35 mmHg |
+| Hill IL-6 | techo 0.98, K=50 pg/mL | `NTCP = basal * (1 - 0.98 * IL6/(IL6+50))` |
+| Ki Myrcludex viral / biliar | 1 nM / 100 nM | fracción `1/(1+C/Ki)` |
+| Umbral aclaramiento biliar | **0.15** | por debajo → depleción GSH 0.5 mM por unidad de tiempo |
+| VETO FC-BIO-HEP-01 | GSH < 30% nominal | viabilidad → 0 |
+| VETO FC-BIO-2.1 | pHe ≤ 6.50 | lisis CD8 = 0 |
+| Escenarios 72 h | Control / IL-6 100 / Myrcludex 10 nM / 1000 nM | paso 0.5 h |
 
-    def _aplicar_norma_zonacion(self):
-        """Aplica la jerarquía normativa basada en la presión parcial de oxígeno (Nivel 4)."""
-        if self.o2_presion_parcial < 20.0:
-            # Estado de Excepción: Isquemia. El hepatocito deprime transportadores metabólicos
-            self.ntcp_densidad_basal = 0.2
-        elif self.o2_presion_parcial <= 35.0:
-            # Zona 3 (Pericentral): Menor oxigenación, expresión basal estándar
-            self.ntcp_densidad_basal = 0.8
-        else:
-            # Zona 1 (Periportal): Alta oxigenación, expresión y aclaramiento de sales biliar máximo
-            self.ntcp_densidad_basal = 1.2
-        self.ntcp_densidad_membrana = self.ntcp_densidad_basal
+### Expansión abierta (Capa C)
 
-    def evaluar_regulacion_y_entrada_viral(self, inóculo_HBV, delta_t=1.0):
-        """
-        Ejecuta la cinética de regulación transcripcional de NTCP y simula la tasa de entrada de HBV.
-        """
-        if self.viabilidad <= 0.0:
-            return "NODE_INACTIVE: Apoptosis o Necrosis disparada"
-
-        # 1. Represión de NTCP mediada por IL-6 (Vía JNK dependiente) - Nivel 4.2 de Inmuno
-        # IL-6 induce una caída de hasta el 98% de NTCP de forma dosis-dependiente (función de saturación de Hill)
-        represion_il6 = 1.0
-        if self.il6_concentracion > 0:
-            represion_il6 = 1.0 - 0.98 * (self.il6_concentracion / (self.il6_concentracion + 50.0))
-            
-        # 2. Densidad final de NTCP en membrana sinusoidal
-        self.ntcp_densidad_membrana = self.ntcp_densidad_basal * represion_il6
-        
-        # Si presenta el polimorfismo refractario S267F, el receptor NTCP es nulo para HBV y sales biliares
-        if self.es_variante_S267F:
-            self.ntcp_densidad_membrana = 0.0
-            
-        # 3. Competencia estequiométrica basolateral de Myrcludex B frente a HBV
-        # Myrcludex B bloquea con una potencia 100 veces mayor la entrada viral que la biliar.
-        # Ki viral nominal = 1.0 nM; Ki biliar nominal = 100.0 nM
-        fraccion_bloqueo_viral = 1.0 / (1.0 + (self.myrcludex_b_nM / 1.0))
-        fraccion_bloqueo_biliar = 1.0 / (1.0 + (self.myrcludex_b_nM / 100.0))
-        
-        # 4. Cinética de Infección de novo por HBV (Capa B)
-        # La tasa de penetración viral depende de la densidad de NTCP disponible y de la presencia del inhibidor
-        tasa_entrada = inóculo_HBV * self.ntcp_densidad_membrana * fraccion_bloqueo_viral
-        self.carga_viral_de_novo += tasa_entrada * delta_t
-        
-        # El hepatocito procesa y presenta antígenos del HBV en el complejo MHC-I de forma directamente proporcional
-        self.mhc_i_presentacion = min(10.0, 1.0 + (self.carga_viral_de_novo * 1.5))
-        
-        # 5. Efecto biliar y colestasis tóxica por deplesión prolongada de NTCP (Riesgo del modelo)
-        # Si ntcp_densidad_membrana se bloquea fuertemente por Myrcludex B biliar (>90% de inhibición), 
-        # o por colestasis, la acumulación de sales biliares daña la membrana mitocondrial
-        aclaramiento_sales_biliares = self.ntcp_densidad_membrana * fraccion_bloqueo_biliar
-        if aclaramiento_sales_biliares < 0.1 and not self.es_variante_S267F:
-            # Pérdida crítica del aclaramiento: deplesión estequiométrica de GSH y colapso de la membrana
-            self.gsh_pool = max(0.0, self.gsh_pool - 0.5 * delta_t)
-            
-        # Evaluar Veto Redox del Hepatocito (Nivel 2.2 - Apoptosis Fail-Closed)
-        if (self.gsh_pool / self.gsh_nominal) < 0.30:
-            self.viabilidad = 0.0  # Apoptosis iniciada por MOMP por exceso de estrés redox biliar
-            
-        return {
-            "NTCP_Membrana": self.ntcp_densidad_membrana,
-            "Carga_Viral": self.carga_viral_de_novo,
-            "MHC_I": self.mhc_i_presentacion,
-            "GSH_Pool": self.gsh_pool,
-            "Viabilidad_Hepatocito": self.viabilidad
-        }
-
-    def evaluar_lisis_por_cd8(self, cd8_presente=False, anti_pd_1=False):
-        """
-        Calcula la probabilidad lítica de los TILs CD8+ sobre el hepatocito infectado,
-        incorporando el veto por acidosis estromal profunda (Nivel 2.1 de Inmuno)
-        y la anergia/agotamiento del TCR mediado por PD-1/PD-L1.
-        """
-        if self.viabilidad <= 0.0 or not cd8_presente:
-            return 0.0
-            
-        # VETO EXCLUSIÓN: Parálisis de lisis en acidosis estromal local extrema (pHe <= 6.50)
-        if self.pHe <= 6.50:
-            return 0.0  # Veto del Escudo Ácido (FC-BIO-2.1)
-            
-        # Cálculo de afinidad e interacción TCR/MHC-I
-        prob_reconocimiento = self.mhc_i_presentacion / 10.0
-        
-        # Checkpoint de veto por PD-1/PD-L1 (Evasión tumoral o viral crónica)
-        # En inflamación prolongada, el ligando PD-L1 de la célula diana silencia la señal
-        pd_l1_expresion = min(1.0, self.carga_viral_de_novo * 0.2)
-        pd1_interferencia = 0.0 if anti_pd_1 else pd_l1_expresion
-        
-        fuerza_lítica = prob_reconocimiento * (1.0 - pd1_interferencia)
-        fuerza_lítica = max(0.0, min(1.0, fuerza_lítica))
-        
-        # Aplicar daño por lisis inmunitaria CD8+ al hepatocito diana
-        self.viabilidad = max(0.0, self.viabilidad - fuerza_lítica)
-        
-        return fuerza_lítica
-```
+| Ítem | Estado |
+|------|--------|
+| Acoplamiento unidireccional Cohorte C → hepatocito HBV | **Cerrado (Capa B)** — `03_Motor_Oncologico/simulador_onco_hepatico_v1.py` |
+| Feedback hepatocito→tumor (IL-6/DAMPs alteran estroma) | **UNRESOLVED** |
+| Calibración empírica de constantes | **UNRESOLVED** |
 
 ---
 
@@ -240,4 +140,4 @@ class HepatocitoInmuneIntegrado:
 “Esto es cribado de hipótesis in silico sobre instrumentos de placa; no es consejo médico ni evidencia clínica.”
 
 ---
-*Fin del Estudio de Integración Fisiológica v3.0. Documento técnico de referencia para el pipeline experimental de Guanes Health.*
+*Fin del Estudio de Integración Fisiológica v3.0. Referencia operativa para el pipeline de Guanes Health.*
