@@ -31,19 +31,26 @@ Sirve para comparar escenarios numéricos (p. ej. control vs escape MCT2 vs feed
 | `grafico_dinamica_temporal.py` | Trayectoria IL-6 / PD-L1 y \(t_{\mathrm{escape}}\) modelado |
 | `simulador_cointervencion_escenarios.py` | Comparativa de 4 escenarios |
 | `simulador_s267f_toxicidad.py` | Barrido Myrcludex WT vs S267F |
+| `simulador_cart_hcc_interaccion.py` | Esqueleto CAR-T / HCC (Kd–pH, NHE1, GPC3, iCasp9) |
+| `analisis_sensibilidad_local_cart.py` | Barrido local 1D/2D + envolvente ±20 % asumida |
 
 ### Tests (`04_Bateria_Inviolable/`)
 
 | Archivo | Rol |
 |---------|-----|
 | `test_simulador_onco_hepatico_v2.py` | Regresión numérica de los 4 escenarios acoplados |
+| `test_cart_hcc_interaccion.py` | Fronteras CAR-T + señuelo sGPC3 (RESOLVED-B-01) |
+| `test_analisis_sensibilidad_local_cart.py` | Fronteras del barrido local CAR-T |
 | `run_tests_pipeline.py` | Suite completa del repo |
+
+Ledger: `01_Especificaciones_SSoT/ledger_parametros_cart_hcc.md`.
 
 ### Figuras (`02_Simulaciones_Visuales/`)
 
 - `dinamica_temporal_il6_pdl1.png`
 - `cointervencion_escenarios.png`
 - `analisis_toxicidad_s267f.png`
+- `sensibilidad_local_cart_hcc.png`
 
 ---
 
@@ -97,6 +104,7 @@ Salidas gráficas → `02_Simulaciones_Visuales/`.
 
 ```bash
 py -3 04_Bateria_Inviolable/test_simulador_onco_hepatico_v2.py
+py -3 04_Bateria_Inviolable/test_cart_hcc_interaccion.py
 py -3 04_Bateria_Inviolable/run_tests_pipeline.py
 ```
 

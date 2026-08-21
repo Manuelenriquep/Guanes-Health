@@ -22,6 +22,8 @@ def run_pipeline():
         "test_simulador_hepatocito.py",
         "test_simulador_onco_hepatico.py",
         "test_simulador_onco_hepatico_v2.py",
+        "test_cart_hcc_interaccion.py",
+        "test_analisis_sensibilidad_local_cart.py",
     ]
 
     env = os.environ.copy()
