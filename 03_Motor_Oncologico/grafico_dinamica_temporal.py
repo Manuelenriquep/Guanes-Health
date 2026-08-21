@@ -2,15 +2,23 @@ import sys
 import os
 import numpy as np
 
-# Asegurar importación de artifacts
-sys.path.append("/workspace/artifacts")
-sys.path.append("/workspace/scratch")
+_MOTOR_DIR = os.path.abspath(os.path.dirname(__file__))
+if _MOTOR_DIR not in sys.path:
+    sys.path.insert(0, _MOTOR_DIR)
 
 import matplotlib
 matplotlib.use('Agg')
 import matplotlib.pyplot as plt
 
 from simulador_onco_hepatico_v2 import SimuladorOncoHepaticoBidireccional
+
+
+def visuales_dir():
+    path = os.path.abspath(
+        os.path.join(os.path.dirname(__file__), "..", "02_Simulaciones_Visuales")
+    )
+    os.makedirs(path, exist_ok=True)
+    return path
 
 def generar_analisis_grafico():
     print("[*] Iniciando simulación de retroalimentación acoplada para análisis dinámico...")
@@ -106,16 +114,10 @@ def generar_analisis_grafico():
     plt.title('Dinámica Temporal Acoplada: Bucle de Retroalimentación HBV/IL-6 -> PD-L1', 
               fontsize=14, fontweight='bold', pad=15)
     
-    # Guardar en scratch
-    out_path_scratch = "/workspace/scratch/dinamica_temporal_il6_pdl1.png"
-    plt.savefig(out_path_scratch, bbox_inches='tight', dpi=150)
+    out_path = os.path.join(visuales_dir(), "dinamica_temporal_il6_pdl1.png")
+    plt.savefig(out_path, bbox_inches="tight", dpi=150)
     plt.close()
-    
-    # Copiar a out
-    out_path_publish = "/workspace/out/dinamica_temporal_il6_pdl1.png"
-    import shutil
-    shutil.copy(out_path_scratch, out_path_publish)
-    print(f"[✔] ÉXITO: Gráfico publicado correctamente en {out_path_publish}")
+    print(f"[OK] Grafico publicado en {out_path}")
 
 if __name__ == "__main__":
     generar_analisis_grafico()

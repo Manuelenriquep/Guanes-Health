@@ -3,9 +3,9 @@ import numpy as np
 import sys
 import os
 
-# Asegurar que el path incluya artifacts y scratch
-sys.path.append("/workspace/artifacts")
-sys.path.append("/workspace/scratch")
+_MOTOR_DIR = os.path.abspath(os.path.dirname(__file__))
+if _MOTOR_DIR not in sys.path:
+    sys.path.insert(0, _MOTOR_DIR)
 
 from simulador_onco_homeostasis_v4 import CelulaHumana as CelulaTumor
 from simulador_hepatocito_infeccion import HepatocitoInmuneIntegrado as HepatocitoSano

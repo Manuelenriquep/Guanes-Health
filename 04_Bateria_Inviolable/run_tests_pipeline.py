@@ -23,6 +23,7 @@ def run_pipeline():
         "test_barrido_estocastico_oxigeno.py",
         "test_simulador_hepatocito.py",
         "test_simulador_onco_hepatico.py",
+        "test_simulador_onco_hepatico-v2.py",
     ]
 
     env = os.environ.copy()

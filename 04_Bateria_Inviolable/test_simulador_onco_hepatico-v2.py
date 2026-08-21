@@ -2,9 +2,10 @@ import unittest
 import sys
 import os
 
-# Asegurar que el path incluya scratch y artifacts
-sys.path.append("/workspace/scratch")
-sys.path.append("/workspace/artifacts")
+MOTOR_DIR = os.path.abspath(
+    os.path.join(os.path.dirname(__file__), "..", "03_Motor_Oncologico")
+)
+sys.path.insert(0, MOTOR_DIR)
 
 from simulador_onco_hepatico_v2 import SimuladorOncoHepaticoBidireccional
 

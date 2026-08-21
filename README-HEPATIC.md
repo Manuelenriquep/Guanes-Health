@@ -67,33 +67,39 @@ Para ejecutar los escenarios interactivos de simulación o graficar los perfiles
 
 ### A. Ejecutar el Barrido Comparativo de los 4 Escenarios
 Para simular de forma paralela los escenarios basales (Control, Santuario MCT2, Feedback Activo y la Co-Intervención del Escenario 4), ejecuta el siguiente comando:
+Desde la raíz del repositorio (`Guanes Health/`):
+
 ```bash
-python3 simulador_cointervencion_curacion.py
+py -3 03_Motor_Oncologico/simulador_cointervencion_curacion.py
 ```
-*   **Resultados Esperados**: El script correrá la integración temporal (0 a 72h con pasos de 0.1h), imprimirá las variables terminales en la consola y exportará la matriz gráfica comparativa de 2x2 subplots en `cointervencion_curacion_grafico.png`.
+*   **Resultados Esperados**: Integración temporal (0–72 h, paso 0.1 h), variables terminales en consola y matriz 2×2 en `02_Simulaciones_Visuales/cointervencion_curacion_grafico.png`.
 
 ### B. Localizar el Punto Crítico de Escape Temporal ($t_{\text{escape}}$)
-Para correr el análisis fino de acumulación de citoquinas y determinar la ventana terapéutica exacta de la co-intervención, ejecuta:
 ```bash
-python3 grafico_dinamica_temporal.py
+py -3 03_Motor_Oncologico/grafico_dinamica_temporal.py
 ```
-*   **Resultados Esperados**: Retornará el instante exacto en que la IL-6 supera el umbral que satura los checkpoints (encontrado a **$t = 1.80\text{ h}$** bajo las condiciones de control) y exportará las trayectorias dinámicas duales a `dinamica_temporal_il6_pdl1.png`.
+*   **Resultados Esperados**: Instantánea de saturación de checkpoints (control ≈ **$t = 1.80\text{ h}$**) y trayectorias en `02_Simulaciones_Visuales/dinamica_temporal_il6_pdl1.png`.
 
 ### C. Ejecutar el Barrido del Genotipo S267F vs. Wild-Type
-Para correr el ensayo que mapea la asimetría funcional y la resistencia biológica absoluta del mutante frente al genotipo salvaje bajo el efecto de Myrcludex B, ejecuta:
 ```bash
-python3 simulador_s267f_toxicidad.py
+py -3 03_Motor_Oncologico/simulador_s267f_toxicidad.py
 ```
-*   **Resultados Esperados**: Modelará la respuesta a dosis variables del inhibidor (0 a 1000 nM) y exportará la gráfica de curvas de viabilidad, GSH y carga viral residual en `analisis_toxicidad_s267f.png`.
+*   **Resultados Esperados**: Respuesta a dosis (0–1000 nM) y curvas en `02_Simulaciones_Visuales/analisis_toxicidad_s267f.png`. *(Script pendiente de portar al layout del repo si aún no está en `03_Motor_Oncologico/`.)*
 
 ---
 
 ## 5. INSTRUCCIONES PARA EL ARNÉS DE PRUEBAS AUTOMATIZADAS
 
-La validación y control de regresión matemática se realiza mediante el módulo de pruebas de integración de Python. Para correr la suite completa y verificar que los inmutables físicos del modelo sigan intactos, ejecuta:
+Desde la raíz del repositorio:
 
 ```bash
-python3 -m unittest test_simulador_onco_hepatico-v2.py
+py -3 04_Bateria_Inviolable/test_simulador_onco_hepatico-v2.py
+```
+
+O el pipeline completo:
+
+```bash
+py -3 04_Bateria_Inviolable/run_tests_pipeline.py
 ```
 
 ### Resultados de Aserción del Arnés (Veredicto Esperado):

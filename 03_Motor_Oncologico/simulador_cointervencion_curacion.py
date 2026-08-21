@@ -6,11 +6,19 @@ import matplotlib
 matplotlib.use('Agg')
 import matplotlib.pyplot as plt
 
-# Asegurar importación de los módulos de simulación del workspace
-sys.path.append("/workspace/artifacts")
-sys.path.append("/workspace/scratch")
+_MOTOR_DIR = os.path.abspath(os.path.dirname(__file__))
+if _MOTOR_DIR not in sys.path:
+    sys.path.insert(0, _MOTOR_DIR)
 
 from simulador_onco_hepatico_v2 import SimuladorOncoHepaticoBidireccional
+
+
+def visuales_dir():
+    path = os.path.abspath(
+        os.path.join(os.path.dirname(__file__), "..", "02_Simulaciones_Visuales")
+    )
+    os.makedirs(path, exist_ok=True)
+    return path
 
 def generar_analisis_cointervencion():
     print("[*] Iniciando simulación comparativa de los 4 escenarios terapéuticos...")
@@ -26,8 +34,14 @@ def generar_analisis_cointervencion():
     # Escenario 3: Retroalimentación Activa (Con mutación, feedback activo, sin Myrcludex)
     res_esc3 = sim.ejecutar_simulacion(cohorte="C", mutacion_mct2=False, feedback_activo=True, myrcludex_nM=0.0)
     
-    # Escenario 4: Co-Intervención Estratégica (Con mutación, feedback activo, pre-tratamiento Myrcludex B 10 nM)
-    res_esc4 = sim.ejecutar_simulacion(cohorte="C", mutacion_mct2=False, feedback_activo=True, myrcludex_nM=10.0)
+    # Escenario 4: Co-Intervención (Myrcludex B 10 nM + atenuación eje IL-6/STAT3 via beta_pd_l1)
+    res_esc4 = sim.ejecutar_simulacion(
+        cohorte="C",
+        mutacion_mct2=False,
+        feedback_activo=True,
+        myrcludex_nM=10.0,
+        beta_pd_l1=0.1,
+    )
     
     tiempo = res_esc1["tiempo"]
     
@@ -98,11 +112,11 @@ def generar_analisis_cointervencion():
     
     plt.tight_layout(rect=[0, 0, 1, 0.95])
     
-    out_img_path = "/workspace/scratch/cointervencion_curacion_grafico.png"
+    out_img_path = os.path.join(visuales_dir(), "cointervencion_curacion_grafico.png")
     plt.savefig(out_img_path, dpi=150, bbox_inches="tight")
     plt.close()
     
-    print(f"[✔] ÉXITO: Imagen comparativa de 4 escenarios guardada en {out_img_path}")
+    print(f"[OK] Imagen comparativa de 4 escenarios guardada en {out_img_path}")
     print(f"    * Escenario 4 Viabilidad Tumoral Terminal: {res_esc4['viabilidad_tumor'][-1]*100:.2f}%")
     print(f"    * Escenario 4 Carga Viral Terminal: {res_esc4['carga_viral'][-1]:.2f} viriones")
     print(f"    * Escenario 4 PD-L1 Terminal: {res_esc4['pd_l1_tumor'][-1]:.2f}x")

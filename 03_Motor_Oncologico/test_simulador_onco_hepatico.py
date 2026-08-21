@@ -1,10 +1,11 @@
+"""Suite v2 (copia operativa). Canon: 04_Bateria_Inviolable/test_simulador_onco_hepatico-v2.py"""
 import unittest
 import sys
 import os
 
-# Asegurar que el path incluya scratch y artifacts
-sys.path.append("/workspace/scratch")
-sys.path.append("/workspace/artifacts")
+_MOTOR_DIR = os.path.abspath(os.path.dirname(__file__))
+if _MOTOR_DIR not in sys.path:
+    sys.path.insert(0, _MOTOR_DIR)
 
 from simulador_onco_hepatico_v2 import SimuladorOncoHepaticoBidireccional
 
