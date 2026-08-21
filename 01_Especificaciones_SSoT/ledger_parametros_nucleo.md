@@ -55,7 +55,7 @@ Complementa: [`madurez_artefactos_motor.md`](./madurez_artefactos_motor.md), [`s
 | Calibración empírica de ATP relativo | Escalas distintas núcleo vs dinámica v5 |
 | Umbral telómero en pb en el núcleo | Núcleo relativo; v5 usa 4000 pb |
 | Cinética temporal del parche | Paso determinista, no ODE |
-| Portar scripts experimentales (`grafico_*`, `cointervencion_*`) de v2→v3 | Pendiente cosmético; acoplamiento canónico ya es v3 |
+| Portar `s267f_toxicidad` u otros scripts residuales si aún importan v2 | Cosmético; canónicos ya en v3 |
 
 ---
 

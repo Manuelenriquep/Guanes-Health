@@ -57,8 +57,8 @@ Tests: `04_Bateria_Inviolable/test_simulador_homeostasis_v5.py`.
 | `simulador_hepatocito_infeccion.py` | **Canónico** (hepático) | NTCP / HBV / Myrcludex (Capa B) |
 | `simulador_onco_hepatico_v3.py` | **Canónico** (acoplamiento) | Feedback IL-6 → PD-L1; importa **v5** + `inmuno_utils` |
 | `simulador_onco_hepatico_v2.py` | Histórico | Dependía de `…_v4`; no ampliar |
-| `grafico_dinamica_temporal.py` | Experimental (visual) | Figuras ilustrativas (puede seguir apuntando a v2 hasta migrar) |
-| `simulador_cointervencion_escenarios.py` | Experimental | Comparativa de escenarios |
+| `grafico_dinamica_temporal.py` | Experimental (visual) | IL-6/PD-L1 sobre acoplamiento **v3** |
+| `simulador_cointervencion_escenarios.py` | Experimental | Comparativa de 4 escenarios sobre **v3** |
 | `simulador_s267f_toxicidad.py` | Experimental | Barrido WT vs S267F |
 | `simulador_cart_hcc_interaccion.py` | Experimental | Esqueleto CAR-T/HCC |
 | `analisis_sensibilidad_local_cart.py` | Experimental | Rangos asumidos del ledger CAR-T |

@@ -9,7 +9,7 @@ _MOTOR_DIR = os.path.abspath(os.path.dirname(__file__))
 if _MOTOR_DIR not in sys.path:
     sys.path.insert(0, _MOTOR_DIR)
 
-from simulador_onco_hepatico_v2 import SimuladorOncoHepaticoBidireccional
+from simulador_onco_hepatico_v3 import SimuladorOncoHepaticoBidireccional
 
 
 def visuales_dir():
@@ -20,7 +20,7 @@ def visuales_dir():
     return path
 
 def generar_analisis_cointervencion():
-    print("[*] Comparativa de 4 escenarios (modelo acoplado v2)...")
+    print("[*] Comparativa de 4 escenarios (modelo acoplado v3)...")
     sim = SimuladorOncoHepaticoBidireccional()
     
     # Ejecutar las 4 simulaciones temporales
@@ -46,8 +46,8 @@ def generar_analisis_cointervencion():
     
     fig, axs = plt.subplots(2, 2, figsize=(14, 10), dpi=150)
     fig.suptitle(
-        "Comparativa de escenarios (modelo onco-hepatico v2)\n"
-        "Myrcludex B, feedback IL-6/PD-L1 y Cohorte C",
+        "Comparativa de escenarios (modelo onco-hepatico v3)\n"
+        "Myrcludex B, feedback IL-6/PD-L1 y Cohorte C (Gated-6.50)",
         fontsize=14,
         fontweight="bold",
     )
