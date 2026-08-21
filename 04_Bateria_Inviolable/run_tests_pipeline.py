@@ -6,11 +6,9 @@ from datetime import datetime
 
 
 def run_pipeline():
-    print("=====================================================================")
-    print("GUANES HEALTH - PIPELINE DE AUTOMATIZACIÓN Y VERIFICACIÓN DE MODELOS")
-    print(f"Fecha/Hora de ejecución: {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}")
-    print("=====================================================================\n")
-
+    print("Guanes Health — pipeline de regresion del modelo")
+    print(f"Fecha: {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}")
+    print("")
     bateria_dir = os.path.dirname(os.path.abspath(__file__))
     motor_dir = os.path.abspath(os.path.join(bateria_dir, "..", "03_Motor_Oncologico"))
     log_file = os.path.join(bateria_dir, "pipeline_execution.log")
@@ -23,7 +21,7 @@ def run_pipeline():
         "test_barrido_estocastico_oxigeno.py",
         "test_simulador_hepatocito.py",
         "test_simulador_onco_hepatico.py",
-        "test_simulador_onco_hepatico-v2.py",
+        "test_simulador_onco_hepatico_v2.py",
     ]
 
     env = os.environ.copy()
@@ -81,10 +79,10 @@ def run_pipeline():
         print(f"[-] Advertencia: no se pudo escribir el log: {e}")
 
     if overall_ok:
-        print("\n[OK] VEREDICTO: PASADO. Suites alineadas con salidas del modelo.")
+        print("\n[OK] Pipeline PASS: suites alineadas con salidas del modelo.")
         sys.exit(0)
 
-    print("\n[FAIL] VEREDICTO: FALLADO. Hay regresion en una o mas suites.")
+    print("\n[FAIL] Pipeline FAIL: regresion en una o mas suites.")
     sys.exit(1)
 
 

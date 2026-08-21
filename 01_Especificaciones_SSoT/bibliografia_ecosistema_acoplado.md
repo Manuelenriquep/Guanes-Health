@@ -1,24 +1,29 @@
-# BLUEPRINT CIENTÍFICO Y COMPENDIO BIBLIOGRÁFICO: SOPORTE DE INGENIERÍA MULTIESCALA (ESCENARIO 4 - CO-INTERVENCIÓN)
-**PLACA DE INTEGRACIÓN FISIOLÓGICA Y VIROLOGÍA MOLECULAR DEL MICROAMBIENTE HEPÁTICO**  
-*Guanes Health - División de Oncología Computacional e Ingeniería In Silico*
+# Compendio bibliográfico: ecosistema acoplado (Escenario 4)
+
+Soporte de literatura y anclaje de parámetros del modelo onco-hepático.  
+Guanes Health — investigación *in silico*.
+
+**Nota:** las citas respaldan biología de fondo (Capa A). Los umbrales numéricos del código son Capa B (modelo), no calibración clínica.
 
 ---
 
-## 1. MARCO TEÓRICO E INGENIERÍA DE SISTEMAS DEL ESCENARIO 4
+## 1. Marco del Escenario 4 (co-intervención modelada)
 
-En los sistemas biológicos complejos, el diseño de estrategias terapéuticas curativas requiere trascender los enfoques reduccionistas tradicionales [1, 2]. El **Escenario 4 (Co-Intervención de Myrcludex B + Inmunoterapia + Terapia Dirigida anti-IL-6)** representa la culminación del modelado de sistemas adaptativos acoplados cerrados. 
+El Escenario 4 combina, en el simulador, Myrcludex B + inmunoterapia (Cohorte C) + atenuación del eje IL-6/STAT3 (proxy \(\beta_{PD\text{-}L1}=0.1\)). Es una hipótesis de diseño secuencial, no un protocolo clínico.
 
-Bajo condiciones de infección e inflamación sinusoidal por el virus de la Hepatitis B (HBV) en presencia de un carcinoma hepatocelular (HCC) adyacente, existe un conflicto termodinámico e inmunológico de tres vías:
-1.  **La Invasión Viral**: El HBV secuestra de manera masiva los transportadores **NTCP (SLC10A1)** basolaterales en primer paso circulatorio para colonizar el parénquima hepático [3].
-2.  **El Escudo de la Inflamación**: La respuesta innata y de lisis parcial libera la citoquina proinflamatoria **IL-6** [3]. Aunque la IL-6 actúa en el hepatocito como un cortafuegos (reprimiendo a HNF-1α y HNF-4α para regular a la baja a NTCP en un 98% de forma dosis-dependiente) [3], en el clon tumoral adyacente actúa como un potente oncogén que activa la cascada **STAT3**, forzando la sobreexpresión exponencial del ligando **PD-L1** (de su nivel basal de 50x a más de 1200x) y la Transición Epitelio-Mesenquimal (EMT) por de-represión de E-cadherina [4].
-3.  **El Veto del Escudo Ácido**: El eflujo ácido del tumor (vía de alta capacidad de MCT4) acidifica el microambiente estromal por debajo de **pH 6.50**, induciendo la parálisis por degranulación iónica del receptor de células T (TCR) en los linfocitos infiltrantes de tumores (TILs CD8+) [5].
+Bajo infección por HBV y tumor adyacente, el modelo acopla tres tensiones:
 
-### **El Mecanismo de Sinergia del Escenario 4 (Curación Completa)**
+1. **Entrada viral**: HBV usa NTCP (SLC10A1) basolateral [3].
+2. **Inflamación paracrina**: IL-6 puede reprimir NTCP en hepatocito y, en el clon tumoral, empujar STAT3 → PD-L1 [3, 4].
+3. **Microambiente ácido**: eflujo de protones (p. ej. MCT4) puede deprimir citotoxicidad CD8+ modelada a pHe bajo [5].
 
-La "curación completa" in silico se alcanza al interrumpir de forma síncrona los puntos de acoplamiento del bucle:
-*   **Acondicionamiento Antiviral Temprano (Myrcludex B - 10 nM)**: Satura de forma competitiva los residuos **157-165 (KGIVISLVL)** de NTCP basolateral, impidiendo la entrada viral. Al mantener la dosis a 10 nM, se explota el diferencial de selectividad de afinidad por el cual el bloqueo viral es 100 veces superior al biliar, preservando el transporte de sales biliares conjugadas y previniendo la colestasis intrahepática con deplesión de glutatión (GSH) que gatillaría el veto de apoptosis apoptósico (`VETO FC-HEP-01`) [3].
-*   **Bloqueo Paracrino de la Citoquina (anti-IL-6 / STAT3i)**: Neutraliza la señalización del parénquima hacia el nicho tumoral. Al inhibir la fosforilación de STAT3, el tumor permanece incapaz de hiper-regular su escudo de camuflaje de PD-L1.
-*   **Inmunoterapia Secuencial Efectiva (Cohorte C - anti-PD-1)**: Debido a que la terapia metabólica previa limpia el gradiente de protones, elevando el **pHe a 7.35**, los linfocitos CD8+ recuperan de forma total su capacidad lítica. Al estar el escudo PD-L1 tumoral en niveles basales (< 150x), el anticuerpo monoclonal monoclonal anti-PD-1 no se satura, logrando la depuración bilateral absoluta del clon tumoral y la erradicación del reservorio viral circulante.
+### Interrupción síncrona de acoplamientos (en el modelo)
+
+El aclaramiento tumoral *simulado* en Escenario 4 aparece cuando se cortan a la vez esos acoplamientos:
+
+- **Myrcludex B (10 nM)**: bloqueo preferente de entrada viral vs transporte biliar (Ki modeladas 1 nM vs 100 nM), para limitar colestasis / depleción de GSH (`VETO FC-HEP-01`).
+- **Atenuación IL-6/STAT3**: mantiene PD-L1 por debajo del umbral de saturación anti-PD-1 (150× en Capa B).
+- **Cohorte C**: normalización de pHe modelado (~7.35) antes de anti-PD-1, para no disparar el veto de escudo ácido.
 
 ---
 
@@ -65,32 +70,13 @@ A continuación, se catalogan de forma rigurosa las investigaciones biomédicas,
 
 *   **[placa-base-hepatocito.md - Especificación de Zonación]**  
     *Guanes Health - Documento de Diseño del Hepatocito v1.0.*  
-    * **Aporte Científico**: Formaliza la "Norma Suprema" (Grundnorm) del gradiente sinusoidal de oxígeno (Zona 1 Periportal vs. Zona 3 Pericentral). Sostiene la modulación de transportadores activos de sales biliares conjugadas según el nivel de oxigenación local, condicionando el punto de partida de la densidad basal de NTCP.
+    * **Aporte**: Ancla el gradiente sinusoidal de oxígeno (Zona 1 periportal vs Zona 3 pericentral) y la modulación de transportadores biliares según oxigenación local (base de densidad NTCP en el modelo).
 
 ---
 
-## 3. DECLARACIÓN DE RIGOR CIENTÍFICO E INVESTIGACIÓN *IN SILICO*
+## 3. Límites
 
-El modelado predictivo multiescala de *Guanes Health* es una herramienta bioinformática abstracta orientada al cribado preliminar de hipótesis moleculares y el diseño acelerado de terapias secuenciales sinérgicas. Los resultados, constantes y dinámicas aquí expuestas operan bajo restricciones termodinámicas matemáticas estrictamente calibradas sobre la literatura biológica estándar.
+Herramienta de cribado de hipótesis *in silico*. Las dinámicas numéricas del repo **no** están calibradas como predictores clínicos. Toda hipótesis relevante requiere validación experimental independiente.
 
-```
-+---------------------------------------------------------------------------------------------------+
-|                         ADVERTENCIA CLÍNICA Y DECLARACIÓN DE LÍMITES                              |
-+---------------------------------------------------------------------------------------------------+
-| 1. Naturaleza Abstracta: El modelo in silico representativo de la placa de integración fisiológica|
-|    y la co-intervención representa una simplificación matemática de sistemas biológicos reales.    |
-|    Tiene un carácter conceptual para la exploración diagnóstica y cribado in silico.              |
-|                                                                                                   |
-| 2. Restricción de Aplicabilidad Directa: Se desconseja de manera categórica la aplicabilidad      |
-|    clínica directa de las conclusiones derivadas de este simulador para la toma de decisiones      |
-|    médicas o el diseño de tratamientos reales sin previa validación en laboratorio húmedo.         |
-|                                                                                                   |
-| 3. Requisito de Validación Experimental Multi-Fase (Wet-Lab): Todo mecanismo lógico predicho por  |
-|    este modelo debe ser validado físicamente en cultivos tridimensionales de organoides tumorales  |
-|    (Tumor-on-a-Chip) y ensayos in vivo en modelos animales competentes para determinar la          |
-|    biodistribución real, índices de aclaramiento y toxicidades sistémicas inmunomediadas.          |
-+---------------------------------------------------------------------------------------------------+
-```
+Cribado de hipótesis sobre instrumento de placa — no consejo médico ni evidencia clínica.
 
----
-*Fin de la documentación de soporte bibliográfico. Guanes Health, 2026. Todos los derechos reservados.*

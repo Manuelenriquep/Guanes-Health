@@ -4,14 +4,14 @@
 **Estado:** Activo (hipótesis + Capa B)  
 **Complementa:** `placa_base_instrumento_investigacion.md`, `literatura_referencia.md`  
 **Código canónico:** `03_Motor_Oncologico/simulador_hepatocito_infeccion.py`  
-**Acoplamiento onco:** `03_Motor_Oncologico/simulador_onco_hepatico_v1.py`  
-**Batería:** `04_Bateria_Inviolable/test_simulador_hepatocito.py`, `test_simulador_onco_hepatico.py`
+**Acoplamiento onco:** `03_Motor_Oncologico/simulador_onco_hepatico_v1.py`, `simulador_onco_hepatico_v2.py`  
+**Batería:** `04_Bateria_Inviolable/test_simulador_hepatocito.py`, `test_simulador_onco_hepatico.py`, `test_simulador_onco_hepatico_v2.py`
 
 | Capa | Contenido aquí |
 |------|----------------|
 | **A** | Biología de fondo (NTCP/HBV, IL-6, zonación, pHe, GSH) citada de literatura |
 | **B** | Umbrales y cinéticas del toy model (O2→NTCP, Hill IL-6, Ki Myrcludex, veto GSH) |
-| **C** | Abierto: calibración empírica; feedback hepatocito→tumor |
+| **C** | Abierto: calibración empírica; refinamiento del feedback hepatocito→tumor |
 
 La “placa” en este documento es **instrumento de investigación**, no ontología celular.  
 Declaración: cribado de hipótesis in silico — no consejo médico ni evidencia clínica.
@@ -30,17 +30,17 @@ Este estudio formaliza la **integración fisiológica v3.0** (instrumento de pla
 
 El hepatocito se comporta como un sistema multitarea de control de flujos gobernado por restricciones termodinámicas e invariantes de óxido-reducción [92]. Su funcionamiento se estructura en reglas condicionales acopladas a la localización anatómica sinusoidal [100].
 
-### A. Metabolismo y Zonación Kelseniana (La Norma Suprema del Oxígeno)
-La "Norma Suprema" (Grundnorm) que determina la heterogeneidad fenotípica del hepatocito es el **gradiente tridimensional de presión parcial de oxígeno ($pO_2$) a lo largo del sinusoide hepático** [100]:
+### A. Metabolismo y zonación por oxígeno
+La heterogeneidad fenotípica del hepatocito en el modelo se ancla al **gradiente de presión parcial de oxígeno ($pO_2$) a lo largo del sinusoide hepático** [100]:
 *   **Zona 1 (Periportal, Oxigenada - $pO_2 \approx 60\text{ a }65\text{ mmHg}$)**: La abundancia de oxígeno controla la tasa de fosforilación oxidativa mitocondrial para sostener procesos biosintéticos de alta demanda energética [101]. Aquí se prioriza y cataliza la **gluconeogénesis**, la **beta-oxidación de ácidos grasos** para la síntesis masiva de ATP, y el **ciclo de la urea** de alta capacidad [101]. Molecularmente, esta zona mantiene apagada la señalización Wnt, permitiendo la activación de la vía YAP y el supresor tumoral APC [101].
 *   **Zona 3 (Pericentral, Hipóxica - $pO_2 \approx 30\text{ a }35\text{ mmHg}$)**: La norma metabólica cambia hacia rutas de menor demanda de ATP o de carácter anabólico reductor [102]. Se prioriza la **glucólisis**, la **lipogénesis de novo** y la desintoxicación masiva a través de isoformas del Citocromo P450, principalmente **CYP2E1** [102]. Este perfil es regulado por la activación constitutiva de la vía Wnt/$\beta$-catenina [102].
-*   **Estado de Excepción (Isquemia - $pO_2 < 20\text{ mmHg}$)**: Ante shocks hipovolémicos o interrupciones del flujo sinusoidal, se suspende la zonación normal [102]. El hepatocito deprime las rutas biosintéticas de alto costo (síntesis de albúmina, urea y gluconeogénesis) para estabilizar de forma generalizada a **HIF-1α**, forzando la transición a una glucólisis anaerobia de supervivencia [103]. Si la presión parcial desciende por debajo de las 10 mmHg de forma prolongada, el nodo celular pericentral entra en **necrosis isquémica centrolobulillar** por deplesión catastrófica de ATP [103, 104].
+*   **Isquemia ($pO_2 < 20\text{ mmHg}$)**: Ante shocks hipovolémicos o interrupciones del flujo sinusoidal, se suspende la zonación normal [102]. El hepatocito deprime las rutas biosintéticas de alto costo (síntesis de albúmina, urea y gluconeogénesis) para estabilizar de forma generalizada a **HIF-1α**, forzando la transición a una glucólisis anaerobia de supervivencia [103]. Si la presión parcial desciende por debajo de las 10 mmHg de forma prolongada, el nodo celular pericentral entra en **necrosis isquémica centrolobulillar** por deplesión catastrófica de ATP [103, 104].
 
 ### B. Homeostasis de Sales Biliares y el Receptor NTCP (SLC10A1)
 La homeostasis del aclaramiento biliar es una prioridad fisiológica del hepatocito para evitar la toxicidad por detergentes lipídicos [225]. 
 *   **Captación Basolateral**: El transportador transmembrana **NTCP (SLC10A1)**, localizado exclusivamente en la membrana basolateral (sinusoidal) del hepatocito, utiliza el potencial electroquímico generado por la bomba Na+/K+ ATPasa para cotransportar de forma activa sales biliares conjugadas con una estequiometría de **2 $Na^+$ por cada molécula de taurocolato** [258]. Este sistema es responsable de más del 80% de la captación de ácidos biliares en primer paso circulatorio [258].
 *   **Excreción Apical (Canalicular)**: Los ácidos biliares conjugados intracitoplasmáticos son activamente exportados al canalículo biliar contra gradientes de concentración masivos mediante la bomba **BSEP (ABCB11)** y el transportador **MRP2**, un proceso termodinámicamente desfavorable acoplado directamente al consumo de ATP [258].
-*   **La Restricción de Polaridad Celular**: La correcta translocación de transportadores sinusoidal (NTCP) a la cara basolateral y de exportadores (BSEP) a la apical es un inmutable estructural dependiente de la actina y de un anillo ininterrumpido de uniones herméticas (**ZO-1, ocludina y claudina-1**) [98]. La deslocalización de estos componentes anula de inmediato la viabilidad polar de la placa biliar [98].
+*   **La restricción de polaridad celular**: La correcta translocación de transportadores sinusoidal (NTCP) a la cara basolateral y de exportadores (BSEP) a la apical depende de la actina y de un anillo de uniones herméticas (**ZO-1, ocludina y claudina-1**) [98]. La deslocalización de estos componentes anula la polaridad del canalículo biliar en el modelo [98].
 
 ### C. Desintoxicación Acoplada y Apoptosis Fail-Closed (Veto Redox de NAPQI)
 El procesamiento de xenobióticos lipofílicos nocivos (como el paracetamol) en el retículo endoplásmico liso exige la sincronía obligatoria entre las reacciones de Fase I y Fase II [95]:

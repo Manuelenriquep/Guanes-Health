@@ -11,14 +11,13 @@ from simulador_onco_homeostasis_v4 import CelulaHumana as CelulaTumor
 from simulador_hepatocito_infeccion import HepatocitoInmuneIntegrado as HepatocitoSano
 
 # =====================================================================
-# SIMULADOR ACOPLADO BIDIRECCIONAL: ECOBISTEMA TUMOR-HEPATOCITO (v2.0)
+# Simulador acoplado tumor-hepatocito (v2.0)
 # =====================================================================
 class SimuladorOncoHepaticoBidireccional:
     """
-    Simulador multiescala que acopla el modelo tumoral v2.4 (Capa B) y el modelo 
-    del hepatocito v1.1 (Capa B), permitiendo evaluar tanto el acoplamiento
-    unidireccional (estroma -> hepatocito) como el bucle de retroalimentación 
-    recíproco (Hepatocito/IL-6 -> STAT3 -> PD-L1/EMT -> Tumor).
+    Acopla tumor (homeostasis v4, Capa B) y hepatocito (v1.1, Capa B).
+    Modos: unidireccional (estroma -> hepatocito) o feedback
+    (hepatocito/IL-6 -> PD-L1 tumoral).
     """
     def __init__(self):
         self.paso_tiempo = 0.1  # horas
@@ -191,36 +190,28 @@ class SimuladorOncoHepaticoBidireccional:
         }
 
 if __name__ == "__main__":
-    print("=====================================================================")
-    print("INICIANDO EVALUACIÓN DEL BUCLE DE RETROALIMENTACIÓN RECÍPROCO (v2.0)")
-    print("=====================================================================\n")
-    
+    print("=== Simulador onco-hepatico v2 (escenarios de referencia) ===\n")
+
     sim = SimuladorOncoHepaticoBidireccional()
-    
-    # 1. Ejecutar Escenario Unireccional estándar (Sin feedback)
+
     res_uni = sim.ejecutar_simulacion(cohorte="C", mutacion_mct2=False, feedback_activo=False)
-    print("-> [ESCENARIO 1: UNIDIRECCIONAL ESTÁNDAR (Sin Feedback)]")
-    print(f"   * pHe estromal terminal: {res_uni['pHe'][-1]:.2f}")
-    print(f"   * Viabilidad tumoral terminal: {res_uni['viabilidad_tumor'][-1]*100:.2f}% (Aclaramiento Exitoso)")
-    print(f"   * Viabilidad hepatocito terminal: {res_uni['viabilidad_hepatocito'][-1]*100:.2f}% (Aclaramiento Inmune de HBV)")
-    print(f"   * Carga viral hepática terminal: {res_uni['carga_viral'][-1]:.2f} viriones")
-    print("-" * 69)
+    print("[S1] Unidireccional (sin feedback)")
+    print(f"    pHe={res_uni['pHe'][-1]:.2f}  "
+          f"viab_tumor={res_uni['viabilidad_tumor'][-1]*100:.2f}%  "
+          f"viab_hep={res_uni['viabilidad_hepatocito'][-1]*100:.2f}%  "
+          f"viral={res_uni['carga_viral'][-1]:.2f}")
 
-    # 2. Ejecutar Escenario Unireccional con Escape MCT2 (Sin feedback)
     res_esc = sim.ejecutar_simulacion(cohorte="C", mutacion_mct2=True, feedback_activo=False)
-    print("-> [ESCENARIO 2: ESCAPE MCT2 UNIDIRECCIONAL (Santuario Viral)]")
-    print(f"   * pHe estromal terminal: {res_esc['pHe'][-1]:.2f} (Acidosis persistente)")
-    print(f"   * Viabilidad tumoral terminal: {res_esc['viabilidad_tumor'][-1]*100:.2f}% (Escape Tumoral por MCT2)")
-    print(f"   * Viabilidad hepatocito terminal: {res_esc['viabilidad_hepatocito'][-1]*100:.2f}% (Protección de Infección)")
-    print(f"   * Carga viral hepática terminal: {res_esc['carga_viral'][-1]:.2f} viriones (Santuario)")
-    print("-" * 69)
+    print("[S2] Escape MCT2")
+    print(f"    pHe={res_esc['pHe'][-1]:.2f}  "
+          f"viab_tumor={res_esc['viabilidad_tumor'][-1]*100:.2f}%  "
+          f"viab_hep={res_esc['viabilidad_hepatocito'][-1]*100:.2f}%  "
+          f"viral={res_esc['carga_viral'][-1]:.2f}")
 
-    # 3. Ejecutar Escenario con Retroalimentación Activa (Opción A)
     res_bid = sim.ejecutar_simulacion(cohorte="C", mutacion_mct2=False, feedback_activo=True, beta_pd_l1=3.0)
-    print("-> [ESCENARIO 3: RETROALIMENTACIÓN RECÍPROCA (Opción A - Bucle Activado)]")
-    print(f"   * Concentración terminal de IL-6: {res_bid['il6'][-1]:.2f} pg/mL")
-    print(f"   * Expresión inducida de PD-L1 tumoral: {res_bid['pd_l1_tumor'][-1]:.2f}x (Basal: 50.0x)")
-    print(f"   * Viabilidad tumoral terminal: {res_bid['viabilidad_tumor'][-1]*100:.2f}% (Escape Tumoral inducido por Infección)")
-    print(f"   * Viabilidad hepatocito terminal: {res_bid['viabilidad_hepatocito'][-1]*100:.2f}%")
-    print(f"   * Carga viral hepática terminal: {res_bid['carga_viral'][-1]:.2f} viriones")
-    print("-" * 69)
+    print("[S3] Feedback IL-6 -> PD-L1")
+    print(f"    IL-6={res_bid['il6'][-1]:.2f}  "
+          f"PD-L1={res_bid['pd_l1_tumor'][-1]:.2f}x  "
+          f"viab_tumor={res_bid['viabilidad_tumor'][-1]*100:.2f}%  "
+          f"viral={res_bid['carga_viral'][-1]:.2f}")
+

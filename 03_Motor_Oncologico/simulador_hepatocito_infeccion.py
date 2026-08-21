@@ -177,10 +177,7 @@ class SimuladorHepatitisB:
 
 
 if __name__ == "__main__":
-    print("=" * 69)
-    print("GUANES HEALTH - SIMULADOR HEPATOCITO / HBV (Capa B, v1.1)")
-    print("=" * 69)
-    print()
+    print("=== Hepatocito / HBV v1.1 (modelo Capa B) ===\n")
 
     sim = SimuladorHepatitisB()
     escenarios = [
@@ -192,18 +189,14 @@ if __name__ == "__main__":
 
     for esc in escenarios:
         res = sim.simular_escenario(esc)
-        print(f"-> [ESCENARIO: {esc.upper()}] t = 72.0 h (modelo):")
-        print(f"   * NTCP membrana: {res['ntcp'][-1]:.4f}")
-        print(f"   * Carga viral: {res['carga_viral'][-1]:.2f}")
-        print(f"   * GSH: {res['gsh'][-1]:.2f} mM (basal modelo: 8.00)")
-        print(f"   * Viabilidad: {res['viabilidad'][-1] * 100:.2f}%")
-
+        print(
+            f"[{esc}] t=72h  ntcp={res['ntcp'][-1]:.4f}  "
+            f"viral={res['carga_viral'][-1]:.2f}  "
+            f"GSH={res['gsh'][-1]:.2f}  viab={res['viabilidad'][-1] * 100:.2f}%"
+        )
         if res["viabilidad"][-1] == 0.0:
-            print("   [MODELO]: VETO FC-BIO-HEP-01 — apoptosis por colestasis simulada.")
+            print("  nota: VETO FC-HEP-01 (colestasis modelada)")
         elif esc == "Myrcludex_Optimo":
-            print("   [MODELO]: bloqueo viral con GSH preservado (ventana 10 nM).")
+            print("  nota: bloqueo viral con GSH preservado (10 nM)")
         elif esc == "Inmunidad_Innata":
-            print("   [MODELO]: IL-6 reduce entrada viral via represion NTCP.")
-        print("-" * 69)
-
-    print("\n[OK] Simulacion de referencia completada (hipotesis in silico).")
+            print("  nota: IL-6 reprime NTCP (entrada viral reducida)")

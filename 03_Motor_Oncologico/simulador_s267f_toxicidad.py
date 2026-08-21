@@ -1,16 +1,23 @@
 import sys
 import os
-import math
 import numpy as np
 import matplotlib
 matplotlib.use('Agg')
 import matplotlib.pyplot as plt
 
-# Permitir la importación desde artifacts
-sys.path.append("/workspace/artifacts")
-sys.path.append("/workspace/scratch")
+_MOTOR_DIR = os.path.abspath(os.path.dirname(__file__))
+if _MOTOR_DIR not in sys.path:
+    sys.path.insert(0, _MOTOR_DIR)
 
 from simulador_hepatocito_infeccion import HepatocitoInmuneIntegrado
+
+
+def visuales_dir():
+    path = os.path.abspath(
+        os.path.join(os.path.dirname(__file__), "..", "02_Simulaciones_Visuales")
+    )
+    os.makedirs(path, exist_ok=True)
+    return path
 
 def correr_barrido(es_mutante=False):
     myr_concentraciones = [0.0, 1.0, 5.0, 10.0, 50.0, 100.0, 250.0, 500.0, 750.0, 1000.0]
@@ -22,7 +29,7 @@ def correr_barrido(es_mutante=False):
     tiempo_total = 72.0
     dt = 0.5
     pasos = int(tiempo_total / dt)
-    inóculo_diario = 2.0
+    inoculo_diario = 2.0
     
     for myr in myr_concentraciones:
         # Inicializar hepatocito en Zona 1 (Periportal, o2_pp = 60.0 mmHg)
@@ -33,8 +40,10 @@ def correr_barrido(es_mutante=False):
         
         # Simular 72 horas
         for _ in range(pasos):
-            res = hep.evaluar_regulacion_y_entrada_viral(inóculo_HBV=inóculo_diario, delta_t=dt)
-            if isinstance(res, str): # Inactivo por muerte
+            res = hep.evaluar_regulacion_y_entrada_viral(
+                inoculo_HBV=inoculo_diario, delta_t=dt
+            )
+            if isinstance(res, str):  # Inactivo por muerte
                 break
                 
         # Registrar estados finales
@@ -112,7 +121,7 @@ if __name__ == "__main__":
     axs[1, 1].legend()
     
     plt.tight_layout(rect=[0, 0, 1, 0.93])
-    out_path = "/workspace/out/analisis_toxicidad_s267f.png"
-    plt.savefig(out_path, dpi=150, bbox_inches='tight')
+    out_path = os.path.join(visuales_dir(), "analisis_toxicidad_s267f.png")
+    plt.savefig(out_path, dpi=150, bbox_inches="tight")
     plt.close()
-    print(f"\n[✔] Gráfico guardado exitosamente en: {out_path}")
+    print(f"\n[OK] Grafico guardado en: {out_path}")

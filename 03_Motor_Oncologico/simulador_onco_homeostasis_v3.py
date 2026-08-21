@@ -1,9 +1,7 @@
 import math
 import numpy as np
 
-# =====================================================================
-# CONSTANTES FÍSICAS E INMUTABLES DEL MOTOR (RESTRICCIONES BIOFÍSICAS - CAPA B)
-# =====================================================================
+# Constantes del modelo (Capa B)
 POTENCIAL_REPOSO_MIN = -70.0       # mV
 POTENCIAL_REPOSO_MAX = -90.0       # mV
 FIDELIDAD_ADN_POLIMERASA = 1e-7    # Tasa basal de error de replicación
@@ -12,11 +10,7 @@ LIMITE_HAYFLICK_MAX = 70           # Límite mitótico fisiológico
 UMBRAL_SENESCENCIA_TELOMEROS = 4000 # pb (Umbral de disparo de FC-BIO-02)
 
 class CelulaHumana:
-    """
-    Representa el estado biofísico, iónico y genómico de una célula humana somática o tumoral.
-    Diseñada como una herramienta de modelado conceptual in silico y metáfora de 
-    ingeniería de sistemas para la simulación de homeostasis celular.
-    """
+    """Estado biofisico ionico/genomico sana o tumoral (modelo Capa B)."""
     def __init__(self, tipo_celular="Sana", atp_nivel=100.0, daño_genomico=0.0, telomeros=8000, divisiones=0):
         self.tipo_celular = tipo_celular
         self.atp_nivel = atp_nivel
@@ -91,10 +85,7 @@ class ReguladorRestricciones:
         return 26.7 * math.log(numerator / denominator)
 
     def evaluar_homeostasis(self):
-        """
-        Auditoría de los mecanismos de regulación homeostática e inmutables biológicos.
-        Retorna el estado de viabilidad de la célula y las alarmas activas.
-        """
+        """Evalua restricciones homeostaticas del modelo; retorna viabilidad y alarmas."""
         alarmas = []
         V_m = self.calcular_potencial_ghk()
 
@@ -122,7 +113,7 @@ class ReguladorRestricciones:
             alarmas.append(f"Gasto energético de Bomba Na+/K+ ATPasa incrementado por despolarización (V_m: {V_m:.2f} mV)")
 
         # =====================================================================
-        # MECANISMOS DE REGULACIÓN DE MUERTE CELULAR (MECANISMOS DE REGULACIÓN - CAPA B)
+        # Regulacion de muerte celular (Capa B)
         # =====================================================================
         
         # VETO FC-BIO-01: Daño Genómico Irreparable (Apoptosis)
@@ -130,7 +121,7 @@ class ReguladorRestricciones:
             if self.celula.tipo_celular == "Sana":
                 self.celula.Bax_Bak_libres = True
                 self.celula.viabilidad = 0.0
-                alarmas.append("VETO FC-BIO-01 DETONADO: Muerte por Apoptosis (MMR Fallido)")
+                alarmas.append("VETO FC-BIO-01 activado: Muerte por Apoptosis (MMR Fallido)")
             else:
                 # El tumor tiene Bcl-2 sobreexpresado x25 que secuestra Bax/Bak
                 if self.celula.Bcl2_expresion >= 25.0:
@@ -142,7 +133,7 @@ class ReguladorRestricciones:
         if self.celula.telomeros <= UMBRAL_SENESCENCIA_TELOMEROS or self.celula.telomeros <= 10:
             if self.celula.tipo_celular == "Sana":
                 self.celula.viabilidad = 0.5  # Senescente
-                alarmas.append("VETO FC-BIO-02 DETONADO: Arresto Replicativo Permanente (Senescencia de Hayflick)")
+                alarmas.append("VETO FC-BIO-02 activado: Arresto Replicativo Permanente (Senescencia de Hayflick)")
             else:
                 alarmas.append("VETO FC-BIO-02 EVADIDO: Inmortalidad telomérica por reactivación de hTERT (Escala de salida: 3920 pb)")
 
@@ -150,19 +141,13 @@ class ReguladorRestricciones:
         if V_m > -15.0 or self.celula.atp_nivel < 0.2:
             self.celula.viabilidad = 0.0
             self.celula.fosfatidilserina_externa = True
-            alarmas.append("VETO FC-BIO-03 DETONADO: Colapso del potencial de membrana. Translocación de Fosfatidilserina (Eat-Me)")
+            alarmas.append("VETO FC-BIO-03 activado: Colapso del potencial de membrana. Translocación de Fosfatidilserina (Eat-Me)")
 
         return self.celula.viabilidad, alarmas
 
-# =====================================================================
-# SIMULACIÓN DINÁMICA MULTIESCALA: COHORTES TERAPÉUTICAS (v2.3)
-# =====================================================================
+# Simulador de cohortes (modelo)
 class SimuladorTratamiento:
-    """
-    Ejecuta simulaciones de tratamiento combinando inhibidores metabólicos (MCT1/4)
-    e inmunoterapias (anti-PD-1) bajo diferentes cronogramas de dosificación temporal,
-    e integrando la vía de resistencia adaptativa por sobreexpresión de MCT2.
-    """
+    """Simula cohortes MCT/inmuno (Capa B); cronogramas y escape MCT2 segun version."""
     def __init__(self):
         self.paso_tiempo = 0.1  # horas
         self.tiempo_total = 72.0 # horas
@@ -279,40 +264,30 @@ class SimuladorTratamiento:
         }
 
 if __name__ == "__main__":
-    print("=====================================================================")
-    print("INICIANDO EJECUCIÓN DEL SIMULADOR BIOCONTROL ONCOLÓGICO (v2.3)")
-    print("=====================================================================\n")
-    
-    # 1. Verificación de Homeostasis y Límite de Hayflick (Célula Sana)
+    print("=== Homeostasis oncologica v2.3 (modelo) ===\n")
+
     sana = CelulaHumana(tipo_celular="Sana")
     regulador_sana = ReguladorRestricciones(sana)
     for _ in range(50):
         sana.degradar_telomeros()
     pot_sana = regulador_sana.calcular_potencial_ghk()
     viab_sana, alarmas_sanas = regulador_sana.evaluar_homeostasis()
-    print(f"-> [SANA] Generación alcanzada: {sana.divisiones} | Telómeros: {sana.telomeros} pb")
-    print(f"-> [SANA] Viabilidad homeostática: {viab_sana * 100:.1f}%\n")
+    print(f"[SANA] gen={sana.divisiones}  tel={sana.telomeros} pb  "
+          f"V_m={pot_sana:.2f} mV  viab={viab_sana * 100:.1f}%\n")
 
-    # 2. Simulación temporal de la Cohorte C con y sin Escape MCT2 (Cribado in silico)
     sim = SimuladorTratamiento()
-    
-    # Caso 1: Cohorte C estándar (Sin escape)
-    res_std = sim.ejecutar_simulacion(cohorte="C", mutacion_mct2=False)
-    print("-> [COHORTE C ESTÁNDAR] Resultados de simulación a t = 72.0 h (Sin Escape):")
-    print(f"   * pH Intracelular (pHi) tumoral: {res_std['pHi'][-1]:.2f}")
-    print(f"   * pH Extracelular (pHe) estromal: {res_std['pHe'][-1]:.2f}")
-    print(f"   * Balance de ATP relativo del tumor: {res_std['atp'][-1]:.1f} u.")
-    print(f"   * Eficiencia citotóxica final de CD8+: {res_std['eficiencia_cd8'][-1]:.1f}% (salida del modelo)")
-    print(f"   * Viabilidad tumoral remanente: {res_std['viabilidad'][-1] * 100:.2f}% (salida del modelo)")
-    print("-" * 69)
 
-    # Caso 2: Cohorte C con Escape MCT2 activo
+    res_std = sim.ejecutar_simulacion(cohorte="C", mutacion_mct2=False)
+    print(
+        f"[C estandar] pHi={res_std['pHi'][-1]:.2f}  pHe={res_std['pHe'][-1]:.2f}  "
+        f"ATP={res_std['atp'][-1]:.1f}  CD8={res_std['eficiencia_cd8'][-1]:.1f}%  "
+        f"viab={res_std['viabilidad'][-1] * 100:.2f}%"
+    )
+
     res_esc = sim.ejecutar_simulacion(cohorte="C", mutacion_mct2=True)
-    print("-> [COHORTE C CON ESCAPE MCT2] Resultados de simulación a t = 72.0 h (Mutación Activa):")
-    print(f"   * Expresión de MCT2 tumoral: {res_esc['mct2'][-1]:.1f}x (basal = 1.0x)")
-    print(f"   * pH Intracelular (pHi) tumoral: {res_esc['pHi'][-1]:.2f} (rescate de pHi evitado por MCT2)")
-    print(f"   * pH Extracelular (pHe) estromal: {res_esc['pHe'][-1]:.2f} (acidosis estromal persistente)")
-    print(f"   * Balance de ATP relativo del tumor: {res_esc['atp'][-1]:.1f} u. (preservación de energía)")
-    print(f"   * Eficiencia citotóxica final de CD8+: {res_esc['eficiencia_cd8'][-1]:.1f}% (parálisis por acidosis residual)")
-    print(f"   * Viabilidad tumoral remanente: {res_esc['viabilidad'][-1] * 100:.2f}% (escape tumoral simulado)")
-    print("-" * 69)
+    print(
+        f"[C + MCT2] mct2={res_esc['mct2'][-1]:.1f}x  "
+        f"pHi={res_esc['pHi'][-1]:.2f}  pHe={res_esc['pHe'][-1]:.2f}  "
+        f"ATP={res_esc['atp'][-1]:.1f}  CD8={res_esc['eficiencia_cd8'][-1]:.1f}%  "
+        f"viab={res_esc['viabilidad'][-1] * 100:.2f}%"
+    )

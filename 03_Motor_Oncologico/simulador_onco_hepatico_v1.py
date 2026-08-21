@@ -227,10 +227,7 @@ def paridad_tumor_vs_v4(cohorte="C", mutacion_mct2=False, inhibicion_mct2=False)
 
 
 if __name__ == "__main__":
-    print("=" * 69)
-    print("GUANES HEALTH - ACOPLAMIENTO ONCO-HEPATICO v1.0 (Capa B)")
-    print("=" * 69)
-    print()
+    print("=== Acoplamiento onco-hepatico v1.0 (modelo Capa B) ===\n")
 
     sim = SimuladorOncoHepatico()
 
@@ -248,12 +245,10 @@ if __name__ == "__main__":
 
     for nombre, kwargs in casos:
         res = sim.ejecutar_acoplamiento(**kwargs)
-        print(f"-> [{nombre}] t=72 h (modelo):")
-        print(f"   * Tumor viabilidad: {res['viabilidad'][-1] * 100:.2f}%")
-        print(f"   * pHe estromal: {res['pHe'][-1]:.2f}")
-        print(f"   * Carga viral hep: {res['carga_viral'][-1]:.2f}")
-        print(f"   * Viabilidad hep: {res['viabilidad_hepatocito'][-1] * 100:.2f}%")
-        print(f"   * Lisis CD8 hep (ultimo paso): {res['lisis_cd8_hepatocito'][-1]:.3f}")
-        print("-" * 69)
-
-    print("\n[OK] Acoplamiento de referencia completado (hipotesis in silico).")
+        print(
+            f"[{nombre}] t=72h  "
+            f"viab_tumor={res['viabilidad'][-1] * 100:.2f}%  "
+            f"pHe={res['pHe'][-1]:.2f}  "
+            f"viral={res['carga_viral'][-1]:.2f}  "
+            f"viab_hep={res['viabilidad_hepatocito'][-1] * 100:.2f}%"
+        )

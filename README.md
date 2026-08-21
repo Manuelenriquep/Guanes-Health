@@ -100,10 +100,10 @@ If the underlying idea has value, it should become clearer under criticism, not 
   Charts from model runs (illustrative, not clinical evidence).
 
 - `03_Motor_Oncologico/`  
-  Core Python prototype (`placa_*.py` = model artifacts, not biological identity claims).
+  Core Python prototype (`placa_*.py` = model artifacts, not biological identity claims). Hepatic/HBV coupling: see `README-HEPATIC.md`.
 
 - `04_Bateria_Inviolable/`  
-  Unit tests covering the main modeled scenarios.
+  Unit tests covering the main modeled scenarios. Full run: `py -3 04_Bateria_Inviolable/run_tests_pipeline.py`.
 
 ## Running the Prototype
 

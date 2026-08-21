@@ -99,25 +99,31 @@ def generar_analisis_grafico():
         
         ax1.axvspan(t_escape, 72.0, color='red', alpha=0.08, label='Escape Inmune & Anergia')
         
-        # Anotación del punto crítico de escape
-        ax1.annotate(f'Punto de Escape\n$t_{{escape}} = {t_escape:.2f}\\ h$\n$[IL-6] = {il6_escape:.1f}\\ pg/mL$',
-                     xy=(t_escape, il6_escape),
-                     xytext=(t_escape + 5, il6_escape + 80),
-                     arrowprops=dict(facecolor='black', shrink=0.05, width=1, headwidth=6),
-                     fontweight='bold', fontsize=9, bbox=dict(boxstyle="round,pad=0.3", fc="yellow", alpha=0.8))
+        ax1.annotate(
+            f"$t_{{escape}} = {t_escape:.2f}\\,h$\n$[IL-6] = {il6_escape:.1f}\\,pg/mL$",
+            xy=(t_escape, il6_escape),
+            xytext=(t_escape + 5, il6_escape + 80),
+            arrowprops=dict(facecolor="black", shrink=0.05, width=1, headwidth=6),
+            fontsize=9,
+            bbox=dict(boxstyle="round,pad=0.3", fc="white", ec="gray", alpha=0.9),
+        )
 
     # Combinar leyendas de ejes distintos
     lines = line1 + line2 + [matplotlib.lines.Line2D([0], [0], color='purple', linestyle=':')]
     labels = [l.get_label() for l in lines]
     ax1.legend(lines, labels, loc='upper left', frameon=True, framealpha=0.9)
     
-    plt.title('Dinámica Temporal Acoplada: Bucle de Retroalimentación HBV/IL-6 -> PD-L1', 
-              fontsize=14, fontweight='bold', pad=15)
+    plt.title(
+        "Dinamica temporal (modelo): IL-6 / PD-L1 y t_escape",
+        fontsize=14,
+        fontweight="bold",
+        pad=15,
+    )
     
     out_path = os.path.join(visuales_dir(), "dinamica_temporal_il6_pdl1.png")
     plt.savefig(out_path, bbox_inches="tight", dpi=150)
     plt.close()
-    print(f"[OK] Grafico publicado en {out_path}")
+    print(f"[OK] Figura: {out_path}")
 
 if __name__ == "__main__":
     generar_analisis_grafico()

@@ -79,28 +79,21 @@ class ParcheRestauracion:
 
 
 def simular_sistema_completo():
-    print("==================================================")
-    print("SIMULACIÓN IN SILICO — RESTAURACIÓN DE ESTADO (MODELO)")
-    print("Placa = instrumento; no ontología celular.")
-    print("==================================================")
+    print("=== Restauracion de estado (modelo) ===")
+    print("Placa = instrumento; no ontologia celular.\n")
 
     sana = CelulaSana()
-    print("\n--- HOMEOSTASIS (placa sana) ---")
-    print(f"  Estado modelado -> {sana.obtener_estado()}")
+    print(f"[homeostasis] {sana.obtener_estado()}")
 
     tumor = CelulaTumoral()
     parche = ParcheRestauracion()
 
-    print("\n--- MONOTERAPIA ANTI-PD-1 (modelo) ---")
     eficiencia = parche.simular_inmunoterapia_aislada(tumor)
-    print(f"  pH extracelular: {tumor.pH_extracelular:.2f}")
-    print(f"  Eficiencia CD8+ simulada: {eficiencia}%")
+    print(f"[anti-PD-1 sola] pHe={tumor.pH_extracelular:.2f}  CD8={eficiencia}%")
 
     tumor = CelulaTumoral()
     resultado = parche.aplicar_protocolo_combinado(tumor)
-    print("\n--- PROTOCOLO COMBINADO (modelo) ---")
-    print(f"  Resultado del modelo -> {resultado}")
-    print("==================================================")
+    print(f"[protocolo combinado] {resultado}")
 
 
 if __name__ == "__main__":
