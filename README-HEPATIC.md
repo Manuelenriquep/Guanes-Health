@@ -31,19 +31,19 @@ Sirve para comparar escenarios numéricos (p. ej. control vs escape MCT2 vs feed
 | `grafico_dinamica_temporal.py` | Trayectoria IL-6 / PD-L1 y \(t_{\mathrm{escape}}\) modelado |
 | `simulador_cointervencion_escenarios.py` | Comparativa de 4 escenarios |
 | `simulador_s267f_toxicidad.py` | Barrido Myrcludex WT vs S267F |
-| `simulador_cart_hcc_interaccion.py` | Esqueleto CAR-T / HCC (Kd–pH, NHE1, GPC3, iCasp9) |
-| `analisis_sensibilidad_local_cart.py` | Barrido local 1D/2D + envolvente ±20 % asumida |
+| `simulador_cart_hcc_interaccion.py` | Toy model CAR-T/HCC: Kd–pH, NHE1, GPC3, iCasp9, sGPC3, η_mig |
+| `analisis_sensibilidad_local_cart.py` | Barrido local 1D/2D; rangos asumidos (no IC empírico) |
 
 ### Tests (`04_Bateria_Inviolable/`)
 
 | Archivo | Rol |
 |---------|-----|
 | `test_simulador_onco_hepatico_v2.py` | Regresión numérica de los 4 escenarios acoplados |
-| `test_cart_hcc_interaccion.py` | Fronteras CAR-T + señuelo sGPC3 (RESOLVED-B-01) |
+| `test_cart_hcc_interaccion.py` | Fronteras numéricas CAR-T (incl. RESOLVED-B-01/02) |
 | `test_analisis_sensibilidad_local_cart.py` | Fronteras del barrido local CAR-T |
 | `run_tests_pipeline.py` | Suite completa del repo |
 
-Ledger: `01_Especificaciones_SSoT/ledger_parametros_cart_hcc.md`.
+Ledger / mapa: `01_Especificaciones_SSoT/ledger_parametros_cart_hcc.md`, `ssot_framework_map-v2.md`.
 
 ### Figuras (`02_Simulaciones_Visuales/`)
 

@@ -143,6 +143,5 @@ if __name__ == "__main__":
     print(
         f"[+] Envolvente asumida @ pHe={env['ph_e']}: "
         f"min={env['min']*100:.2f}%  mediana={env['mediana']*100:.2f}%  "
-        f"max={env['max']*100:.2f}%  (n={env['n']})"
+        f"max={env['max']*100:.2f}%  (n={env['n']}; no IC empírico)"
     )
-    print(f"    {env['nota']}")

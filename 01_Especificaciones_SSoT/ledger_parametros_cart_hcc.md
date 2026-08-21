@@ -18,13 +18,16 @@ Instrumento de cribado; **no** tabla de calibración wet-lab.
 | `k_lisis` | 0.005 | h⁻¹ | B | Tasa base de aclaramiento | ±20 % **asumido** (Capa B) |
 | `sgpc3_ng_ml` | 0.0 (escenario) | ng/mL | B | **RESOLVED-B-01** — barrido tip. 1–10 | exploratorio |
 | `ki_sgpc3` / `KI_SGPC3_NOM` | 2.5 | ng/mL | B | Hipótesis instrumento (no SPR) | `UNRESOLVED` (Capa A) |
+| `IFP_UMBRAL_MMHG` | 15.0 | mmHg | B | **RESOLVED-B-02** esbozo | `UNRESOLVED` (literatura IFP HCC) |
+| `COLAGENO_UMBRAL_UG_MG` | 50.0 | µg/mg | B | **RESOLVED-B-02** esbozo | `UNRESOLVED` |
+| `otr4120` | 0.0 | u. rel. | B | Alivio de pena por colágeno | `UNRESOLVED` (dosis real) |
 | pHe estromal (escenario) | 6.20 | — | B | Escenario ácido nominal | barrido 6.0–7.4 (exploratorio) |
 
 ---
 
-## Ancla Capa A (una fila curada)
+## Ancla Capa A (referencia de orden de magnitud)
 
-**Ligando de referencia:** mAb humanizado anti-GPC3 **GC33** (codrituzumab), no el CAR del simulador.
+**Ligando de referencia:** mAb anti-GPC3 GC33 (codrituzumab). No es el scFv pH-sensible del toy model.
 
 | Magnitud | Valor reportado | Nota |
 |----------|-----------------|------|

@@ -6,7 +6,7 @@ La **narrativa amplia del método** (libro) está fuera de este repo; aquí solo
 | Documento | Rol | Estado |
 |-----------|-----|--------|
 | [`placa_base_instrumento_investigacion.md`](./placa_base_instrumento_investigacion.md) | Epistemología: placa = instrumento, no ontología | **Normativo** |
-| [`ssot_framework_map-v2.md`](./ssot_framework_map-v2.md) | Mapa de placas, capas A/B/C, RESOLVED-B / UNRESOLVED | **Activo (v2)** |
+| [`ssot_framework_map-v2.md`](./ssot_framework_map-v2.md) | Mapa operativo: capas, placas, RESOLVED-B / UNRESOLVED (prosa sobria) | **Activo (v2)** |
 | [`ssot_framework_map.md`](./ssot_framework_map.md) | Mapa v1 | Histórico |
 | [`estudio_integracion_inmunologica_v3.md`](./estudio_integracion_inmunologica_v3.md) | Integración hepática/inmune/HBV (NTCP, IL-6, Myrcludex) + Capa B | Activo (v3) |
 | [`reporte_feedback_reciproco.md`](./reporte_feedback_reciproco.md) | Bucle IL-6 → PD-L1 (acoplamiento v2) | Activo |
