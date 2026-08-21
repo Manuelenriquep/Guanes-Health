@@ -4,6 +4,9 @@ Deterministic restoration routines for the current oncology prototype.
 Model-layer comparison: isolated immunotherapy path vs combined intervention
 that restores a subset of *modeled* tumor states. Not a clinical protocol.
 See SSoT: placa_base_instrumento_investigacion.md
+
+CD8 efficiency uses policy Gated-6.50 (Capa B), aligned with
+simulador_onco_homeostasis_v5.py and FC-BIO-2.1.
 """
 
 from placa_cancer import CelulaTumoral
@@ -11,25 +14,46 @@ from placa_sana import CelulaSana
 
 
 class ParcheRestauracion:
-    PH_PARALISIS_CD8 = 7.0
-    EFICIENCIA_CD8_ACIDO = 10.0
-    EFICIENCIA_CD8_MAX = 100.0
+    # Veto ácido (Capa A / FC-BIO-2.1) + política numérica Capa B
+    PH_VETO_CD8 = 6.50
+    PH_FISIOLOGICO = 7.35
+    ANERGY_GATE = 0.20  # Fracción: por debajo → eficiencia modelada = 0
     PH_RESTAURADO = 7.35
     ATP_COLAPSADO = 30
     PH_INTRACELULAR_LETAL = 5.2
     BCL2_FISIOLOGICO = 1.0
+    EFICIENCIA_CD8_MAX = 100.0
+
+    # Alias histórico (deprecado): el umbral operativo es PH_VETO_CD8
+    PH_PARALISIS_CD8 = PH_VETO_CD8
+
+    @classmethod
+    def calcular_eficiencia_cd8(cls, pHe):
+        """
+        Eficiencia citotóxica CD8+ modelada (fracción 0–1).
+
+        Caída lineal entre pHe fisiológico (7.35) y piso 6.50;
+        si la fracción cruda es < ANERGY_GATE (0.20), se trunca a 0.0.
+        """
+        pHe = float(pHe)
+        if pHe <= cls.PH_VETO_CD8:
+            return 0.0
+        cruda = (pHe - cls.PH_VETO_CD8) / (cls.PH_FISIOLOGICO - cls.PH_VETO_CD8)
+        cruda = min(1.0, max(0.0, cruda))
+        if cruda < cls.ANERGY_GATE:
+            return 0.0
+        return cruda
 
     def simular_inmunoterapia_aislada(self, celula_tumoral):
         """
         Camino modelado: monoterapia anti-PD-1.
         Neutraliza camuflaje PD-L1 en el estado; el pH ácido modelado
-        reduce la eficiencia CD8+ simulada.
+        reduce la eficiencia CD8+ simulada (Gated-6.50).
+        Returns efficiency as percent (0–100) for the demo API.
         """
         self._assert_celula_valida(celula_tumoral)
         celula_tumoral.camuflaje_pd_l1 = False
-        if celula_tumoral.pH_extracelular < self.PH_PARALISIS_CD8:
-            return self.EFICIENCIA_CD8_ACIDO
-        return self.EFICIENCIA_CD8_MAX
+        return self.calcular_eficiencia_cd8(celula_tumoral.pH_extracelular) * 100.0
 
     def aplicar_protocolo_combinado(self, celula_tumoral):
         """
@@ -56,7 +80,10 @@ class ParcheRestauracion:
 
         return {
             "pH_final": celula_tumoral.pH_extracelular,
-            "eficiencia_CD8": self.EFICIENCIA_CD8_MAX,
+            "eficiencia_CD8": self.calcular_eficiencia_cd8(
+                celula_tumoral.pH_extracelular
+            )
+            * 100.0,
             "ATP_tumoral_restante": celula_tumoral.atp,
             "autolisis_acida_activada": autolisis,
         }
@@ -80,7 +107,8 @@ class ParcheRestauracion:
 
 def simular_sistema_completo():
     print("=== Restauracion de estado (modelo) ===")
-    print("Placa = instrumento; no ontologia celular.\n")
+    print("Placa = instrumento; no ontologia celular.")
+    print("Politica CD8: Gated-6.50 (Capa B).\n")
 
     sana = CelulaSana()
     print(f"[homeostasis] {sana.obtener_estado()}")

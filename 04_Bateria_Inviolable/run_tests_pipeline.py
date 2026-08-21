@@ -17,6 +17,7 @@ def run_pipeline():
         "test_simulador_homeostasis.py",
         "test_simulador_homeostasis_v2.py",
         "test_simulador_homeostasis_v3.py",
+        "test_simulador_homeostasis_v5.py",
         "test_parche_restauracion.py",
         "test_barrido_estocastico_oxigeno.py",
         "test_simulador_hepatocito.py",

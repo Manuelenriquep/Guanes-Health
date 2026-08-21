@@ -1,10 +1,10 @@
 # Madurez de artefactos del motor
 
 **Ámbito:** `03_Motor_Oncologico/` (+ tests asociados).  
-**Propósito:** declarar qué es **línea canónica**, qué es **experimental** y qué queda **histórico / deprecado**.  
+**Propósito:** declarar qué es **línea canónica**, qué es **experimental**, qué es **WIP/ausente** y qué queda **histórico**.  
 **No afirma** fidelidad biológica ni validez clínica.
 
-Complementa: [`placa_base_instrumento_investigacion.md`](./placa_base_instrumento_investigacion.md), [`ledger_parametros_nucleo.md`](./ledger_parametros_nucleo.md), [`ledger_parametros_cart_hcc.md`](./ledger_parametros_cart_hcc.md).
+Complementa: [`placa_base_instrumento_investigacion.md`](./placa_base_instrumento_investigacion.md), [`ssot_framework_map-v3.md`](./ssot_framework_map-v3.md), [`ledger_parametros_nucleo.md`](./ledger_parametros_nucleo.md), [`ledger_parametros_cart_hcc.md`](./ledger_parametros_cart_hcc.md).
 
 ---
 
@@ -13,7 +13,8 @@ Complementa: [`placa_base_instrumento_investigacion.md`](./placa_base_instrument
 | Etiqueta | Significado operativo |
 |----------|------------------------|
 | **Canónico** | Entrada preferida para lectura, demos y crítica externa; tests de regresión asociados. |
-| **Experimental** | Extensión activa; útil para exploración; no sustituye al núcleo canónico. |
+| **Experimental** | Extensión activa; útil para exploración; no sustituye al canónico de su línea. |
+| **WIP / ausente** | Especificado o parcialmente esbozado; **no** hay módulo ejecutable completo. |
 | **Histórico / deprecado** | Conservado por trazabilidad; no ampliar salvo migración o borrado consciente. |
 | **Compat** | Alias de importación; no duplicar lógica aquí. |
 
@@ -21,66 +22,84 @@ Complementa: [`placa_base_instrumento_investigacion.md`](./placa_base_instrument
 
 ## 1. Núcleo canónico (demo + placas)
 
-Línea mínima del instrumento: homeostasis modelada → tumor toy → restauración determinista.
+Línea mínima: homeostasis modelada → tumor toy → restauración determinista.  
+Política CD8: **Gated-6.50** (ver ledger núcleo).
 
 | Artefacto | Etiqueta | Notas |
 |-----------|----------|-------|
 | `placa_sana.py` | **Canónico** | Placa-instrumento sana |
 | `placa_cancer.py` | **Canónico** | Placa-instrumento tumoral |
-| `parche_restauracion.py` | **Canónico** | Demo README; anti-PD-1 vs protocolo combinado (Capa B) |
+| `parche_restauracion.py` | **Canónico** | Demo README; Gated-6.50 |
 | `placa_base_sana.py` | Compat | Reexporta `placa_sana` |
 | `placa_base_cancer.py` | Compat | Reexporta `placa_cancer` |
 
+Tests: `04_Bateria_Inviolable/test_parche_restauracion.py`.  
 Ledger A→B: [`ledger_parametros_nucleo.md`](./ledger_parametros_nucleo.md).
 
 ---
 
-## 2. Línea dinámica canónica (acoplamiento onco-hepático)
-
-Extensión canónica **aparte del núcleo**: dinámica temporal + hepatocito + feedback IL-6/PD-L1. Manual: [`../README-HEPATIC.md`](../README-HEPATIC.md).
+## 2. Línea dinámica canónica (metabólico-inmunológica)
 
 | Artefacto | Etiqueta | Notas |
 |-----------|----------|-------|
-| `simulador_onco_homeostasis_v4.py` | **Canónico** (línea dinámica) | Generación actual de dinámica MCT/inmuno |
-| `simulador_hepatocito_infeccion.py` | **Canónico** (hepático) | NTCP / HBV / Myrcludex (Capa B) |
-| `simulador_onco_hepatico_v2.py` | **Canónico** (acoplamiento) | Feedback IL-6 → PD-L1 |
-| `grafico_dinamica_temporal.py` | Experimental (visual) | Figuras ilustrativas, no evidencia |
-| `simulador_cointervencion_escenarios.py` | Experimental | Comparativa de escenarios |
-| `simulador_s267f_toxicidad.py` | Experimental | Barrido WT vs S267F |
-| `simulador_cart_hcc_interaccion.py` | Experimental | Esqueleto CAR-T/HCC; ledger propio |
-| `analisis_sensibilidad_local_cart.py` | Experimental | Rangos asumidos del ledger CAR-T |
+| `simulador_onco_homeostasis_v5.py` | **Canónico** | Dinámica MCT/inmuno + Gated-6.50 |
 | `analisis_parametrico_mct2.py` | Experimental | Barrido MCT2 |
 | `barrido_estocastico_oxigeno.py` | Experimental | Barrido O₂ → HIF → VEGF (Capa B) |
 
+Tests: `04_Bateria_Inviolable/test_simulador_homeostasis_v5.py`.
+
 ---
 
-## 3. Histórico / deprecado (no ampliar)
+## 3. Acoplamiento onco-hepático
+
+| Artefacto | Etiqueta | Notas |
+|-----------|----------|-------|
+| `simulador_hepatocito_infeccion.py` | **Canónico** (hepático) | NTCP / HBV / Myrcludex (Capa B) |
+| `simulador_onco_hepatico_v2.py` | **Canónico** (acoplamiento) | Feedback IL-6 → PD-L1; **aún importa** `…_homeostasis_v4` |
+| `simulador_onco_hepatico_v3.py` | **WIP / ausente** | No existe en el repo; no ejecutar ni citar como operativo |
+| `grafico_dinamica_temporal.py` | Experimental (visual) | Figuras ilustrativas |
+| `simulador_cointervencion_escenarios.py` | Experimental | Comparativa de escenarios |
+| `simulador_s267f_toxicidad.py` | Experimental | Barrido WT vs S267F |
+| `simulador_cart_hcc_interaccion.py` | Experimental | Esqueleto CAR-T/HCC |
+| `analisis_sensibilidad_local_cart.py` | Experimental | Rangos asumidos del ledger CAR-T |
+
+Tests de acoplamiento vigente: `test_simulador_onco_hepatico_v2.py`.  
+Manual: [`../README-HEPATIC.md`](../README-HEPATIC.md).
+
+**Nota de honestidad:** el acoplamiento canónico **v2** todavía depende de `homeostasis_v4`. La unificación Gated-6.50 está cerrada en **núcleo + v5**; portar el acoplamiento a v5 es trabajo futuro (no confundir con un `hepatico_v3` inexistente).
+
+---
+
+## 4. Histórico / deprecado (no ampliar)
 
 | Artefacto | Etiqueta | Sustituto |
 |-----------|----------|-----------|
-| `simulador_onco_homeostasis.py` | Histórico | → `…_v4.py` |
-| `simulador_onco_homeostasis_v2.py` | Histórico | → `…_v4.py` |
-| `simulador_onco_homeostasis_v3.py` | Histórico | → `…_v4.py` |
+| `simulador_onco_homeostasis.py` | Histórico | → `…_v5.py` |
+| `simulador_onco_homeostasis_v2.py` | Histórico | → `…_v5.py` |
+| `simulador_onco_homeostasis_v3.py` | Histórico | → `…_v5.py` |
+| `simulador_onco_homeostasis_v4.py` | Histórico (dinámica) | → `…_v5.py` (sigue en uso como dependencia de `hepatico_v2`) |
 | `simulador_onco_hepatico_v1.py` | Histórico | → `…_v2.py` |
 
-Los tests `test_simulador_homeostasis*.py` / `test_simulador_onco_hepatico.py` que apuntan a versiones antiguas son **regresión histórica**; la suite de acoplamiento vigente es `test_simulador_onco_hepatico_v2.py`.
+Los tests `test_simulador_homeostasis.py` / `_v2` / `_v3` (este último importa v4) son **regresión histórica**.
 
 ---
 
-## 4. Cómo elegir qué correr
+## 5. Cómo elegir qué correr
 
 | Objetivo | Comando / entrada |
 |----------|-------------------|
 | Demo mínima (README) | `py "03_Motor_Oncologico/parche_restauracion.py"` |
-| Acoplamiento hepático | Ver `README-HEPATIC.md` |
+| Dinámica canónica | `py "03_Motor_Oncologico/simulador_onco_homeostasis_v5.py"` |
+| Acoplamiento hepático vigente | Ver `README-HEPATIC.md` (v2) |
 | Suite de tests | `py -m unittest discover -s "04_Bateria_Inviolable" -v` |
 
 ---
 
 ## Reglas
 
-1. Un PR que “mejore el motor” debe declarar si toca **núcleo**, **línea dinámica** o solo **experimental**.
-2. No promover un experimental a canónico sin actualizar esta tabla, el README correspondiente y, si aplica, un ledger A→B.
-3. No borrar históricos en silencio: primero marcar aquí, luego migrar tests.
+1. Un PR que “mejore el motor” debe declarar si toca **núcleo**, **dinámica v5**, **acoplamiento v2** o solo **experimental**.
+2. No promover un experimental ni un WIP a canónico sin actualizar esta tabla, el README correspondiente y el mapa SSoT v3.
+3. No afirmar archivos ausentes (`hepatico_v3`) como ejecutables.
+4. No borrar históricos en silencio: primero marcar aquí, luego migrar tests.
 
-**Estado del documento:** activo (congelación inicial de madurez).
+**Estado del documento:** activo (consolidación Gated-6.50 / v5 / hepático v3 ausente).

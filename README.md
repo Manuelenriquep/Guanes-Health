@@ -112,10 +112,12 @@ Two inspectable entry points (neither is a clinical simulator):
 
 | Line | Role | Entry |
 |------|------|--------|
-| **Nucleus (canonical)** | Minimal healthy → tumor → restoration demo | `parche_restauracion.py` (+ `placa_sana.py`, `placa_cancer.py`) |
-| **Dynamic / hepatic (canonical extension)** | Temporal MCT/immune dynamics + hepatocyte coupling | See `README-HEPATIC.md` (`…_homeostasis_v4`, `…_hepatico_v2`) |
+| **Nucleus (canonical)** | Minimal healthy → tumor → restoration; CD8 **Gated-6.50** | `parche_restauracion.py` (+ `placa_sana.py`, `placa_cancer.py`) |
+| **Dynamic (canonical)** | Temporal MCT/immune dynamics (Gated-6.50) | `simulador_onco_homeostasis_v5.py` |
+| **Hepatic coupling (canonical)** | Hepatocyte + IL-6/PD-L1 loop | See `README-HEPATIC.md` (`…_hepatico_v2`; still depends on `…_v4`) |
 
-Parameter traceability (literature → model constant): `ledger_parametros_nucleo.md` (nucleus), `ledger_parametros_cart_hcc.md` (CAR-T skeleton). Older `homeostasis_v2`/`v3` and `onco_hepatico_v1` are historical — do not extend them.
+Parameter traceability: `ledger_parametros_nucleo.md`, `ledger_parametros_cart_hcc.md`. Architecture map: `ssot_framework_map-v3.md`.  
+`simulador_onco_hepatico_v3.py` is **absent / WIP** — do not treat as runnable. Older `homeostasis` ≤v4 (standalone) and `onco_hepatico_v1` are historical.
 
 ## Running the Prototype
 
