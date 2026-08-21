@@ -14,6 +14,7 @@ def run_pipeline():
     log_file = os.path.join(bateria_dir, "pipeline_execution.log")
 
     suites = [
+        "test_inmuno_utils.py",
         "test_simulador_homeostasis.py",
         "test_simulador_homeostasis_v2.py",
         "test_simulador_homeostasis_v3.py",
@@ -23,6 +24,7 @@ def run_pipeline():
         "test_simulador_hepatocito.py",
         "test_simulador_onco_hepatico.py",
         "test_simulador_onco_hepatico_v2.py",
+        "test_simulador_onco_hepatico_v3.py",
         "test_cart_hcc_interaccion.py",
         "test_analisis_sensibilidad_local_cart.py",
     ]

@@ -5,44 +5,34 @@ Model-layer comparison: isolated immunotherapy path vs combined intervention
 that restores a subset of *modeled* tumor states. Not a clinical protocol.
 See SSoT: placa_base_instrumento_investigacion.md
 
-CD8 efficiency uses policy Gated-6.50 (Capa B), aligned with
-simulador_onco_homeostasis_v5.py and FC-BIO-2.1.
+CD8 efficiency uses shared Gated-6.50 policy (`inmuno_utils`).
 """
 
+from inmuno_utils import (
+    ANERGY_GATE,
+    PH_FISIOLOGICO,
+    PH_VETO_CD8,
+    calcular_eficiencia_cd8 as eficiencia_cd8_gated,
+)
 from placa_cancer import CelulaTumoral
 from placa_sana import CelulaSana
 
 
 class ParcheRestauracion:
-    # Veto ácido (Capa A / FC-BIO-2.1) + política numérica Capa B
-    PH_VETO_CD8 = 6.50
-    PH_FISIOLOGICO = 7.35
-    ANERGY_GATE = 0.20  # Fracción: por debajo → eficiencia modelada = 0
+    PH_VETO_CD8 = PH_VETO_CD8
+    PH_FISIOLOGICO = PH_FISIOLOGICO
+    ANERGY_GATE = ANERGY_GATE
     PH_RESTAURADO = 7.35
     ATP_COLAPSADO = 30
     PH_INTRACELULAR_LETAL = 5.2
     BCL2_FISIOLOGICO = 1.0
     EFICIENCIA_CD8_MAX = 100.0
+    PH_PARALISIS_CD8 = PH_VETO_CD8  # alias deprecado
 
-    # Alias histórico (deprecado): el umbral operativo es PH_VETO_CD8
-    PH_PARALISIS_CD8 = PH_VETO_CD8
-
-    @classmethod
-    def calcular_eficiencia_cd8(cls, pHe):
-        """
-        Eficiencia citotóxica CD8+ modelada (fracción 0–1).
-
-        Caída lineal entre pHe fisiológico (7.35) y piso 6.50;
-        si la fracción cruda es < ANERGY_GATE (0.20), se trunca a 0.0.
-        """
-        pHe = float(pHe)
-        if pHe <= cls.PH_VETO_CD8:
-            return 0.0
-        cruda = (pHe - cls.PH_VETO_CD8) / (cls.PH_FISIOLOGICO - cls.PH_VETO_CD8)
-        cruda = min(1.0, max(0.0, cruda))
-        if cruda < cls.ANERGY_GATE:
-            return 0.0
-        return cruda
+    @staticmethod
+    def calcular_eficiencia_cd8(pHe):
+        """Delegado a inmuno_utils (fuente única Gated-6.50)."""
+        return eficiencia_cd8_gated(pHe)
 
     def simular_inmunoterapia_aislada(self, celula_tumoral):
         """

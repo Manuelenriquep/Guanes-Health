@@ -12,14 +12,13 @@ Guanes Health — prototipo *in silico* (instrumento de placa).
 El stack acopla, en Capa B (toy model parametrizado):
 
 - hepatocito sinusoidal (`simulador_hepatocito_infeccion.py`): O₂ → NTCP, HBV, Myrcludex B, veto GSH (`VETO FC-HEP-01`);
-- tumor / estroma (`simulador_onco_homeostasis_v4.py` vía acoplamiento v2; dinámica standalone canónica: `…_v5.py`): metabolismo, pHe, checkpoints;
-- bucle paracrino (`simulador_onco_hepatico_v2.py`): IL-6 → STAT3 → PD-L1 tumoral.
-
-`simulador_onco_hepatico_v3.py` está **ausente (WIP)**; no forma parte del stack ejecutable.
+- tumor / estroma (`simulador_onco_homeostasis_v5.py` vía acoplamiento v3): metabolismo, pHe, checkpoints;
+- bucle paracrino (`simulador_onco_hepatico_v3.py`): IL-6 → STAT3 → PD-L1 tumoral;
+- política CD8 compartida (`inmuno_utils.py`): Gated-6.50.
 
 Madurez global del motor: [`01_Especificaciones_SSoT/madurez_artefactos_motor.md`](01_Especificaciones_SSoT/madurez_artefactos_motor.md).  
 Mapa SSoT: [`01_Especificaciones_SSoT/ssot_framework_map-v3.md`](01_Especificaciones_SSoT/ssot_framework_map-v3.md).  
-El **núcleo canónico** (demo README) es `placa_*` + `parche_restauracion.py` (Gated-6.50); esta línea es el **acoplamiento canónico vigente** (v2).
+El **núcleo canónico** (demo README) es `placa_*` + `parche_restauracion.py`; el **acoplamiento canónico** es v3.
 
 ---
 
@@ -29,26 +28,29 @@ El **núcleo canónico** (demo README) es `placa_*` + `parche_restauracion.py` (
 
 | Archivo | Madurez | Rol |
 |---------|---------|-----|
-| `simulador_onco_homeostasis_v5.py` | Canónico (dinámica standalone) | MCT/inmuno + Gated-6.50 |
-| `simulador_onco_homeostasis_v4.py` | Histórico (dinámica); aún dependencia de acoplamiento v2 | Célula sana/tumoral usada por `hepatico_v2` |
+| `inmuno_utils.py` | Canónico (política CD8) | Gated-6.50 compartido |
+| `simulador_onco_homeostasis_v5.py` | Canónico (dinámica) | MCT/inmuno |
 | `simulador_hepatocito_infeccion.py` | Canónico (hepático) | Hepatocito + HBV / NTCP / Myrcludex |
-| `simulador_onco_hepatico_v2.py` | Canónico (acoplamiento) | Acoplamiento bidireccional IL-6 / PD-L1 |
-| `simulador_onco_hepatico_v3.py` | **WIP / ausente** | No existe en el repo |
-| `grafico_dinamica_temporal.py` | Experimental (visual) | Trayectoria IL-6 / PD-L1 y \(t_{\mathrm{escape}}\) modelado |
-| `simulador_cointervencion_escenarios.py` | Experimental | Comparativa de 4 escenarios |
+| `simulador_onco_hepatico_v3.py` | Canónico (acoplamiento) | IL-6 / PD-L1 sobre v5 |
+| `simulador_onco_hepatico_v2.py` | Histórico | Usaba v4; no ampliar |
+| `simulador_onco_homeostasis_v4.py` | Histórico | Dependencia residual de scripts experimentales / v2 |
+| `grafico_dinamica_temporal.py` | Experimental (visual) | Trayectoria IL-6 / PD-L1 |
+| `simulador_cointervencion_escenarios.py` | Experimental | Comparativa de escenarios |
 | `simulador_s267f_toxicidad.py` | Experimental | Barrido Myrcludex WT vs S267F |
 | `simulador_cart_hcc_interaccion.py` | Experimental | Toy model CAR-T/HCC |
 | `analisis_sensibilidad_local_cart.py` | Experimental | Barrido local 1D/2D |
-| `simulador_onco_homeostasis.py` … `_v3.py` | Histórico | No ampliar → usar `_v5` para dinámica nueva |
-| `simulador_onco_hepatico_v1.py` | Histórico | No ampliar → usar `_v2` |
+| `simulador_onco_homeostasis.py` … `_v3.py` | Histórico | → `_v5` |
+| `simulador_onco_hepatico_v1.py` | Histórico | → `_v3` |
 
 ### Tests (`04_Bateria_Inviolable/`)
 
 | Archivo | Rol |
 |---------|-----|
-| `test_simulador_onco_hepatico_v2.py` | Regresión numérica de los 4 escenarios acoplados |
-| `test_cart_hcc_interaccion.py` | Fronteras numéricas CAR-T (incl. RESOLVED-B-01/02) |
-| `test_analisis_sensibilidad_local_cart.py` | Fronteras del barrido local CAR-T |
+| `test_simulador_onco_hepatico_v3.py` | Regresión acoplamiento canónico |
+| `test_inmuno_utils.py` | Fronteras Gated-6.50 |
+| `test_simulador_onco_hepatico_v2.py` | Regresión histórica v2 |
+| `test_cart_hcc_interaccion.py` | Fronteras CAR-T (RESOLVED-B-01/02) |
+| `test_analisis_sensibilidad_local_cart.py` | Barrido local CAR-T |
 | `run_tests_pipeline.py` | Suite completa del repo |
 
 Ledger / mapa: `01_Especificaciones_SSoT/madurez_artefactos_motor.md`, `ledger_parametros_nucleo.md`, `ledger_parametros_cart_hcc.md`, `ssot_framework_map-v3.md`.
@@ -111,7 +113,7 @@ Salidas gráficas → `02_Simulaciones_Visuales/`.
 ## 5. Tests
 
 ```bash
-py -3 04_Bateria_Inviolable/test_simulador_onco_hepatico_v2.py
+py -3 04_Bateria_Inviolable/test_simulador_onco_hepatico_v3.py
 py -3 04_Bateria_Inviolable/test_cart_hcc_interaccion.py
 py -3 04_Bateria_Inviolable/run_tests_pipeline.py
 ```

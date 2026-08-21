@@ -37,8 +37,9 @@ Cada “placa” es un **instrumento** para ordenar variables y vetos.
    - piso: pHe ≤ 6.50 → eficiencia = 0 (FC-BIO-2.1);
    - rampa lineal 6.50 → 7.35;
    - *anergy gate* 0.20: fracción cruda &lt; 0.20 → 0.0.
-   - Código alineado: `parche_restauracion.py`, `simulador_onco_homeostasis_v5.py`.
-   - Tests: `test_parche_restauracion.py`, `test_simulador_homeostasis_v5.py`.
+   - **Fuente única:** `03_Motor_Oncologico/inmuno_utils.py`.
+   - Consumidores: `parche_restauracion.py`, `simulador_onco_homeostasis_v5.py`, `simulador_onco_hepatico_v3.py`.
+   - Tests: `test_inmuno_utils.py`, `test_parche_restauracion.py`, `test_simulador_homeostasis_v5.py`.
 6. **CAR-T** — Kd–pH (histidinas), NHE1, proxy TOX si se añade; etiqueta de diseño STROMA-SHIELD, no producto validado.
 7. **iCasp9** — apoptosis inducida por rimiducid (cinética Capa B).
 8. **Extravasación** — IFP / colágeno; esbozo η_mig (sin PDE).
@@ -50,10 +51,11 @@ Cada “placa” es un **instrumento** para ordenar variables y vetos.
 
 | Línea | Artefacto | Estado |
 |-------|-----------|--------|
-| Núcleo | `placa_*` + `parche_restauracion.py` | **Canónico** (Gated-6.50) |
-| Dinámica metabólico-inmunológica | `simulador_onco_homeostasis_v5.py` | **Canónico** |
-| Acoplamiento onco-hepático | `simulador_onco_hepatico_v2.py` (+ dependencia `…_v4`) | **Canónico** del acoplamiento vigente |
-| Acoplamiento v3 | `simulador_onco_hepatico_v3.py` | **Ausente / WIP** (no inventar módulo) |
+| Política CD8 | `inmuno_utils.py` | **Canónico** |
+| Núcleo | `placa_*` + `parche_restauracion.py` | **Canónico** |
+| Dinámica | `simulador_onco_homeostasis_v5.py` | **Canónico** |
+| Acoplamiento onco-hepático | `simulador_onco_hepatico_v3.py` | **Canónico** (usa v5) |
+| Acoplamiento v2 | `simulador_onco_hepatico_v2.py` | Histórico (usaba v4) |
 
 Detalle: [`madurez_artefactos_motor.md`](./madurez_artefactos_motor.md).
 
@@ -79,7 +81,8 @@ Detalle: [`madurez_artefactos_motor.md`](./madurez_artefactos_motor.md).
 
 **[RESOLVED-B-03] Política CD8 Gated-6.50**
 
-- Unifica núcleo (`parche_restauracion`) y dinámica v5 con el veto ≤6.50 del SSoT inmunológico.
+- Implementación única en `inmuno_utils.calcular_eficiencia_cd8`.
+- Consumida por núcleo, dinámica v5 y acoplamiento v3.
 - Frontera útil: pHe ≈ 6.65 (escape MCT2) → cruda ≈ 0.176 → truncado a 0 por anergy gate.
 
 ### Pendiente
@@ -89,7 +92,6 @@ Detalle: [`madurez_artefactos_motor.md`](./madurez_artefactos_motor.md).
 | **UNRESOLVED-02** | Transporte espacial (malla / PDE / quimiotaxis). η_mig sigue siendo escalar (RESOLVED-B-02), no motor geométrico. |
 | **UNRESOLVED-03** | Acoplamiento metabolito–TOX (“succinate trap”). |
 | **UNRESOLVED-04** | Anclaje literario amplio + sensibilidad global (Sobol). |
-| **WIP-HEP-v3** | `simulador_onco_hepatico_v3.py` y suite asociada: **no existen** en el repo; no afirmar ejecución. |
 
 El barrido local CAR-T (`analisis_sensibilidad_local_cart.py`) usa rangos **asumidos** del ledger; no sustituye UNRESOLVED-04.
 
@@ -103,8 +105,7 @@ El barrido local CAR-T (`analisis_sensibilidad_local_cart.py`) usa rangos **asum
 | “Firmware del linfocito” | “Parámetros del instrumento CAR-T” |
 | “Plenamente verificado por el arnés” | “Cubierto por test de regresión X” |
 | “Norma Suprema” / metáfora digital literal | Gradiente de O₂ / regla del modelo |
-| Afirmar `hepatico_v3` como operativo | “WIP / ausente hasta que exista el archivo” |
 
 ---
 
-*Guanes Health, 2026 — SSoT operativo v3 (coherencia Gated-6.50; hepático v3 ausente).*
+*Guanes Health, 2026 — SSoT operativo v3 (Gated-6.50 en `inmuno_utils`; acoplamiento canónico v3).*

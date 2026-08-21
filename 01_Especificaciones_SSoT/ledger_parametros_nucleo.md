@@ -23,9 +23,9 @@ Complementa: [`madurez_artefactos_motor.md`](./madurez_artefactos_motor.md), [`s
 | `CelulaTumoral.PH_INTRACELULAR_BASAL` | 7.20 | — | B | pHi tumoral citado en SSoT vector v2 §2.C | Ancla A (orden) |
 | `CelulaTumoral.BCL2_FACTOR` | 25.0 | × basal | B | “Hasta ×25” en narrativa SSoT | Ancla A (orden) |
 | `CelulaTumoral.PH_FISICO_MIN` / `MAX` | 0 / 14 | — | B | Fail-closed | Ingeniería |
-| `ParcheRestauracion.PH_VETO_CD8` | 6.50 | — | B | FC-BIO-2.1; alineado a v5 (**RESOLVED-B-03**) | Ancla A (veto ≤6.50) |
-| `ParcheRestauracion.PH_FISIOLOGICO` | 7.35 | — | B | Techo de la rampa CD8 | = pHe nominal |
-| `ParcheRestauracion.ANERGY_GATE` | 0.20 | fracción | B | Truncado de fatiga modelada | Hipótesis Capa B |
+| `ParcheRestauracion.PH_VETO_CD8` | 6.50 | — | B | Via `inmuno_utils` (**RESOLVED-B-03**) | Ancla A (veto ≤6.50) |
+| `ParcheRestauracion.PH_FISIOLOGICO` | 7.35 | — | B | Via `inmuno_utils` | = pHe nominal |
+| `ParcheRestauracion.ANERGY_GATE` | 0.20 | fracción | B | Via `inmuno_utils` | Hipótesis Capa B |
 | `ParcheRestauracion.PH_RESTAURADO` | 7.35 | — | B | Restauración a pHe sano | Alineado |
 | `ParcheRestauracion.ATP_COLAPSADO` | 30 | u. rel. | B | Colapso post-bloqueo MCT4 modelado | `UNRESOLVED` |
 | `ParcheRestauracion.PH_INTRACELULAR_LETAL` | 5.2 | — | B | Autólisis ácida modelada | `UNRESOLVED` |
@@ -55,7 +55,7 @@ Complementa: [`madurez_artefactos_motor.md`](./madurez_artefactos_motor.md), [`s
 | Calibración empírica de ATP relativo | Escalas distintas núcleo vs dinámica v5 |
 | Umbral telómero en pb en el núcleo | Núcleo relativo; v5 usa 4000 pb |
 | Cinética temporal del parche | Paso determinista, no ODE |
-| Portar acoplamiento `hepatico_v2` a v5 | Pendiente; no confundir con `hepatico_v3` ausente |
+| Portar scripts experimentales (`grafico_*`, `cointervencion_*`) de v2→v3 | Pendiente cosmético; acoplamiento canónico ya es v3 |
 
 ---
 

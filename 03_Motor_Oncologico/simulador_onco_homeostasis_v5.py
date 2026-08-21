@@ -1,5 +1,14 @@
 import math
+import os
+import sys
+
 import numpy as np
+
+_MOTOR_DIR = os.path.abspath(os.path.dirname(__file__))
+if _MOTOR_DIR not in sys.path:
+    sys.path.insert(0, _MOTOR_DIR)
+
+from inmuno_utils import calcular_eficiencia_cd8
 
 # =====================================================================
 # CONSTANTES FÍSICAS E INMUTABLES DEL MOTOR (RESTRICCIONES BIOFÍSICAS - CAPA B)
@@ -238,14 +247,8 @@ class SimuladorTratamiento:
                 atp_drop = (10000.0 - atp_minimo) * (1 - math.exp(-0.35 * (t - t_metabolico)))
                 tumor.atp_nivel = max(atp_minimo, 10000.0 - atp_drop)
                 
-                # Recuperación pasiva de la eficiencia de linfocitos CD8+ TILs (atenuada por acidez estromal residual)
-                if tumor.pHe > 6.50:
-                    eficiencia_cd8_basal = (tumor.pHe - 6.50) / (7.35 - 6.50)
-                    if eficiencia_cd8_basal < 0.2:
-                        eficiencia_cd8_basal = 0.0
-                else:
-                    eficiencia_cd8_basal = 0.0
-                eficiencia_cd8 = min(1.0, eficiencia_cd8_basal)
+                # CD8: política compartida Gated-6.50 (inmuno_utils)
+                eficiencia_cd8 = calcular_eficiencia_cd8(tumor.pHe)
 
             # 2. Introducción de Inmunoterapia anti-PD-1
             if t >= t_inmunoterapia:
@@ -289,7 +292,7 @@ class SimuladorTratamiento:
 
 if __name__ == "__main__":
     print("=====================================================================")
-    print("INICIANDO EJECUCIÓN DEL SIMULADOR BIOCONTROL ONCOLÓGICO (v2.4)")
+    print("INICIANDO EJECUCIÓN DEL SIMULADOR BIOCONTROL ONCOLÓGICO (v5)")
     print("=====================================================================\n")
     
     # 1. Verificación de Homeostasis y Límite de Hayflick (Célula Sana)
