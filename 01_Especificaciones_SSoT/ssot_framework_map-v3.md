@@ -4,7 +4,7 @@ Guanes Health. Instrumento de cribado *in silico* (placas = herramientas de mode
 
 **Estado:** activo. Sustituye operativamente a [`ssot_framework_map-v2.md`](./ssot_framework_map-v2.md).
 
-Complementa: [`placa_base_instrumento_investigacion.md`](./placa_base_instrumento_investigacion.md), [`madurez_artefactos_motor.md`](./madurez_artefactos_motor.md), [`ledger_parametros_nucleo.md`](./ledger_parametros_nucleo.md), [`ledger_parametros_cart_hcc.md`](./ledger_parametros_cart_hcc.md).
+Complementa: [`placa_base_instrumento_investigacion.md`](./placa_base_instrumento_investigacion.md), [`madurez_artefactos_motor.md`](./madurez_artefactos_motor.md), [`ledger_parametros_nucleo.md`](./ledger_parametros_nucleo.md), [`ledger_trazabilidad_dinamica.md`](./ledger_trazabilidad_dinamica.md), [`ledger_parametros_cart_hcc.md`](./ledger_parametros_cart_hcc.md).
 
 ---
 
@@ -84,6 +84,7 @@ Detalle: [`madurez_artefactos_motor.md`](./madurez_artefactos_motor.md).
 - Implementación única en `inmuno_utils.calcular_eficiencia_cd8`.
 - Consumida por núcleo, dinámica v5 y acoplamiento v3.
 - Frontera útil: pHe ≈ 6.65 (escape MCT2) → cruda ≈ 0.176 → truncado a 0 por anergy gate.
+- Inventario numérico v5/v3: [`ledger_trazabilidad_dinamica.md`](./ledger_trazabilidad_dinamica.md).
 
 ### Pendiente
 

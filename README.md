@@ -117,7 +117,7 @@ Two inspectable entry points (neither is a clinical simulator):
 | **Dynamic (canonical)** | Temporal MCT/immune dynamics | `simulador_onco_homeostasis_v5.py` |
 | **Hepatic coupling (canonical)** | Hepatocyte + IL-6/PD-L1 loop on v5 | `simulador_onco_hepatico_v3.py` |
 
-Parameter traceability: `ledger_parametros_nucleo.md`, `ledger_parametros_cart_hcc.md`. Architecture map: `ssot_framework_map-v3.md`.  
+Parameter traceability: `ledger_parametros_nucleo.md`, `ledger_trazabilidad_dinamica.md`, `ledger_parametros_cart_hcc.md`. Architecture map: `ssot_framework_map-v3.md`.  
 Older `homeostasis` ≤v4 and `onco_hepatico` ≤v2 are historical.
 
 ## Running the Prototype

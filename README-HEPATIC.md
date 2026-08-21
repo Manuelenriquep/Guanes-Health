@@ -53,7 +53,7 @@ El **núcleo canónico** (demo README) es `placa_*` + `parche_restauracion.py`; 
 | `test_analisis_sensibilidad_local_cart.py` | Barrido local CAR-T |
 | `run_tests_pipeline.py` | Suite completa del repo |
 
-Ledger / mapa: `01_Especificaciones_SSoT/madurez_artefactos_motor.md`, `ledger_parametros_nucleo.md`, `ledger_parametros_cart_hcc.md`, `ssot_framework_map-v3.md`.
+Ledger / mapa: `01_Especificaciones_SSoT/madurez_artefactos_motor.md`, `ledger_parametros_nucleo.md`, `ledger_trazabilidad_dinamica.md`, `ledger_parametros_cart_hcc.md`, `ssot_framework_map-v3.md`.
 
 ### Figuras (`02_Simulaciones_Visuales/`)
 

@@ -4,7 +4,7 @@
 **Propósito:** declarar qué es **línea canónica**, qué es **experimental**, qué es **WIP/ausente** y qué queda **histórico**.  
 **No afirma** fidelidad biológica ni validez clínica.
 
-Complementa: [`placa_base_instrumento_investigacion.md`](./placa_base_instrumento_investigacion.md), [`ssot_framework_map-v3.md`](./ssot_framework_map-v3.md), [`ledger_parametros_nucleo.md`](./ledger_parametros_nucleo.md), [`ledger_parametros_cart_hcc.md`](./ledger_parametros_cart_hcc.md).
+Complementa: [`placa_base_instrumento_investigacion.md`](./placa_base_instrumento_investigacion.md), [`ssot_framework_map-v3.md`](./ssot_framework_map-v3.md), [`ledger_parametros_nucleo.md`](./ledger_parametros_nucleo.md), [`ledger_trazabilidad_dinamica.md`](./ledger_trazabilidad_dinamica.md), [`ledger_parametros_cart_hcc.md`](./ledger_parametros_cart_hcc.md).
 
 ---
 
@@ -46,7 +46,8 @@ Ledger A→B: [`ledger_parametros_nucleo.md`](./ledger_parametros_nucleo.md).
 | `analisis_parametrico_mct2.py` | Experimental | Barrido MCT2 |
 | `barrido_estocastico_oxigeno.py` | Experimental | Barrido O₂ → HIF → VEGF (Capa B) |
 
-Tests: `04_Bateria_Inviolable/test_simulador_homeostasis_v5.py`.
+Tests: `04_Bateria_Inviolable/test_simulador_homeostasis_v5.py`.  
+Ledger A→B: [`ledger_trazabilidad_dinamica.md`](./ledger_trazabilidad_dinamica.md).
 
 ---
 
@@ -64,6 +65,7 @@ Tests: `04_Bateria_Inviolable/test_simulador_homeostasis_v5.py`.
 | `analisis_sensibilidad_local_cart.py` | Experimental | Rangos asumidos del ledger CAR-T |
 
 Tests de acoplamiento vigente: `test_simulador_onco_hepatico_v3.py` (v2 permanece como regresión histórica).  
+Ledger A→B: [`ledger_trazabilidad_dinamica.md`](./ledger_trazabilidad_dinamica.md).  
 Manual: [`../README-HEPATIC.md`](../README-HEPATIC.md).
 
 ---

@@ -17,6 +17,7 @@ La **narrativa amplia del método** (libro) está fuera de este repo; aquí solo
 | [`vector_viral_oncolitico_modelo.md`](./vector_viral_oncolitico_modelo.md) | Nota especulativa v1 del vector | Histórico / hipótesis |
 | [`ledger_parametros_cart_hcc.md`](./ledger_parametros_cart_hcc.md) | Parámetros CAR-T/HCC: valor Capa B, fuente o `UNRESOLVED` | Activo |
 | [`ledger_parametros_nucleo.md`](./ledger_parametros_nucleo.md) | Parámetros del núcleo (placas + parche): A→B o `UNRESOLVED` | Activo |
+| [`ledger_trazabilidad_dinamica.md`](./ledger_trazabilidad_dinamica.md) | Parámetros dinámica v5 / acoplamiento v3: A→B o `UNRESOLVED` | Activo |
 | [`madurez_artefactos_motor.md`](./madurez_artefactos_motor.md) | Canónico / experimental / histórico del motor Python | Activo |
 | [`protocolo_tres_agentes_operativo.md`](./protocolo_tres_agentes_operativo.md) | Contrato Célula → Cáncer → Oncólogo para agentes | **Normativo** |
 | [`protocolo_restauracion_reporte-v3.md`](./protocolo_restauracion_reporte-v3.md) | Reporte de protocolo de restauración (modelo) | Referencia |
