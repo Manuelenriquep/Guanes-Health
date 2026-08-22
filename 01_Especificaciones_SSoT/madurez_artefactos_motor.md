@@ -27,13 +27,15 @@ Política CD8: **Gated-6.50** vía [`inmuno_utils.py`](../03_Motor_Oncologico/in
 | Artefacto | Etiqueta | Notas |
 |-----------|----------|-------|
 | `inmuno_utils.py` | **Canónico** (política compartida) | Fuente única CD8 Gated-6.50 |
+| `demo_divergencia_estatico_vs_placa.py` | **Canónico** (gancho README) | Matcher estático proxy vs Gated-6.50 |
 | `placa_sana.py` | **Canónico** | Placa-instrumento sana |
 | `placa_cancer.py` | **Canónico** | Placa-instrumento tumoral |
-| `parche_restauracion.py` | **Canónico** | Demo README; delega CD8 a `inmuno_utils` |
+| `parche_restauracion.py` | **Canónico** | Demo núcleo; delega CD8 a `inmuno_utils` |
 | `placa_base_sana.py` | Compat | Reexporta `placa_sana` |
 | `placa_base_cancer.py` | Compat | Reexporta `placa_cancer` |
 
-Tests: `test_parche_restauracion.py`, `test_inmuno_utils.py`.  
+Tests: `test_parche_restauracion.py`, `test_inmuno_utils.py`, `test_divergencia_estatico_vs_placa.py`.  
+Nota SSoT: [`contraste_instrumento_vs_match_estatico.md`](./contraste_instrumento_vs_match_estatico.md).  
 Ledger A→B: [`ledger_parametros_nucleo.md`](./ledger_parametros_nucleo.md).
 
 ---

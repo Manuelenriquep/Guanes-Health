@@ -6,6 +6,7 @@ La **narrativa amplia del método** (libro) está fuera de este repo; aquí solo
 | Documento | Rol | Estado |
 |-----------|-----|--------|
 | [`placa_base_instrumento_investigacion.md`](./placa_base_instrumento_investigacion.md) | Epistemología: placa = instrumento, no ontología | **Normativo** |
+| [`contraste_instrumento_vs_match_estatico.md`](./contraste_instrumento_vs_match_estatico.md) | Demo: matcher estático vs Gated-6.50 (Capa B) | Activo |
 | [`ssot_framework_map-v3.md`](./ssot_framework_map-v3.md) | Mapa operativo: capas, placas, Gated-6.50, RESOLVED-B / UNRESOLVED | **Activo (v3)** |
 | [`ssot_framework_map-v2.md`](./ssot_framework_map-v2.md) | Mapa v2 | Histórico |
 | [`ssot_framework_map.md`](./ssot_framework_map.md) | Mapa v1 | Histórico |

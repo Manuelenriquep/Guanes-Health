@@ -17,3 +17,6 @@ env/
 
 # Evitar subir reportes duplicados de scratch
 /workspace/scratch/
+
+# Núcleo privado NS-LBN — NO PUBLICAR (gitignored)
+_privado/

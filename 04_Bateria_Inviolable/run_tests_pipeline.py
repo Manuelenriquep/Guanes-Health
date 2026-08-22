@@ -15,6 +15,7 @@ def run_pipeline():
 
     suites = [
         "test_inmuno_utils.py",
+        "test_divergencia_estatico_vs_placa.py",
         "test_simulador_homeostasis.py",
         "test_simulador_homeostasis_v2.py",
         "test_simulador_homeostasis_v3.py",

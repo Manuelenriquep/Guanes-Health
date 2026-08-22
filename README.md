@@ -12,12 +12,25 @@ This repository does not present a clinical system, a validated scientific simul
 
 Its current value lies in scope discipline rather than scale: a narrow model, explicit assumptions, deterministic behavior, and basic automated tests.
 
+## Positioning
+
+Most public oncology software classifies patients, matches trials, curates cohorts, or trains models on existing datasets. This repository does a different job: it is a **Layer B research instrument** — a small deterministic toy model of kinetic and state hypotheses (vetoes, gates, timed interventions) that you can intervene on in silico and audit with unit tests and parameter ledgers.
+
+It does not claim to replace or outperform trial-matching engines, phylogenetic reconstruction, or deep-learning pathology. Those tools answer different questions. Guanes Health is for making mechanistic hypotheses inspectable and fail-closed so they can be ordered or discarded before wet-lab spend — transparent control logic, not clinical prediction.
+
 ## Start here (2 minutes)
 
 1. Read **What This Repository Does Not Claim**.
-2. Run: `py "03_Motor_Oncologico/parche_restauracion.py"`
-3. Skim: `01_Especificaciones_SSoT/placa_base_instrumento_investigacion.md`
-4. Optional: `py -m unittest discover -s "04_Bateria_Inviolable" -v`
+2. **Hook demo** — same IO-eligible genomic signature; static matcher stays at 1.0 while acidic stroma (`pHe ≤ 6.50`) zeros modeled CD8 efficacy (Gated-6.50):
+
+   ```bash
+   py "03_Motor_Oncologico/demo_divergencia_estatico_vs_placa.py"
+   ```
+
+   Figure: `02_Simulaciones_Visuales/divergencia_estatico_vs_placa_gated_650.png`. Epistemology: `01_Especificaciones_SSoT/contraste_instrumento_vs_match_estatico.md`.
+3. Run nucleus: `py "03_Motor_Oncologico/parche_restauracion.py"`
+4. Skim: `01_Especificaciones_SSoT/placa_base_instrumento_investigacion.md`
+5. Optional: `py -m unittest discover -s "04_Bateria_Inviolable" -v`
 
 ## Origin
 
@@ -120,6 +133,7 @@ Two inspectable entry points (neither is a clinical simulator):
 | Line | Role | Entry |
 |------|------|--------|
 | **CD8 policy (canonical)** | Shared Gated-6.50 | `inmuno_utils.py` |
+| **Divergence hook** | Static matcher proxy vs placa under acidic pHe | `demo_divergencia_estatico_vs_placa.py` |
 | **Nucleus (canonical)** | Minimal healthy → tumor → restoration | `parche_restauracion.py` (+ `placa_*`) |
 | **Dynamic (canonical)** | Temporal MCT/immune dynamics | `simulador_onco_homeostasis_v5.py` |
 | **Hepatic coupling (canonical)** | Hepatocyte + IL-6/PD-L1 loop on v5 | `simulador_onco_hepatico_v3.py` |
@@ -129,13 +143,19 @@ Older `homeostasis` ≤v4 and `onco_hepatico` ≤v2 are historical.
 
 ## Running the Prototype
 
-From the repository root:
+From the repository root — **divergence hook** (static match vs Gated-6.50):
+
+```bash
+py "03_Motor_Oncologico/demo_divergencia_estatico_vs_placa.py"
+```
+
+Canonical nucleus (healthy → tumor → restoration):
 
 ```bash
 py "03_Motor_Oncologico/parche_restauracion.py"
 ```
 
-This runs the **canonical nucleus** demonstration and prints the healthy baseline, the isolated immunotherapy path, and the combined restoration scenario.
+The nucleus prints the healthy baseline, the isolated immunotherapy path, and the combined restoration scenario.
 
 ## Running the Tests
 
