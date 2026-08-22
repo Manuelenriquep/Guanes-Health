@@ -12,6 +12,13 @@ This repository does not present a clinical system, a validated scientific simul
 
 Its current value lies in scope discipline rather than scale: a narrow model, explicit assumptions, deterministic behavior, and basic automated tests.
 
+## Start here (2 minutes)
+
+1. Read **What This Repository Does Not Claim**.
+2. Run: `py "03_Motor_Oncologico/parche_restauracion.py"`
+3. Skim: `01_Especificaciones_SSoT/placa_base_instrumento_investigacion.md`
+4. Optional: `py -m unittest discover -s "04_Bateria_Inviolable" -v`
+
 ## Origin
 
 The project did not begin inside computational oncology.
