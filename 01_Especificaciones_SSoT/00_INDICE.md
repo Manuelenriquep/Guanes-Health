@@ -29,6 +29,7 @@ La **narrativa amplia del método** (libro) está fuera de este repo; aquí solo
 | [`reporte_combinado_akkermansia_nhe1.md`](./reporte_combinado_akkermansia_nhe1.md) | Co-intervención *Akkermansia* + NHE1-Shield: ganancia en Tiempo de Lisis Activo (ACT) | Activo |
 | [`reporte_onco_homeostasis_v6.md`](./reporte_onco_homeostasis_v6.md) | Ecosistema acoplado v6.0: Sinergia de barrera intestinal (*Akkermansia*) y rescate de lisis | Activo (v6) |
 | [`reporte_limites_vacunas_arn.md`](./reporte_limites_vacunas_arn.md) | Límites biofísicos de vacunas ARNm: Parálisis glucolítica (PFK-1/ATP) vs NHE1-Shield | Activo |
+| [`white_paper_guanes_health_v6.md`](./white_paper_guanes_health_v6.md) | **White Paper Maestro v6.0 (Inglés)**: Marco biofísico determinista y eje entero-hepático | Normativo (v6) |
 
 Manual operativo del stack hepático: [`../README-HEPATIC.md`](../README-HEPATIC.md).
 

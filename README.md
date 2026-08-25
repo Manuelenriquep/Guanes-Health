@@ -1,6 +1,7 @@
 # Guanes Health: Deterministic In Silico Biophysical Modeling Suite (v6.0)
 
 [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.22101265.svg)](https://doi.org/10.5281/zenodo.22101265)
+[![White Paper](https://img.shields.io/badge/White%20Paper-v6.0%20Technical%20Report-blueviolet.svg)](01_Especificaciones_SSoT/white_paper_guanes_health_v6.md)
 [![License: Source-Available v1.1](https://img.shields.io/badge/License-Source--Available%20v1.1-blue.svg)](LICENSE)
 [![Online Console](https://img.shields.io/badge/Live%20Console-health.guanes.biz-0ea5e9.svg)](https://health.guanes.biz)
 [![Tests: 100% PASS](https://img.shields.io/badge/Tests-14%2F14%20PASS-emerald.svg)](04_Bateria_Inviolable)
