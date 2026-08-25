@@ -12,8 +12,8 @@ El análisis de bifurcación paramétrica del eje **Gut-Liver-Tumor** demuestra 
 2. **La Zona de Peligro Epigenético se activa a partir del 5.1% de daño intestinal**:
    Si la integridad de la barrera intestinal desciende de un valor óptimo en apenas un 5.1% ($\phi_{gut} \le 94.9\%$), la metilación represiva de histonas (**H3K27me3**) en los loci de *IL2* e *IFNG* supera el **10.0%**. Bajo condiciones de *Leaky Gut* severo ($\phi_{gut} = 0.0$), el silenciamiento epigenético es del **100.0%**, resultando en una anergia e inactivación completa de las células T efectoras.
 
-3. **Inutilidad Absoluta de la Inmunoterapia Convencional**:
-   Los linfocitos T convencionales (como los activados por las costosas vacunas personalizadas de ARNm de Moderna) no superan un miserable **4.94% de capacidad citotóxica** incluso bajo una microbiota perfecta ($\phi_{gut} = 1.0$). Esto confirma de manera determinista que el choque bioenergético inducido por la acidez local del estroma (pH = 6.20) actúa como un veto termodinámico absoluto que destruye al linfocito si este no dispone del escudo iónico NHE1-Shield.
+3. **Límites de la Inmunoterapia Convencional no Blindada**:
+   Los linfocitos T convencionales no superan un **4.94% de capacidad citotóxica modelada** incluso bajo una microbiota óptima ($\phi_{gut} = 1.0$). Esto ilustra de manera determinista que el choque bioenergético inducido por la acidez local del estroma (pH = 6.20) actúa como un límite biofísico severo que restringe la viabilidad del linfocito si este carece de un sistema de compensación de transporte iónico como el NHE1-Shield.
 
 ---
 

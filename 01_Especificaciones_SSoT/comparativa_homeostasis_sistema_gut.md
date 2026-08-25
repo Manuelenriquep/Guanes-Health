@@ -46,8 +46,8 @@ El acoplamiento se rige por un sistema de transferencia de tres etapas discretas
 
 ### IV. Conclusiones y Sentido Común Clínico
 
-1. **La Insuficiencia del Camino de la Fuerza (Vacunas ARNm):**
-   Esta simulación de escenarios demuestra la futilidad clínica de diseñar vacunas ultrapersonalizadas basadas únicamente en la selección estadística de neoantígenos (el camino genómico masivo de Moderna/Moderna de cientos de miles de dólares). Aunque los linfocitos se entrenen contra 34 epítopos ideales, al infiltrar un tumor con **Leaky Gut Severo ($\phi_{gut} = 0.0$)**, el cortafuegos de IL-6 y PD-L1 gatilla un **82.3% de silenciamiento epigenético** casi inmediato. La vacuna fabrica soldados entrenados, pero los envía a morir en un pantano químico.
+1. **Los Límites de los Enfoques Exclusivamente Genómicos:**
+   Esta simulación de escenarios evalúa los límites de diseñar vacunas personalizadas basadas únicamente en la selección genómica de neoantígenos sin considerar las barreras biofísicas locales. Aunque los linfocitos se activen contra epítopos ideales, al infiltrar un estroma tumoral en un contexto de **Leaky Gut Severo ($\phi_{gut} = 0.0$)**, la cascada portal de IL-6 y la sobreexpresión de PD-L1 inducen un **82.3% de silenciamiento epigenético modelado**. La activación inmunogénica periférica resulta insuficiente si los linfocitos son inhibidos por las condiciones bioquímicas del microambiente estromal.
 
 2. **La Sinergía del Sentido Común (Akkermansia + NHE1-Shield):**
    Al combinar el tratamiento sistémico de la barrera (mediante postbióticos pasteurizados de *Akkermansia muciniphila*) para restaurar la mucosa a un rango óptimo ($\phi_{gut} = 1.0$), eliminamos el cortafuegos sistémico de IL-6. Al acoplar esto con el **blindaje biofísico local de NHE1** (que resiste la acidosis del estroma tumoral a pH 6.20), el linfocito logra una viabilidad y persistencia sin precedentes del **94.7%**. 
