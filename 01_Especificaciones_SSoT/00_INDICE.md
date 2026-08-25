@@ -23,6 +23,12 @@ La **narrativa amplia del método** (libro) está fuera de este repo; aquí solo
 | [`protocolo_tres_agentes_operativo.md`](./protocolo_tres_agentes_operativo.md) | Contrato Célula → Cáncer → Oncólogo para agentes | **Normativo** |
 | [`protocolo_restauracion_reporte-v3.md`](./protocolo_restauracion_reporte-v3.md) | Reporte de protocolo de restauración (modelo) | Referencia |
 | [`protocolo_restauracion_reporte-v2.md`](./protocolo_restauracion_reporte-v2.md) | Versión anterior | Histórico |
+| [`comparativa_homeostasis_sistema_gut.md`](./comparativa_homeostasis_sistema_gut.md) | Eje sistémico Gut-Liver-Tumor ($\phi_{gut}$, LPS $\rightarrow$ IL-6 $\rightarrow$ PD-L1 $\rightarrow$ TOX) | Activo |
+| [`comparativa_supervivencia_vacuna_vs_nhe1.md`](./comparativa_supervivencia_vacuna_vs_nhe1.md) | Viabilidad celular y ATP: Vacunas ARNm vs Blindaje NHE1 (pH 6.20) | Activo |
+| [`reporte_barrido_akkermansia.md`](./reporte_barrido_akkermansia.md) | Barrido paramétrico $\phi_{gut}$ (*Akkermansia*): umbral de rescate $\ge 89.9\%$ | Activo |
+| [`reporte_combinado_akkermansia_nhe1.md`](./reporte_combinado_akkermansia_nhe1.md) | Co-intervención *Akkermansia* + NHE1-Shield: ganancia en Tiempo de Lisis Activo (ACT) | Activo |
+| [`reporte_onco_homeostasis_v6.md`](./reporte_onco_homeostasis_v6.md) | Ecosistema acoplado v6.0: Sinergia de barrera intestinal (*Akkermansia*) y rescate de lisis | Activo (v6) |
+| [`reporte_limites_vacunas_arn.md`](./reporte_limites_vacunas_arn.md) | Límites biofísicos de vacunas ARNm: Parálisis glucolítica (PFK-1/ATP) vs NHE1-Shield | Activo |
 
 Manual operativo del stack hepático: [`../README-HEPATIC.md`](../README-HEPATIC.md).
 

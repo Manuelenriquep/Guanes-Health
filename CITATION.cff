@@ -1,0 +1,31 @@
+cff-version: 1.2.0
+message: "If you use this software or computational model in your research, please cite it as below."
+authors:
+  - family-names: "Prada Forero"
+    given-names: "Manuel Enrique"
+    affiliation: "Guanes Health Collective"
+title: "Guanes Health Simulation Suite: Biophysical and Systemic In Silico Modeling for Cancer Immunotherapy"
+version: 6.0.0
+date-released: 2026-08-25
+doi: "10.5281/zenodo.22101265"
+url: "https://health.guanes.biz"
+repository-code: "https://github.com/Manuelenriquep/Guanes-Health"
+license-url: "https://github.com/Manuelenriquep/Guanes-Health/blob/main/LICENSE"
+type: software
+abstract: >-
+  Guanes Health is a deterministic computational systems biology framework and research
+  instrument (Layer B / Layer A calibration) modeling the multi-scale coupling between
+  gut mucosal barrier integrity (Akkermansia muciniphila), portal endotoxemia (IL-6 / STAT3 /
+  PD-L1 / TOX epigenetic silencing), and local tumor microenvironment biophysics
+  (extracellular acidosis, NHE1/MCT1/MCT4 proton transport kinetics, and CAR-T cellular bioenergetics).
+keywords:
+  - "computational oncology"
+  - "systems biology"
+  - "biophysical modeling"
+  - "tumor microenvironment"
+  - "acidosis"
+  - "car-t therapy"
+  - "nhe1"
+  - "akkermansia muciniphila"
+  - "epigenetic exhaustion"
+  - "fail-closed logic"

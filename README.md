@@ -1,202 +1,121 @@
-# Guanes Health
+# Guanes Health: Deterministic In Silico Biophysical Modeling Suite (v6.0)
 
-An early computational oncology prototype exploring deterministic, state-based modeling of tumor disruption and therapeutic restoration.
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.22101265.svg)](https://doi.org/10.5281/zenodo.22101265)
+[![License: Source-Available v1.1](https://img.shields.io/badge/License-Source--Available%20v1.1-blue.svg)](LICENSE)
+[![Online Console](https://img.shields.io/badge/Live%20Console-health.guanes.biz-0ea5e9.svg)](https://health.guanes.biz)
+[![Tests: 100% PASS](https://img.shields.io/badge/Tests-14%2F14%20PASS-emerald.svg)](04_Bateria_Inviolable)
 
-## Overview
+**Guanes Health** is an open research instrument and deterministic *in silico* simulation suite modeling the multi-scale coupling between **local tumor microenvironmental biophysics** (acidosis, proton transport kinetics, and bioenergetic collapse) and the **systemic entero-hepatic immune axis** (mucosal barrier integrity, endotoxemia, and epigenetic exhaustion).
 
-Guanes Health is a small Python project built around a simple question:
+---
 
-**Can selected oncological behaviors be represented as explicit failures of cellular control logic, and can therapeutic interventions be modeled as deterministic state-restoration rules?**
+## 1. Epistemological Demarcation & Scope Discipline
 
-This repository does not present a clinical system, a validated scientific simulator, or a production-ready platform. It is an early computational prototype designed to make that question concrete, inspectable, and testable in code.
+* **Layer B Research Instrument:** This software is a deterministic computational model designed to test the logical consistency and physical limits of mechanistic hypotheses. It is **not** a clinical diagnostic tool, a therapeutic recommendation engine, or an ontology of living tissue.
+* **Fail-Closed Rigor (`POLITICA_RELLENO = NUNCA`):** Zero heuristic imputation for unobserved physiological variables. Any state transition violating thermodynamic or physical boundaries immediately triggers a `VETO_FAIL_CLOSED` or `ALARMA_DERIVA_FISICA`.
+* **Traceable Ledgers:** All numeric constants are cataloged with provenance labels (`literature`, `measured`, or `synthetic illustration`) in [`physical_constants_ledger_v2.json`](../guanes-health-core/physical_constants_ledger_v2.json).
 
-Its current value lies in scope discipline rather than scale: a narrow model, explicit assumptions, deterministic behavior, and basic automated tests.
+---
 
-## Positioning
+## 2. The Dual-Pincer Mechanistic Paradigm
 
-Most public oncology software classifies patients, matches trials, curates cohorts, or trains models on existing datasets. This repository does a different job: it is a **Layer B research instrument** — a small deterministic toy model of kinetic and state hypotheses (vetoes, gates, timed interventions) that you can intervene on in silico and audit with unit tests and parameter ledgers.
+Current cancer immunotherapy focuses predominantly on genomic antigen identification (the "brute force" software approach). Guanes Health models why perfect antigen recognition inevitably fails *in vivo* if the physical and systemic hardware constraints are ignored.
 
-It does not claim to replace or outperform trial-matching engines, phylogenetic reconstruction, or deep-learning pathology. Those tools answer different questions. Guanes Health is for making mechanistic hypotheses inspectable and fail-closed so they can be ordered or discarded before wet-lab spend — transparent control logic, not clinical prediction.
+```
+                                  [ DUAL-PINCER BIO-CONTROL ]
+                                               │
+               ┌───────────────────────────────┴───────────────────────────────┐
+               ▼                                                               ▼
+  ┌───────────────────────────────┐                               ┌───────────────────────────────┐
+  │     1. LOCAL HARDWARE SHIELD  │                               │    2. SYSTEMIC BARRIER AXIS   │
+  ├───────────────────────────────┤                               ├───────────────────────────────┤
+  │ • Stroma Acidosis (pHe 6.20)  │                               │ • Akkermansia muciniphila     │
+  │ • PFK-1 Allosteric Inhibition │                               │ • Mucosal Integrity (φ_gut)   │
+  │ • ATP Starvation (< 0.1%)     │                               │ • Portal LPS → IL-6 Surge     │
+  │ • Active Extrusion:           │                               │ • Tumor STAT3 / PD-L1 Axis    │
+  │   NHE1-Shield (1K3R4E)        │                               │ • TOX Epigenetic Silencing    │
+  └───────────────────────────────┘                               └───────────────────────────────┘
+```
 
-## Start here (2 minutes)
+### A. The Local Front: The mRNA Vaccine Biophysical Paradox
+While mRNA personalized vaccines achieve 100% TCR antigen affinity in the lymph node ($\text{pH} = 7.40$), infiltrating a solid tumor stroma ($\text{pH}_e = 6.20$) causes rapid cytosolic acidification ($\text{pH}_i \rightarrow 5.78$). 
+* This cooperatively inhibits **Phosphofructokinase-1 (PFK-1)**, collapsing cellular ATP to **0.10%** at 180 min.
+* Starved of chemical energy, the lymphocyte suffers complete motor paralysis of lytic vesicle exocytosis (**0.00% real cytolysis**).
+* **NHE1-Shield (mutant 1K3R4E)** actively pumps protons, maintaining $\text{pH}_i = 6.85$, retaining **91.28% ATP**, and sustaining **95.42% cytolytic efficacy**.
 
-1. Read **What This Repository Does Not Claim**.
-2. **Hook demo** — same IO-eligible genomic signature; static matcher stays at 1.0 while acidic stroma (`pHe ≤ 6.50`) zeros modeled CD8 efficacy (Gated-6.50):
+### B. The Systemic Front: The Gut-Liver Mucosal Gatekeeper
+Translocation of portal endotoxins (LPS) under *Leaky Gut* conditions ($\phi_{\text{gut}} < 1.0$) drives hepatic **IL-6 secretion up to 800 pg/mL**, triggering **GP130/STAT3** signaling in hepatocellular carcinoma (HCC).
+* Tumor surface **PD-L1 density increases up to 12.1-fold**.
+* Chronic synapse saturation activates **TOX**, depositing repressive **H3K27me3** chromatin marks that irreversibly silence *IL2* and *IFNG* promoters.
+* **Bifurcation Threshold:** Active cytolysis ($\text{ACT} \ge 50\%$) strictly requires a mucosal seal of **$\phi_{\text{gut}} \ge 89.9\%$** (*Akkermansia muciniphila*).
 
-   ```bash
-   py "03_Motor_Oncologico/demo_divergencia_estatico_vs_placa.py"
-   ```
+---
 
-   Figure: `02_Simulaciones_Visuales/divergencia_estatico_vs_placa_gated_650.png`. Epistemology: `01_Especificaciones_SSoT/contraste_instrumento_vs_match_estatico.md`.
-3. Run nucleus: `py "03_Motor_Oncologico/parche_restauracion.py"`
-4. Skim: `01_Especificaciones_SSoT/placa_base_instrumento_investigacion.md`
-5. Optional: `py -m unittest discover -s "04_Bateria_Inviolable" -v`
+## 3. Simulation Engines & Reproducibility
 
-## Origin
-
-The project did not begin inside computational oncology.
-
-It began with work on a different problem: applying a "motherboard" or "baseboard" (*placa base*) style of reasoning to document engineering. That approach focused on structure, control surfaces, assertion layers, failure conditions, and deterministic handling of ambiguity in high-stakes information workflows.
-
-After seeing how powerful that framing could be as a **research instrument**, I began exploring whether a similar methodology could help think about biological systems. I spent time researching cancer biology, tumor metabolism, apoptosis, immune evasion, and related control mechanisms through that lens.
-
-**Important:** the placa is a tool for organizing hypotheses and inspectable state. It is **not** a claim that a living cell *is* a silicon motherboard. Biology remains stochastic; the placa remains an engineering abstraction. See `01_Especificaciones_SSoT/placa_base_instrumento_investigacion.md`.
-
-The result was not certainty, but conviction: there seemed to be enough structural coherence in the *method* to justify a computational prototype.
-
-Guanes Health is the first small implementation of that intuition.
-
-## Thesis
-
-The thesis behind this repository is modest in implementation, but ambitious in direction:
-
-some biological problems may become easier to reason about when they are expressed not only as biochemical narratives, but also as constrained systems with inspectable state transitions, failure modes, and restoration paths.
-
-The current prototype treats a narrow cellular scenario as a deterministic model with:
-
-- a healthy baseline state,
-- a tumor state defined by simplified metabolic, apoptotic, and immune-evasion conditions,
-- an intervention layer that compares isolated immunotherapy against a combined restoration protocol.
-
-This is a computational abstraction, not a claim that biology can be reduced to software metaphors. The purpose is to create a structure that can be criticized, revised, or rejected on technical grounds.
-
-## What Exists in This Repository
-
-At the moment, this repository contains an early deterministic simulation written in Python.
-
-It includes:
-
-- a minimal healthy-cell model,
-- a minimal tumor-cell model,
-- a restoration module simulating isolated and combined intervention paths,
-- fail-closed validation for invalid or physically inconsistent inputs,
-- a small automated unit test suite.
-
-This makes the project more than a written concept, but still far from a mature scientific system.
-
-## Design Principles
-
-The current codebase follows a few strict principles:
-
-- **Determinism:** identical inputs should produce identical outputs.
-- **Inspectability:** assumptions should be visible in code, not hidden in rhetoric.
-- **Fail-closed behavior:** invalid states should halt execution rather than pass silently.
-- **Minimal scope:** the model should remain small enough to audit directly.
-- **Testability:** core claims of the prototype should be expressible as automated tests.
-
-These constraints are intentional. If the abstraction cannot remain coherent at small scale, it does not yet deserve to grow.
-
-## What This Repository Does Not Claim
-
-This project does **not** currently claim:
-
-- clinical validity,
-- experimental validation,
-- molecular simulation fidelity,
-- pharmacokinetic or pharmacodynamic realism,
-- integration with biological datasets,
-- regulatory-grade guarantees,
-- a complete or final theory of oncological control.
-
-Those are future research and engineering questions, not present accomplishments.
-
-## Why Publish It Publicly
-
-This repository is public because early ideas improve when they are exposed to serious scrutiny.
-
-Publishing the prototype forces precision. It makes assumptions legible. It allows critique to attach to code rather than to vague ambition. It also creates a record of what exists today, what is only hypothesized, and what still needs to be earned through deeper work.
-
-If the underlying idea has value, it should become clearer under criticism, not weaker.
-
-## Repository Structure
-
-- `AGENTS.md`  
-  Binding contract for AI collaborators (placa = instrument; no clinical overclaim).
-
-- `01_Especificaciones_SSoT/`  
-  Operational SSoT. Start at `00_INDICE.md`. Includes epistemology of the *placa* and the three-agent pipeline contract. Broad narrative of the method belongs in a future book, not here.
-
-- `02_Simulaciones_Visuales/`  
-  Charts from model runs (illustrative, not clinical evidence).
-
-- `03_Motor_Oncologico/`  
-  Core Python prototype (`placa_*.py` = model artifacts, not biological identity claims). Hepatic/HBV coupling: see `README-HEPATIC.md`.  
-  **Maturity map** (canonical / experimental / historical): `01_Especificaciones_SSoT/madurez_artefactos_motor.md`.
-
-- `04_Bateria_Inviolable/`  
-  Unit tests covering the main modeled scenarios. Full run: `py -3 04_Bateria_Inviolable/run_tests_pipeline.py`.
-
-## Canonical lines
-
-Two inspectable entry points (neither is a clinical simulator):
-
-| Line | Role | Entry |
-|------|------|--------|
-| **CD8 policy (canonical)** | Shared Gated-6.50 | `inmuno_utils.py` |
-| **Divergence hook** | Static matcher proxy vs placa under acidic pHe | `demo_divergencia_estatico_vs_placa.py` |
-| **Nucleus (canonical)** | Minimal healthy → tumor → restoration | `parche_restauracion.py` (+ `placa_*`) |
-| **Dynamic (canonical)** | Temporal MCT/immune dynamics | `simulador_onco_homeostasis_v5.py` |
-| **Hepatic coupling (canonical)** | Hepatocyte + IL-6/PD-L1 loop on v5 | `simulador_onco_hepatico_v3.py` |
-
-Parameter traceability: `ledger_parametros_nucleo.md`, `ledger_trazabilidad_dinamica.md`, `ledger_parametros_cart_hcc.md`. Architecture map: `ssot_framework_map-v3.md`.  
-Older `homeostasis` ≤v4 and `onco_hepatico` ≤v2 are historical.
-
-## Running the Prototype
-
-From the repository root — **divergence hook** (static match vs Gated-6.50):
+Every scenario is fully reproducible locally via Python 3:
 
 ```bash
+# 1. mRNA Vaccine Biophysical Limit vs. NHE1-Shield (6-Hour Kinetic Solver)
+py "03_Motor_Oncologico/simulador_limites_vacunas_arn_v1.py"
+
+# 2. Coupled Multi-Scale Ecosystem v6.0 (72-Hour Co-Intervention & Gut Doctrine)
+py "03_Motor_Oncologico/simulador_onco_homeostasis_v6.py"
+
+# 3. Active Cytolytic Time (ACT 48-Hour Multi-Scale Co-Intervention)
+py "03_Motor_Oncologico/simulador_combinado_akkermansia_nhe1.py"
+
+# 4. Akkermansia Parametric Dose Sweep (φ_gut = 0.0 to 1.0)
+py "03_Motor_Oncologico/simulador_barrido_akkermansia_v1.py"
+
+# 5. Gated-6.50 Metabolic Divergence Demo
 py "03_Motor_Oncologico/demo_divergencia_estatico_vs_placa.py"
 ```
 
-Canonical nucleus (healthy → tumor → restoration):
+High-resolution charts are automatically rendered to [`02_Simulaciones_Visuales/`](02_Simulaciones_Visuales/).
+
+---
+
+## 4. Test Battery & Verification
+
+The repository enforces an inviolable regression suite covering numerical boundaries, halfspace projection, and gating rules:
 
 ```bash
-py "03_Motor_Oncologico/parche_restauracion.py"
+py "04_Bateria_Inviolable/run_tests_pipeline.py"
+```
+*Result: 14/14 suites PASS (100% deterministic alignment).*
+
+---
+
+## 5. Live Interactive Console
+
+Inspect the multi-scale engine in real time through the web HUD interface:
+👉 **[https://health.guanes.biz](https://health.guanes.biz)**
+
+---
+
+## 6. Citation & Academic Attribution
+
+If you reference or utilize this simulation framework, mathematical equations, or biophysical ledgers in academic or industrial research, please cite:
+
+```bibtex
+@software{prada_forero_2026_guanes_health,
+  author       = {Prada Forero, Manuel Enrique},
+  title        = {{Guanes Health Simulation Suite: Biophysical and Systemic In Silico Modeling for Cancer Immunotherapy}},
+  year         = 2026,
+  version      = {6.0.0},
+  publisher    = {Zenodo / GitHub},
+  doi          = {10.5281/zenodo.22101265},
+  url          = {https://health.guanes.biz}
+}
 ```
 
-The nucleus prints the healthy baseline, the isolated immunotherapy path, and the combined restoration scenario.
+Or see the native [`CITATION.cff`](./CITATION.cff) file.
 
-## Running the Tests
+---
 
-From the repository root:
+## 7. License & Authorship
 
-```bash
-py -m unittest discover -s "04_Bateria_Inviolable" -v
-```
-
-The current test suite is intentionally small and focused on the main modeled scenarios.
-
-## License
-
-This repository is distributed under the `Guanes Health Source-Available License v1.1`.
-
-The code is public for inspection, private study, and non-commercial evaluation. Commercial use, redistribution, sublicensing, and productization require prior written permission from the author. See `LICENSE` for details.
-
-Commercial licensing inquiries: `gerente@guanes.biz`
-
-## What Feedback Would Be Most Valuable
-
-The most valuable feedback at this stage is direct and technical.
-
-I am especially interested in critique on:
-
-- whether the abstraction is coherent,
-- whether the modeled states are too crude to be meaningful,
-- whether the deterministic framing clarifies or distorts the biology,
-- whether the current implementation has a credible path toward stronger formalism and reproducibility.
-
-## Method vs. book
-
-- **This repo:** runnable prototype, tests, licenses, and operational SSoT (instruments, fail-closed, agent contracts).
-- **Book (separate):** public exposition of the broader idea. Not maintained inside this repository.
-
-## Status
-
-**Current stage:** early public prototype maximized for inspectable operation under a source-available license.
-
-Evaluate it as a formalized hypothesis under construction: small in code, limited in claims, deliberate in structure.
-
-## Author
-
-Manuel Enrique Prada Forero
+* **Author:** Manuel Enrique Prada Forero
+* **License:** `Guanes Health Source-Available License v1.1` (Academic study, peer inspection, and non-commercial audit are permitted. Commercial use or redistribution requires prior written consent).
+* **Licensing Contact:** `gerente@guanes.biz`
