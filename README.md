@@ -1,103 +1,113 @@
-# Guanes Health: Deterministic In Silico Biophysical Modeling Suite (v6.0)
+# Guanes Health: In-Silico Biophysical Simulation Prototype (v6.0)
+
+> **Deterministic in-silico prototype of coupled biophysical and systemic constraints on T-cell function. Not clinically validated.**
 
 [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.22101265.svg)](https://doi.org/10.5281/zenodo.22101265)
-[![White Paper](https://img.shields.io/badge/White%20Paper-v6.0%20Technical%20Report-blueviolet.svg)](01_Especificaciones_SSoT/white_paper_guanes_health_v6.md)
 [![License: Source-Available v1.1](https://img.shields.io/badge/License-Source--Available%20v1.1-blue.svg)](LICENSE)
-[![Online Console](https://img.shields.io/badge/Live%20Console-health.guanes.biz-0ea5e9.svg)](https://health.guanes.biz)
-[![Tests: 100% PASS](https://img.shields.io/badge/Tests-14%2F14%20PASS-emerald.svg)](04_Bateria_Inviolable)
+[![Online Console](https://img.shields.io/badge/Interactive%20Console-health.guanes.biz-0ea5e9.svg)](https://health.guanes.biz)
+[![Tests: PASS](https://img.shields.io/badge/Tests-14%2F14%20PASS-emerald.svg)](04_Bateria_Inviolable)
 
-**Guanes Health** is an open research instrument and deterministic *in silico* simulation suite modeling the multi-scale coupling between **local tumor microenvironmental biophysics** (acidosis, proton transport kinetics, and bioenergetic collapse) and the **systemic entero-hepatic immune axis** (mucosal barrier integrity, endotoxemia, and epigenetic exhaustion).
-
----
-
-## 1. Epistemological Demarcation & Scope Discipline
-
-* **Layer B Research Instrument:** This software is a deterministic computational model designed to test the logical consistency and physical limits of mechanistic hypotheses. It is **not** a clinical diagnostic tool, a therapeutic recommendation engine, or an ontology of living tissue.
-* **Fail-Closed Rigor (`POLITICA_RELLENO = NUNCA`):** Zero heuristic imputation for unobserved physiological variables. Any state transition violating thermodynamic or physical boundaries immediately triggers a `VETO_FAIL_CLOSED` or `ALARMA_DERIVA_FISICA`.
-* **Traceable Ledgers:** All numeric constants are cataloged with provenance labels (`literature`, `measured`, or `synthetic illustration`) in [`physical_constants_ledger_v2.json`](../guanes-health-core/physical_constants_ledger_v2.json).
+**Guanes Health** is an independent computational biology prototype and deterministic *in silico* research instrument modeling the multi-scale coupling between **local tumor microenvironmental biophysics** (acidosis, proton transport kinetics, and PFK-1 metabolic inhibition) and the **systemic entero-hepatic immune axis** (mucosal barrier integrity, endotoxemia, and epigenetic histone silencing).
 
 ---
 
-## 2. The Dual-Pincer Mechanistic Paradigm
+## 1. What This Is and What It Is NOT
 
-Current cancer immunotherapy focuses predominantly on genomic antigen identification (the "brute force" software approach). Guanes Health models why perfect antigen recognition inevitably fails *in vivo* if the physical and systemic hardware constraints are ignored.
+### What this IS:
+* A **deterministic theoretical research prototype** designed to explore mathematical hypotheses and physical constraints in computational oncology.
+* A **coupled ODE simulation suite** investigating how local proton extrusion (NHE1 kinetics) and mucosal barrier parameters (phi_gut) jointly influence T-cell bioenergetics in silico.
+* An **open-source / source-available computational codebase** with full parameter traceability and deterministic test invariants.
 
-```
-                                  [ DUAL-PINCER BIO-CONTROL ]
-                                               │
-               ┌───────────────────────────────┴───────────────────────────────┐
-               ▼                                                               ▼
-  ┌───────────────────────────────┐                               ┌───────────────────────────────┐
-  │     1. LOCAL HARDWARE SHIELD  │                               │    2. SYSTEMIC BARRIER AXIS   │
-  ├───────────────────────────────┤                               ├───────────────────────────────┤
-  │ • Stroma Acidosis (pHe 6.20)  │                               │ • Akkermansia muciniphila     │
-  │ • PFK-1 Allosteric Inhibition │                               │ • Mucosal Integrity (φ_gut)   │
-  │ • ATP Starvation (< 0.1%)     │                               │ • Portal LPS → IL-6 Surge     │
-  │ • Active Extrusion:           │                               │ • Tumor STAT3 / PD-L1 Axis    │
-  │   NHE1-Shield (1K3R4E)        │                               │ • TOX Epigenetic Silencing    │
-  └───────────────────────────────┘                               └───────────────────────────────┘
-```
-
-### A. The Local Front: The mRNA Vaccine Biophysical Paradox
-While mRNA personalized vaccines achieve 100% TCR antigen affinity in the lymph node ($\text{pH} = 7.40$), infiltrating a solid tumor stroma ($\text{pH}_e = 6.20$) causes rapid cytosolic acidification ($\text{pH}_i \rightarrow 5.78$). 
-* This cooperatively inhibits **Phosphofructokinase-1 (PFK-1)**, collapsing cellular ATP to **0.10%** at 180 min.
-* Starved of chemical energy, the lymphocyte suffers complete motor paralysis of lytic vesicle exocytosis (**0.00% real cytolysis**).
-* **NHE1-Shield (mutant 1K3R4E)** actively pumps protons, maintaining $\text{pH}_i = 6.85$, retaining **91.28% ATP**, and sustaining **95.42% cytolytic efficacy**.
-
-### B. The Systemic Front: The Gut-Liver Mucosal Gatekeeper
-Translocation of portal endotoxins (LPS) under *Leaky Gut* conditions ($\phi_{\text{gut}} < 1.0$) drives hepatic **IL-6 secretion up to 800 pg/mL**, triggering **GP130/STAT3** signaling in hepatocellular carcinoma (HCC).
-* Tumor surface **PD-L1 density increases up to 12.1-fold**.
-* Chronic synapse saturation activates **TOX**, depositing repressive **H3K27me3** chromatin marks that irreversibly silence *IL2* and *IFNG* promoters.
-* **Bifurcation Threshold:** Active cytolysis ($\text{ACT} \ge 50\%$) strictly requires a mucosal seal of **$\phi_{\text{gut}} \ge 89.9\%$** (*Akkermansia muciniphila*).
+### What this is NOT:
+* NOT a clinical tool or medical device: Outputs must not be used for clinical decision-making, diagnosis, or prognosis.
+* NOT an experimentally validated model: The simulations have not been calibrated or validated against wet-lab biological assays or patient clinical trial cohorts.
+* NOT a therapeutic recommendation or cure: No claim of medical efficacy, therapeutic outcome, or disease cure is made or implied.
 
 ---
 
-## 3. Simulation Engines & Reproducibility
+## 2. Reproduce Simulation Outputs
 
-Every scenario is fully reproducible locally via Python 3:
+All simulation figures and statistical tables can be reproduced deterministically from the command line:
+
+### Prerequisites:
+* Python 3.12+
+* Dependencies: `numpy`, `scipy`, `pandas`, `matplotlib`, `seaborn`
 
 ```bash
-# 1. mRNA Vaccine Biophysical Limit vs. NHE1-Shield (6-Hour Kinetic Solver)
-py "03_Motor_Oncologico/simulador_limites_vacunas_arn_v1.py"
+# Clone the repository
+git clone https://github.com/Manuelenriquep/Guanes-Health.git
+cd Guanes-Health
 
-# 2. Coupled Multi-Scale Ecosystem v6.0 (72-Hour Co-Intervention & Gut Doctrine)
-py "03_Motor_Oncologico/simulador_onco_homeostasis_v6.py"
-
-# 3. Active Cytolytic Time (ACT 48-Hour Multi-Scale Co-Intervention)
-py "03_Motor_Oncologico/simulador_combinado_akkermansia_nhe1.py"
-
-# 4. Akkermansia Parametric Dose Sweep (φ_gut = 0.0 to 1.0)
-py "03_Motor_Oncologico/simulador_barrido_akkermansia_v1.py"
-
-# 5. Gated-6.50 Metabolic Divergence Demo
-py "03_Motor_Oncologico/demo_divergencia_estatico_vs_placa.py"
+# Install dependencies
+pip install -r requirements.txt
 ```
 
-High-resolution charts are automatically rendered to [`02_Simulaciones_Visuales/`](02_Simulaciones_Visuales/).
-
----
-
-## 4. Test Battery & Verification
-
-The repository enforces an inviolable regression suite covering numerical boundaries, halfspace projection, and gating rules:
+### Reproducibility Commands:
 
 ```bash
-py "04_Bateria_Inviolable/run_tests_pipeline.py"
+# 1. 100-Patient Virtual Cohort (4 Arms: Standard, Akkermansia, NHE1, Synergy)
+python "03_Motor_Oncologico/simulador_poblacional_vacunas_arn.py"
+
+# 2. Coupled Multi-Scale Dynamic Model (72-Hour ODE Solver)
+python "03_Motor_Oncologico/simulador_onco_homeostasis_v6.py"
+
+# 3. Active Cytolytic Time Sweep (ACT 48-Hour Co-Intervention)
+python "03_Motor_Oncologico/simulador_combinado_akkermansia_nhe1.py"
+
+# 4. Inviolable Regression Test Suite (14/14 Suites)
+python "04_Bateria_Inviolable/run_tests_pipeline.py"
 ```
-*Result: 14/14 suites PASS (100% deterministic alignment).*
+
+### Generated Artifacts:
+| Output File | Location | Description |
+| :--- | :--- | :--- |
+| `grafico_poblacional_vacunas_arn.png` | `02_Simulaciones_Visuales/` | 4-panel distribution of cytolytic efficacy across 100 simulated patients |
+| `resultados_simulacion_pacientes_arn.csv` | `02_Simulaciones_Visuales/` | Raw numerical telemetry for all 100 virtual patient parameter sets |
+| `analisis_estocastico_oxigeno.png` | `02_Simulaciones_Visuales/` | In silico sensitivity analysis under stochastic oxygen/pH regimes |
 
 ---
 
-## 5. Live Interactive Console
+## 3. Parameter Ledger & Provenance
 
-Inspect the multi-scale engine in real time through the web HUD interface:
+Every physical, enzymatic, and kinetic constant used by the solvers is cataloged with its explicit source in the parameter ledgers:
+
+| Parameter Symbol | Description | Baseline Value | Unit | Provenance Source | Notes |
+| :--- | :--- | :---: | :---: | :---: | :--- |
+| pHe | Extracellular Stroma pH | 6.20 | pH units | Literature | Typical solid tumor acidic core (Warburg effect) |
+| pKa_PFK | PFK-1 Allosteric pKa | 6.80 | pH units | Literature | Cooperativity threshold for glycolytic pacemaker |
+| n_PFK | Hill Coefficient (PFK-1) | 4.0 | dimensionless | Assumed | Cooperative proton binding model |
+| Vmax_NHE1 | NHE1 Max Proton Flux | 1.2e-14 | mol/(s*cell) | In-Silico Only | Calibrated for 1K3R4E mutant extrusion rate |
+| IL6_physio | Baseline Portal IL-6 | 2.50 | pg/mL | Literature | Healthy portal venous concentration |
+| K_LPS | LPS-induced IL-6 Scaling | 650.0 | pg/mL | Assumed | Maximal portal cytokine surge under severe barrier leak |
+| phi_gut | Mucosal Barrier Integrity | 0.20 - 1.00 | normalized ratio | In-Silico Scenario | Proxy for Akkermansia muciniphila abundance |
+
+*Full Ledgers:*
+* [`physical_constants_ledger_v2.json`](01_Especificaciones_SSoT/ledger_parametros_nucleo.md)
+* [`mct1_pharmacology_ledger.json`](01_Especificaciones_SSoT/ledger_parametros_cart_hcc.md)
+
+---
+
+## 4. Known Model Limitations
+
+1. **Spatial Homogeneity:** The tumor stroma is modeled as a well-mixed single compartment without 3D spatial diffusion gradients or vascular heterogeneity.
+2. **Simplified Microbiome Proxy:** The systemic gut barrier is represented by a single lumped parameter (phi_gut) inspired by *Akkermansia muciniphila*, omitting complex polymicrobial interactions.
+3. **Short Temporal Horizon:** Solvers model acute dynamics (48 to 72 hours) and do not account for long-term immune selection, tumor clonal evolution, or systemic tolerance.
+4. **No Direct Wet-Lab Calibration:** Equations represent theoretical biophysical formulations and have not undergone experimental wet-lab biological calibration.
+5. **Deterministic In-Silico Cohorts:** The 100-patient simulation draws from synthetic parameter distributions to test model sensitivity, not from clinical patient datasets.
+6. **Binary Resistance States:** The NHE1-Shield is modeled as a binary functional state rather than continuous surface expression kinetics.
+
+---
+
+## 5. Interactive Research HUD
+
+An interactive parameter exploration HUD is available at:  
 👉 **[https://health.guanes.biz](https://health.guanes.biz)**
 
 ---
 
 ## 6. Citation & Academic Attribution
 
-If you reference or utilize this simulation framework, mathematical equations, or biophysical ledgers in academic or industrial research, please cite:
+If referencing this computational prototype or its biophysical equations in academic research:
 
 ```bibtex
 @software{prada_forero_2026_guanes_health,
@@ -105,18 +115,16 @@ If you reference or utilize this simulation framework, mathematical equations, o
   title        = {{Guanes Health Simulation Suite: Biophysical and Systemic In Silico Modeling for Cancer Immunotherapy}},
   year         = 2026,
   version      = {6.0.0},
-  publisher    = {Zenodo / GitHub},
+  publisher    = {Zenodo},
   doi          = {10.5281/zenodo.22101265},
   url          = {https://health.guanes.biz}
 }
 ```
 
-Or see the native [`CITATION.cff`](./CITATION.cff) file.
-
 ---
 
-## 7. License & Authorship
+## 7. License & Ethics Statement
 
-* **Author:** Manuel Enrique Prada Forero
-* **License:** `Guanes Health Source-Available License v1.1` (Academic study, peer inspection, and non-commercial audit are permitted. Commercial use or redistribution requires prior written consent).
-* **Licensing Contact:** `gerente@guanes.biz`
+* **Author:** Manuel Enrique Prada Forero (`gerente@guanes.biz`)
+* **License:** [Source-Available v1.1](LICENSE) (Free for academic research, evaluation, and peer review. Commercial application requires authorization).
+* **Statement:** This software was created for computational science research. All users agree that model outputs are theoretical approximations and will not be applied to medical treatment or clinical decision-making.
