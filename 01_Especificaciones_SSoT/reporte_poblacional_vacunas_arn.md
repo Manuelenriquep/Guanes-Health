@@ -20,7 +20,7 @@ La cohorte virtual de 100 pacientes con abundancia variable de *Akkermansia* (0.
 ## Hallazgos Científicos Clave
 
 ### 1. La Inutilidad de la "Fuerza Bruta" Antigénica (Arm A vs. Arm C)
-El entrenamiento del receptor T (TCR) mediante vacunas de ARNm personalizadas (basadas en algoritmos de IA de Moderna para seleccionar hasta 34 neoantígenos) logra un reconocimiento antigénico perfecto del **100.0%**. Sin embargo, la simulación demuestra que las células T generadas por la vacuna convencional sufren un apagón bioenergético catastrófico al cruzar la frontera del estroma ácido (**pH 6.20**). 
+El entrenamiento del receptor T (TCR) mediante vacunas terapéuticas de ARNm basadas en neoantígenos individualizados (diseñadas computacionalmente mediante algoritmos de predicción de epítopos HLA para seleccionar hasta 34 neoantígenos tumor-específicos) logra un reconocimiento antigénico perfecto del **100.0%**. Sin embargo, la simulación demuestra que las células T generadas por la vacuna convencional sufren un apagón bioenergético catastrófico al cruzar la frontera del estroma ácido (**pH 6.20**). 
 *   La entrada de protones reduce el pH intracelular a **5.75**, apagando de forma cooperativa y alostérica la enzima marcapasos glucolítica **PFK-1** (actividad residual < 3.0%).
 *   La deplesión de reservas de ATP por debajo del 5.0% paraliza los motores moleculares dependientes de energía (kinesinas y miosinas) requeridos para el degranulamiento lítico. 
 *   **Efecto:** El linfocito convencional reconoce perfectamente al tumor, pero está físicamente inmovilizado y desarmado. El blindaje **NHE1-Shield** rescata el pH interno a **6.85**, sosteniendo el ATP y logrando una lisis promedio del **50.37%**.
