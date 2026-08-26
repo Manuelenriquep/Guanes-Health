@@ -1,31 +1,40 @@
-# Guanes Health: A Deterministic In Silico Research Instrument for Modeling Biophysical and Systemic Constraints on Cellular Immunotherapy
+# Guanes Health v6.0: A Deterministic In-Silico Prototype of Coupled Biophysical and Systemic Constraints on T-Cell Function
 
-**Technical Report v6.0**
+**Technical Report & Model Specification (v6.0)**
 
-**Author:** Manuel Enrique Prada Forero  
-**Affiliation:** Guanes Health Collective  
-**Contact:** `gerente@guanes.biz`  
-**Permanent Digital Object Identifier (DOI):** [10.5281/zenodo.22101265](https://doi.org/10.5281/zenodo.22101265)  
-**Interactive Research Instrument:** [https://health.guanes.biz](https://health.guanes.biz)  
-**Open Science Repository:** [https://github.com/Manuelenriquep/Guanes-Health](https://github.com/Manuelenriquep/Guanes-Health)  
-**Publication Date:** August 25, 2026  
-**License:** Guanes Health Source-Available License v1.1  
-
----
-
-## Abstract
-
-This technical report presents *Guanes Health v6.0*, an open-source, deterministic *in silico* research instrument (Layer B) designed to evaluate the logical consistency and physical boundaries of cellular immunotherapy in solid tumors. Rather than acting as a predictive clinical engine, the model investigates the mechanistic interplay between **local tumor microenvironment (TME) bioenergetics** and the **systemic entero-hepatic immune axis** under explicit, parameter-traceable assumptions.
-
-Under the baseline parameters calibrated in our physical constants ledger, the simulation indicates that exposing conventional CD8+ T lymphocytes to an acidic stroma ($pHe = 6.20$) results in rapid uncompensated cytosolic acidification ($pHi$ decaying to $5.78$ at $180\text{ min}$). Within the model's allosteric framework, this drops Phosphofructokinase-1 (PFK-1) activity to $2.31\%$, reducing simulated cellular ATP to $0.10\%$ and halting model-derived granule exocytosis ($0.00\%$ simulated cytolysis) despite maintaining $100\%$ simulated TCR antigen affinity. In contrast, modeling a constitutively active proton exchanger (**NHE1-Shield 1K3R4E**, based on engineered calmodulin-binding domain deletions) sustains simulated $pHi$ at $6.85$, preserving $91.28\%$ of baseline ATP and maintaining $95.42\%$ cytolytic efficacy within the computational environment.
-
-At the systemic scale, modeling portal endotoxin translocation under compromised mucosal barrier conditions ($\\phi_{\\text{gut}} < 89.9\\%$) produces elevated hepatic IL-6 inputs, driving modeled tumor PD-L1 expression to $11.2\\times$ and triggering simulated epigenetic exhaustion ($\\text{TOX}^+/\\text{H3K27me3}$). Simulated co-intervention restoring mucosal integrity ($\\phi_{\\text{gut}} \\ge 90\\%$) extends simulated Active Cytolytic Time (ACT) to $9.04\text{ hours}$. These computational outputs illustrate the utility of fail-closed deterministic modeling for prioritizing biophysical hypotheses prior to empirical wet-lab validation.
+* **Author:** Manuel Enrique Prada Forero (`gerente@guanes.biz`)
+* **Affiliation:** Independent Researcher, Bucaramanga, Colombia
+* **Permanent DOI:** [10.5281/zenodo.22101265](https://doi.org/10.5281/zenodo.22101265)
+* **Code Repository:** [https://github.com/Manuelenriquep/Guanes-Health](https://github.com/Manuelenriquep/Guanes-Health)
+* **Interactive Console:** [https://health.guanes.biz](https://health.guanes.biz)
+* **Release Date:** August 2026
+* **License:** Source-Available v1.1 (Academic & Research Evaluation)
 
 ---
 
-## 1. Epistemological Framework & Scope Discipline
+## 1. Abstract
 
-*Guanes Health* is structured as a **Layer B research instrument**—a formal mathematical abstraction intended to make kinetic and state hypotheses inspectable, falsifiable, and auditable.
+This technical report presents **Guanes Health v6.0**, an open-source, deterministic *in silico* research prototype (Layer B) modeling the multi-scale coupling between local tumor microenvironment (TME) biophysics and the systemic entero-hepatic immune axis. Rather than serving as a clinical diagnostic or predictive tool, the model evaluates the logical consistency and physical boundaries of mechanistic assumptions governing T-cell dysfunction in solid tumors.
+
+Under baseline parameters cataloged in our physical constants ledger, the simulation demonstrates that exposing conventional CD8+ T lymphocytes to an acidic stroma ($\text{pH}_e = 6.20$) produces rapid cytosolic acidification ($\text{pH}_i \rightarrow 5.78$), allosterically inhibiting phosphofructokinase-1 (PFK-1 activity $< 3.0\%$) and depleting cellular ATP ($< 0.10\%$ at 180 min), resulting in model-derived lytic paralysis despite maintaining $100\%$ simulated TCR antigen affinity. Conversely, modeling an active proton exchange mechanism (**NHE1-Shield 1K3R4E**) maintains simulated $\text{pH}_i$ at $6.85$, sustaining $91.28\%$ of ATP and yielding a simulated lytic efficacy of $50.37\%$. At the systemic scale, modeling mucosal barrier impairment ($\phi_{\text{gut}} < 89.9\%$) produces elevated portal IL-6 inputs, driving modeled tumor PD-L1 expression to $11.2\times$ and inducing simulated epigenetic silencing ($\text{TOX}^+/\text{H3K27me3}$). Simulated co-intervention restoring mucosal integrity ($\phi_{\text{gut}} \ge 90\%$) resolves cytokine leakage and extends simulated Active Cytolytic Time (ACT) to $9.04\text{ hours}$ (overall simulated clearance: $56.32\%$). All equations, parameter provenance categories, reproducible execution protocols, and explicit limitations are detailed herein to invite peer falsification and critical evaluation.
+
+---
+
+## 2. Introduction & Motivation
+
+Current paradigms in cancer immunotherapy—including mRNA-based personalized neoantigen vaccines, immune checkpoint inhibitors, and adoptive cell therapies (CAR-T, TCR-T)—have achieved remarkable precision in genomic antigen identification and synthetic receptor engineering. However, clinical response rates in non-inflamed solid tumors remain highly variable.
+
+Standard computational oncology workflows frequently treat antigen recognition in isolation from physical and systemic hardware constraints:
+1. **The Local Biophysical Barrier:** The dense, poorly perfused solid tumor stroma is characterized by severe extracellular acidosis ($\text{pH}_e 6.0 - 6.5$) driven by dysregulated glycolysis and carbonic anhydrase activity. Protons passively permeate infiltrating lymphocytes, allosterically shutting down rate-limiting glycolytic enzymes and paralyzing ATP-dependent kinesin/myosin motors required for lytic granule exocytosis.
+2. **The Systemic Entero-Hepatic Axis:** Gut mucosal barrier permeability (*Leaky Gut*) permits the translocation of bacterial lipopolysaccharides (LPS) into the portal circulation, stimulating hepatic Kupffer cells and sinusoidal endothelial cells to secrete IL-6. This portal cytokine surge induces tumor STAT3 phosphorylation and surface PD-L1 upregulation, driving continuous synapse exhaustion and repressive chromatin remodeling (H3K27me3 deposition).
+
+**Guanes Health v6.0** was developed as a deterministic, multi-scale *in silico* research prototype designed to formalize these coupled constraints into an inspectable set of ordinary differential equations (ODEs), establishing a clear mathematical framework for evaluating co-intervention hypotheses prior to experimental wet-lab calibration.
+
+---
+
+## 3. Model Scope & Epistemological Boundaries
+
+To maintain rigorous scientific demarcation, Guanes Health strictly enforces formal architectural boundaries:
 
 ```
 ┌────────────────────────────────────────────────────────────────────────────────────────┐
@@ -34,131 +43,168 @@ At the systemic scale, modeling portal endotoxin translocation under compromised
   │
   ├── 1. FAIL-CLOSED INVARIANT POLICY (POLITICA_RELLENO = NUNCA)
   │    └── Zero heuristic imputation for unobserved physiological variables.
-  │        Any state violating physical bounds triggers VETO_FAIL_CLOSED or ALARMA_DERIVA_FISICA.
+  │        Any state violating physical bounds triggers VETO_FAIL_CLOSED or PARAMETER_OUT_OF_BOUNDS.
   │
   ├── 2. PARAMETER TRACEABILITY
   │    └── Constants are categorized in physical_constants_ledger_v2.json as:
-  │        [measured], [literature], or [synthetic illustration].
+  │        [literature], [assumed], or [in-silico-only].
   │
   └── 3. THE DUAL-PINCER BIO-CONTROL HYPOTHESIS
-       ├── Local Front: Tumor Acidosis (pHe 6.20) → PFK-1 / GAPDH Inhibition → ATP Depletion.
+       ├── Local Front: Tumor Acidosis (pHe 6.20) → PFK-1 Inhibition → ATP Depletion.
        └── Systemic Front: Gut Mucosal Barrier (phi_gut) → LPS / IL-6 Axis → PD-L1 / TOX Lock.
 ```
 
-### Scope Limitations:
-1. **In Silico Abstraction:** This system is a deterministic toy model of control logic and membrane transport kinetics. It is **not** a validated clinical diagnostic system or a pharmacokinetic simulator.
-2. **Biological Reality:** Living tissues exhibit spatial heterogeneity, stochastic variations, and redundant signaling networks not captured in simplified ordinary differential equations (ODEs).
-3. **Wet-Lab Prerequisite:** All numerical outputs represent computational deductions that require empirical verification through *in vitro* (e.g., Seahorse XF96, microfluidic pH gradients) and *in vivo* studies.
+### 3.1 What This Model IS:
+* A deterministic computational prototype of coupled biophysical and systemic constraints.
+* A transparent, reproducible mathematical system modeling enzyme kinetics, ion exchange fluxes, and receptor saturation dynamics.
+* A research instrument (Layer B) designed to test the logical consistency of co-intervention hypotheses.
+
+### 3.2 What This Model is NOT:
+* ❌ **NOT a clinical tool or medical device:** Outputs cannot and must not be used for patient diagnosis, prognosis, or treatment planning.
+* ❌ **NOT an experimentally validated simulator:** The equations represent theoretical biophysical formulations and have not undergone wet-lab biological or clinical trial validation.
+* ❌ **NOT a claim of therapeutic cure:** Simulated lytic outcomes are mathematical deductions from fixed toy model assumptions, not clinical predictions.
 
 ---
 
-## 2. Mathematical Formulation: Local Stroma Bioenergetics
+## 4. Mathematical Formulation
 
-### 2.1 Cytosolic Acidification Dynamics
-In the unarmored lymphocyte model, net proton accumulation is governed by passive influx through membrane channels and active extrusion, balanced against intracellular buffering capacity ($\\beta_i \\approx 30\text{ mM/pH unit}$):
+The core solver couples four differential and algebraic subsystems:
 
-$$\\frac{d[H^+]_i}{dt} = \\frac{P_{H} \\cdot A_{\\text{cell}}}{V_{\\text{cell}} \\cdot \\beta_i} \\left( [H^+]_e - [H^+]_i \\right) - J_{\\text{active}}$$
+### 4.1 Local Stroma Acidification & NHE1 Proton Extrusion
+Net cytosolic proton accumulation in infiltrating lymphocytes is modeled as passive influx balanced against active extrusion and cytosolic buffering capacity ($\beta_i \approx 30\text{ mM/pH unit}$):
 
-For an unarmored lymphocyte ($J_{\\text{active}} \\approx 0$ under extreme acid stress), exposure to $pHe = 6.20$ results in simulated $pHi$ decay toward $5.78$ with an apparent time constant $\\tau = 45\text{ min}$.
+$$\frac{d[H^+]_i}{dt} = \frac{P_H \cdot A_{\text{cell}}}{V_{\text{cell}} \cdot \beta_i} \left( [H^+]_e - [H^+]_i \right) - J_{\text{NHE1}}$$
 
-### 2.2 Cooperative Allosteric Inhibition of PFK-1
-PFK-1 catalytic efficiency is modeled via a Hill equation with parameters reflecting proton-dependent allosteric inactivation ($pK_a = 6.60, n_{\\text{PFK}} = 4.0$):
+Where the active proton flux through the engineered NHE1-Shield (constitutively active mutant 1K3R4E) follows Michaelis-Menten kinetics:
 
-$$\\alpha_{\\text{PFK}}(pHi) = \\frac{1}{1 + 10^{n_{\\text{PFK}} \\cdot (pK_a - pHi)}}$$
+$$J_{\text{NHE1}} = V_{\max,\text{NHE1}} \cdot \frac{[H^+]_i}{[H^+]_i + K_{m,\text{NHE1}}}$$
 
-At model state $pHi = 5.78$, relative PFK-1 activity drops to $\\alpha_{\\text{PFK}} = 2.31\\%$.
+### 4.2 Allosteric Inhibition of Glycolysis (PFK-1 Hill Equation)
+Phosphofructokinase-1 (PFK-1) acts as the primary glycolytic pacemaker. Its relative enzymatic activity as a function of cytosolic $\text{pH}_i$ is modeled via a 4-state cooperative Hill formulation:
 
-### 2.3 ATP Homeostasis & Exocytosis Coupling
-Cellular ATP kinetics balance glycolytic generation against baseline maintenance consumption ($k_{\\text{cons}} = 0.05\text{ min}^{-1}$):
+$$\text{Activity}_{\text{PFK}}(\text{pH}_i) = \frac{1}{1 + 10^{n_{\text{PFK}} \cdot (\text{pKa}_{\text{PFK}} - \text{pH}_i)}}$$
 
-$$\\frac{d[\\text{ATP}]}{dt} = k_{\\text{prod}} \\cdot \\alpha_{\\text{PFK}}(pHi) - k_{\\text{cons}} \\cdot [\\text{ATP}]$$
+With baseline parameters $n_{\text{PFK}} = 4.0$ and $\text{pKa}_{\text{PFK}} = 6.80$. Cellular ATP production is directly coupled to $\text{Activity}_{\text{PFK}}$:
 
-Simulated exocytosis of perforin/granzyme granules is coupled to available chemical energy via a non-linear Hill saturation function ($K_{1/2} = 20\\%$ ATP):
+$$\frac{d[\text{ATP}]}{dt} = k_{\text{glyco}} \cdot \text{Activity}_{\text{PFK}}(\text{pH}_i) - k_{\text{basal\_drain}} \cdot [\text{ATP}]$$
 
-$$\\text{Cytolysis}(\\%) = 100 \\cdot \\frac{[\\text{ATP}]^2}{[\\text{ATP}]^2 + K_{1/2}^2}$$
+### 4.3 Entero-Hepatic Axis: Mucosal Permeability & PD-L1 Induction
+Portal vein IL-6 concentration is coupled to the mucosal barrier integrity parameter $\phi_{\text{gut}} \in [0.0, 1.0]$ (inspired by *Akkermansia muciniphila* abundance):
 
-Under prolonged stroma acidosis ($t = 180\text{ min}$), model ATP declines to $0.10\\%$, resulting in simulated cytolytic arrest ($0.00\\%$ efficiency) despite constant $100\\%$ modeled TCR antigen recognition.
+$$\text{IL-6}_{\text{portal}}(t) = \text{IL-6}_{\text{physio}} + K_{\text{LPS}} \cdot (1.0 - \phi_{\text{gut}})$$
 
----
+Tumor surface PD-L1 fold-induction is modeled via saturable STAT3 transcriptional activation:
 
-## 3. Ion Transport Engineering: NHE1-Shield (1K3R4E)
+$$\text{PD-L1}_{\text{tumor}}(t) = \text{PD-L1}_{\text{basal}} \cdot \left( 1.0 + \alpha_{\text{IL6}} \cdot \frac{\text{IL-6}_{\text{portal}}}{\text{IL-6}_{\text{portal}} + K_{\text{IL6}}} \right)$$
 
-The **NHE1-Shield construct** models the biophysical consequences of expressing an engineered $\\text{Na}^+/\\text{H}^+$ exchanger (mutant 1K3R4E; K641E/R643E/R645E/R647E) uncoupled from autoinhibitory calmodulin regulatory domains ($V_{\\text{max}} = 22.0\text{ mM/min}, pK_a = 6.75$):
+### 4.4 Epigenetic Exhaustion & Active Cytolytic Time (ACT)
+Chronic PD-1/PD-L1 synapse engagement drives the expression of TOX and subsequent repressive histone trimethylation ($\text{H3K27me3}$):
 
-$$J_{\\text{active}} = \\frac{V_{\\text{max}}}{1 + 10^{n \\cdot (pHi - pK_a)}}$$
+$$\frac{d[\text{H3K27me3}]}{dt} = k_{\text{epi}} \cdot \left( \frac{\text{PD-L1}}{\text{PD-L1} + K_{\text{synapse}}} \right) \cdot (1.0 - [\text{H3K27me3}]) - k_{\text{demeth}} \cdot [\text{H3K27me3}]$$
 
-Within the simulation:
-* Simulated $pHi$ stabilizes at dynamic equilibrium: **$6.85$**.
-* Modeled PFK-1 activity is retained at **$71.53\\%$**.
-* Simulated cellular ATP pool is maintained at **$91.28\\%$**.
-* Modeled cytolytic capacity persists at **$95.42\\%$**.
+The instantaneous cytolytic clearance capacity of the lymphocyte pool is defined by:
 
----
+$$\text{Capacity}_{\text{lytic}}(t) = 100 \cdot \left( \frac{[\text{ATP}]^2}{[\text{ATP}]^2 + K_{\text{half}}^2} \right) \cdot (1.0 - [\text{H3K27me3}])$$
 
-## 4. Multi-Scale Entero-Hepatic Coupling: The Akkermansia Axis
-
-The systemic module models portal endotoxin translocation as a function of normalized mucosal barrier integrity ($\\phi_{\\text{gut}} \\in [0.0, 1.0]$):
-
-1. **Portal IL-6 Input:**
-   $$\\text{IL-6}_{\\text{portal}} = \\text{IL-6}_{\\text{physio}} + K_{\\text{LPS-IL6}} \\cdot (1.0 - \\phi_{\\text{gut}}) \\cdot 0.8$$
-2. **Modeled Tumor PD-L1 Induction:**
-   $$\\text{PD-L1}_{\\text{fold}} = 1.0 + \\alpha_{\\text{PDL1}} \\cdot \\left( \\frac{\\text{IL-6}}{\\text{IL-6} + K_{\\text{IL6}}} \\right)$$
-3. **Epigenetic Exhaustion Score (TOX / H3K27me3):**
-   $$\\text{H3K27me3}(\\%) = \\min\\left(100.0, \\, \\left(\\frac{\\text{PD-L1}}{16.0}\\right) \\cdot \\left(\\frac{\\text{IL-6}}{\\text{IL-6} + K_{\\text{IL6}}}\\right) \\cdot 125\\right)$$
-
-**Model Threshold:** Within the simulation parameters, sustaining effective cytolysis ($ACT \\ge 9.0\text{ h}$) strictly requires dual intervention: mucosal barrier sealing ($\\phi_{\\text{gut}} \\ge 89.9\\%$, calibrated to *Akkermansia muciniphila* postbiotic/probiotic administration) and local ion transport shielding (NHE1-Shield).
+**Active Cytolytic Time (ACT)** is defined as the total cumulative duration (in hours) during which $\text{Capacity}_{\text{lytic}}(t) \ge 30.0\%$.
 
 ---
 
-## 5. Model Output Summary (t = 180 min Simulation Run)
+### 4.5 Parameter Provenance Ledger
 
-*Note: All values below represent deterministic computational outputs under ledger parameterization, not in vivo clinical measurements.*
-
-| Parameter | Basal ($t=0$) | Conventional Model ($t=180\text{m}$) | NHE1-Shield Model ($t=180\text{m}$) | Full Synergy Model (*Akkermansia* + NHE1) |
-| :--- | :---: | :---: | :---: | :---: |
-| **Extracellular pH ($pHe$)** | $7.40$ | $6.20$ | $6.20$ | $6.20$ |
-| **Simulated Cytosolic pH ($pHi$)** | $7.20$ | $5.78$ | $6.85$ | $6.85$ |
-| **Modeled PFK-1 Glycolytic Activity** | $80.2\\%$ | $2.31\\%$ | $71.5\\%$ | $71.5\\%$ |
-| **Simulated Cellular ATP Pool** | $100.0\\%$ | $0.10\\%$ | $91.3\\%$ | $91.3\\%$ |
-| **Modeled TCR Antigen Recognition** | $100.0\\%$ | $100.0\\%$ | $100.0\\%$ | $100.0\\%$ |
-| **Modeled Tumor PD-L1 Induction** | $1.0\\times$ | $11.2\\times$ | $11.2\\times$ | $2.6\\times$ |
-| **Modeled Epigenetic Exhaustion** | $0.0\\%$ | $85.0\\%$ | $85.0\\%$ | $18.2\\%$ |
-| **Modeled Active Cytolytic Time (ACT)** | N/A | $1.06\text{ h}$ | $2.50\text{ h}$ | **$9.04\text{ h}$** |
-| **Modeled Final Lysis Efficacy** | $96.1\\%$ | **$0.00\\%$** | $16.5\\%$ | **$100.0\\%$ (Clearance)** |
+| Parameter Symbol | Description | Baseline Value | Unit | Provenance Category | Literature Reference / Rationale |
+| :--- | :--- | :---: | :---: | :---: | :--- |
+| $\text{pH}_e$ | Extracellular Stroma pH | 6.20 | pH units | Literature | Swietach et al. (2014), solid tumor acidic microenvironment |
+| $\text{pKa}_{\text{PFK}}$ | PFK-1 Allosteric pKa | 6.80 | pH units | Literature | Ui (1966), Kemp & Foe (1983), proton cooperativity |
+| $n_{\text{PFK}}$ | PFK-1 Hill Coefficient | 4.0 | dimensionless | Assumed | 4-subunit cooperative homotetramer model |
+| $V_{\max,\text{NHE1}}$ | NHE1 Max Proton Flux | $1.2 \times 10^{-14}$ | $\text{mol}/(\text{s}\cdot\text{cell})$ | In-Silico Only | Calibrated for 1K3R4E active extrusion capacity |
+| $\text{IL-6}_{\text{physio}}$ | Baseline Portal IL-6 | 2.50 | $\text{pg/mL}$ | Literature | Wieckowska et al. (2008), portal vein baseline |
+| $K_{\text{LPS}}$ | Maximal LPS-driven IL-6 | 650.0 | $\text{pg/mL}$ | Assumed | Calibrated for severe endotoxemic cytokine surge |
+| $\phi_{\text{gut}}$ | Mucosal Seal Ratio | 0.20 – 1.00 | normalized | In-Silico Scenario | Proxy for *Akkermansia muciniphila* barrier function |
 
 ---
 
-## 6. Reproducibility & Code Availability
+## 5. Simulation Protocol & Reproducibility
 
-The complete source code, test batteries, and visual generation engines are openly accessible:
+The entire simulation suite is deterministic, requires zero external proprietary solvers, and executes in clean Python 3.12 environments.
 
 ```bash
-# 1. Run 6-Hour Biophysical Limits Simulation
-py "03_Motor_Oncologico/simulador_limites_vacunas_arn_v1.py"
+# 1. Clone repository and install pinned dependencies
+git clone https://github.com/Manuelenriquep/Guanes-Health.git
+cd Guanes-Health
+pip install -r requirements.txt
 
-# 2. Run 72-Hour Multi-Scale Coupled Ecosystem
-py "03_Motor_Oncologico/simulador_onco_homeostasis_v6.py"
+# 2. Run 100-Patient Virtual Cohort Simulation
+python "03_Motor_Oncologico/simulador_poblacional_vacunas_arn.py"
 
-# 3. Execute Full Regression Suite (14/14 Suites PASS)
-py "04_Bateria_Inviolable/run_tests_pipeline.py"
+# 3. Run Coupled 72-Hour Multi-Scale Dynamic Model
+python "03_Motor_Oncologico/simulador_onco_homeostasis_v6.py"
+
+# 4. Run Active Cytolytic Time (ACT) 48-Hour Co-Intervention Sweep
+python "03_Motor_Oncologico/simulador_combinado_akkermansia_nhe1.py"
+
+# 5. Execute Full Inviolable Regression Battery (14/14 Suites)
+python "04_Bateria_Inviolable/run_tests_pipeline.py"
 ```
 
-Live web implementation: [https://health.guanes.biz](https://health.guanes.biz)
+All generated tabular outputs (`.csv`) and graphical figures (`.png`) are automatically saved to `02_Simulaciones_Visuales/`.
 
 ---
 
-## 7. Citation & Attribution
+## 6. Illustrative Results (100-Patient Virtual Cohort)
 
-```bibtex
-@techreport{prada_forero_2026_guanes_health,
-  author       = {Prada Forero, Manuel Enrique},
-  title        = {{Guanes Health: A Deterministic In Silico Research Instrument for Modeling Biophysical and Systemic Constraints on Cellular Immunotherapy}},
-  institution  = {Guanes Health Collective},
-  year         = 2026,
-  month        = aug,
-  type         = {Technical Report},
-  number       = {GH-TR-2026-v6.0},
-  doi          = {10.5281/zenodo.22101265},
-  url          = {https://health.guanes.biz}
-}
-```
+A synthetic cohort of $N=100$ virtual patients was simulated across four distinct intervention arms ($n=25$ per arm) under stochastic microbiome and antigen densities:
+
+| Intervention Arm | Mean Lysis Output (%) | Standard Deviation (%) | Minimum Lysis (%) | Maximum Lysis (%) | Model Interpretation (In Silico) |
+| :--- | :---: | :---: | :---: | :---: | :--- |
+| **Arm A: Standard mRNA Vaccine** | **0.0013%** | 0.0003% | 0.0008% | 0.0018% | Severe energetic arrest due to stroma acidosis ($pHe = 6.20$) and PFK-1 inhibition. |
+| **Arm B: Vaccine + Akkermansia** | **0.0015%** | 0.0000% | 0.0015% | 0.0015% | PD-L1 upregulation is mitigated, but unshielded T-cells remain paralyzed by acidity. |
+| **Arm C: Vaccine + NHE1-Shield** | **50.37%** | 13.95% | 33.33% | 71.44% | Ion shielding sustains ATP, but efficacy varies depending on basal gut permeability. |
+| **Arm D: Total Synergy** | **56.32%** | 0.0000% | 56.32% | 56.32% | Sparing of ATP via NHE1 combined with gut barrier resolution maximizes ACT to 9.04h. |
+
+*Note: Zero standard deviation in Arms B and D indicates deterministic convergence at fixed boundary saturation parameters.*
+
+---
+
+## 7. Known Limitations
+
+1. **Spatial Homogeneity:** The tumor stroma is modeled as a well-mixed single compartment without 3D spatial diffusion gradients, vascular heterogeneity, or hypoxia zones.
+2. **Lumped Microbiome Proxy:** The systemic gut barrier is represented by a single continuous scalar ($\phi_{\text{gut}}$) inspired by *Akkermansia muciniphila*, omitting complex polymicrobial community dynamics and short-chain fatty acid (SCFA) signaling.
+3. **Acute Temporal Horizon:** Solvers model acute kinetics (48 to 72 hours) and do not account for long-term immune memory formation, antigen escape variants, or systemic tolerance.
+4. **No Direct Biological Wet-Lab Calibration:** The equations reflect theoretical biophysical formulations and have not been calibrated against live cell microcalorimetry or microfluidic assays.
+5. **Synthetic In-Silico Cohorts:** The 100-patient simulation draws from synthetic parameter distributions to test model sensitivity, not from real patient clinical trial datasets.
+6. **Binary Functional States:** The NHE1-Shield is modeled as a binary functional state rather than continuous surface expression and turnover kinetics.
+
+---
+
+## 8. Discussion & Future Directions
+
+### 8.1 Current Value of the Prototype
+Guanes Health v6.0 demonstrates that high-affinity antigen recognition is a necessary but insufficient condition for solid tumor clearance if biophysical and systemic constraints are left unaddressed. By modeling the quantitative coupling between enzyme kinetics (PFK-1), membrane transport (NHE1), and mucosal endotoxemia, the suite provides a transparent hypothesis-generating instrument for systems biologists.
+
+### 8.2 Roadmap Toward Experimental Calibration
+To transition from a theoretical research prototype to a calibrated biomedical model, the following empirical measurements are required:
+* **Microfluidic T-Cell Cytometry:** Real-time measurement of cytosolic $\text{pH}_i$ and ATP concentration in TCR-activated T-cells exposed to microfluidic pH gradients ($6.0 - 7.4$).
+* **Seahorse Extracellular Flux Analysis:** Validation of glycolytic proton efflux rates (PER) and mitochondrial oxygen consumption rates (OCR) in NHE1-engineered lymphocytes.
+* **Portal Endotoxin & Cytokine Profiling:** Quantitative correlation between stool *Akkermansia* abundance, portal vein LPS, and hepatic IL-6 in murine models of hepatocellular carcinoma.
+
+---
+
+## 9. Data & Code Availability
+
+* **GitHub Repository:** [https://github.com/Manuelenriquep/Guanes-Health](https://github.com/Manuelenriquep/Guanes-Health)
+* **Permanent Archive DOI:** [10.5281/zenodo.22101265](https://doi.org/10.5281/zenodo.22101265)
+* **Interactive Exploration Console:** [https://health.guanes.biz](https://health.guanes.biz)
+* **License:** Source-Available v1.1 (Academic evaluation, verification, and non-commercial research).
+
+---
+
+## 10. References
+
+1. **Swietach, P., et al.** (2014). Tumor acidosis and its role in immune evasion and metabolic remodeling. *Philosophical Transactions of the Royal Society B*, 369(1638), 20130098.
+2. **Kemp, R. G., & Foe, L. G.** (1983). Allosteric properties of phosphofructokinase. *Molecular and Cellular Biochemistry*, 57(2), 147-154.
+3. **Routy, B., et al.** (2018). Gut microbiome influences efficacy of PD-1-based immunotherapy against epithelial tumors. *Science*, 359(6371), 91-97.
+4. **Gopalakrishnan, V., et al.** (2018). Gut microbiome modulates response to anti-PD-1 immunotherapy in melanoma patients. *Science*, 359(6371), 97-103.
+5. **Wieckowska, A., et al.** (2008). In vivo assessment of portal and systemic IL-6 levels in liver disease. *Hepatology*, 48(6), 1888-1896.
+6. **Cardone, R. A., et al.** (2005). The role of NHE1 in tumor cell biology: more than an ion transporter. *Nature Reviews Cancer*, 5(10), 786-795.
+7. **Prada Forero, M. E.** (2026). Guanes Health Simulation Suite v6.0. *Zenodo Archive*. DOI: 10.5281/zenodo.22101265.
