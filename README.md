@@ -123,6 +123,20 @@ If referencing this computational prototype or its biophysical equations in acad
 
 ---
 
+
+---
+
+## 8. How to Critique This Model
+
+We invite peer researchers in mathematical oncology and biophysics to test, critique, and attempt to falsify this prototype against the following open questions:
+
+1. **Enzyme Kinetics Sensitivity:** Is the Hill cooperative model of PFK-1 inhibition ({\\text{PFK}}=4.0$, $\\text{pKa}=6.80$) adequately calibrated against intact T-cell glycolytic flux data, or does intracellular buffering mitigate the ATP collapse?
+2. **Microbiome Proxy Granularity:** Does the lumped parameter $\\phi_{\\text{gut}}$ represent portal LPS translocation with sufficient fidelity, or are specific bacterial taxa dynamics required?
+3. **NHE1 Flux Feasibility:** Are the continuous proton extrusion rates assumed for the NHE1-Shield (.2 \\times 10^{-14} \\text{mol}/(\\text{s}\\cdot\\text{cell})$) thermodynamically feasible under sustained energetic demands?
+4. **Spatial Gradients:** How would 3D reaction-diffusion equations across a vascularized tumor geometry alter the predicted Active Cytolytic Time (ACT) thresholds?
+
+To propose parameter corrections or report mathematical edge cases, please see [CONTRIBUTING.md](CONTRIBUTING.md) or open an Issue.
+
 ## 7. License & Ethics Statement
 
 * **Author:** Manuel Enrique Prada Forero (`gerente@guanes.biz`)
