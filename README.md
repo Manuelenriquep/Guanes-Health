@@ -3,6 +3,7 @@
 > **Deterministic in-silico prototype of coupled biophysical and systemic constraints on T-cell function. Not clinically validated.**
 
 [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.22101265.svg)](https://doi.org/10.5281/zenodo.22101265)
+[![Technical Report](https://img.shields.io/badge/Technical%20Report-White%20Paper%20v6.0-blueviolet.svg)](01_Especificaciones_SSoT/white_paper_guanes_health_v6.md)
 [![License: Source-Available v1.1](https://img.shields.io/badge/License-Source--Available%20v1.1-blue.svg)](LICENSE)
 [![Online Console](https://img.shields.io/badge/Interactive%20Console-health.guanes.biz-0ea5e9.svg)](https://health.guanes.biz)
 [![Tests: PASS](https://img.shields.io/badge/Tests-14%2F14%20PASS-emerald.svg)](04_Bateria_Inviolable)
@@ -98,14 +99,24 @@ Every physical, enzymatic, and kinetic constant used by the solvers is cataloged
 
 ---
 
-## 5. Interactive Research HUD
+---
+
+## 5. Technical Report & Formal Specification
+
+For a comprehensive derivation of the coupled differential equations, parameter provenance, and 100-patient virtual cohort analysis, please read the complete Technical Report:
+
+👉 **[Technical Report v6.0 (White Paper)](01_Especificaciones_SSoT/white_paper_guanes_health_v6.md)**
+
+---
+
+## 6. Interactive Research HUD
 
 An interactive parameter exploration HUD is available at:  
 👉 **[https://health.guanes.biz](https://health.guanes.biz)**
 
 ---
 
-## 6. Citation & Academic Attribution
+## 7. Citation & Academic Attribution
 
 If referencing this computational prototype or its biophysical equations in academic research:
 
@@ -137,7 +148,7 @@ We invite peer researchers in mathematical oncology and biophysics to test, crit
 
 To propose parameter corrections or report mathematical edge cases, please see [CONTRIBUTING.md](CONTRIBUTING.md) or open an Issue.
 
-## 7. License & Ethics Statement
+## 9. License & Ethics Statement
 
 * **Author:** Manuel Enrique Prada Forero (`gerente@guanes.biz`)
 * **License:** [Source-Available v1.1](LICENSE) (Free for academic research, evaluation, and peer review. Commercial application requires authorization).
