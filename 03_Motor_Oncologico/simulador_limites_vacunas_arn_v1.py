@@ -20,7 +20,7 @@ t = np.linspace(0, 360, 240) # Tiempo de simulación (6 horas, en minutos)
 # Constantes físicas
 V_cell = 1.15      # pL (Volumen celular de un linfocito T humano)
 ATP_basal = 100.0  # % (Nivel basal de ATP en condiciones fisiológicas, pH 7.40)
-pKa_PFK = 6.60     # pH de transición alostérica de la Fosfofructocinasa-1 (PFK-1)
+pKa_PFK = 6.80     # pH de transición alostérica de PFK-1 (Ui 1966; Kemp & Foe 1983)
 n_PFK = 4.0        # Coeficiente de Hill de PFK-1 (alta cooperatividad alostérica al protón)
 
 # Parámetros del escenario de vacuna de ARNm convencional (sin blindaje iónico)
@@ -37,6 +37,9 @@ tau_pHi_shield = 15.0    # Minutos (rápido ajuste alostérico de pH interno)
 # RESOLUCIÓN NUMÉRICA DE LA CINÉTICA ENZIMÁTICA Y DEPLECIÓN DE ATP
 # ----------------------------------------------------------------------------
 # 1. Dinámica del pH intracelular (pHi) al ingresar al estroma tumoral ácido (pHe = 6.20)
+# Nota: Se utiliza la solución analítica asintótica de relajación exponencial de primer orden
+# (derivada del balance de masa continuo d[H+]/dt bajo capacidad amortiguadora beta_i = 30 mM/pH)
+# para garantizar estabilidad numérica in silico:
 pHi_conv = pHi_conv_limit + (pHi_conv_basal - pHi_conv_limit) * np.exp(-t / tau_pHi_conv)
 pHi_shield = pHi_shield_limit + (pHi_conv_basal - pHi_shield_limit) * np.exp(-t / tau_pHi_shield)
 
