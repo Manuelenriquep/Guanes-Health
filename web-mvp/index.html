@@ -1,0 +1,396 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  
+  <!-- Primary SEO Meta Tags -->
+  <title>Guanes Health — Deterministic In Silico Biophysical Oncology Simulation Suite</title>
+  <meta name="title" content="Guanes Health — Deterministic In Silico Biophysical Oncology Simulation Suite" />
+  <meta name="description" content="Deterministic computational systems biology simulation suite modeling the multi-scale coupling between tumor microenvironment acidosis (NHE1 proton transport kinetics) and the systemic entero-hepatic immune axis (Akkermansia muciniphila mucosal barrier integrity). By Manuel Enrique Prada Forero. DOI: 10.5281/zenodo.22101265." />
+  <meta name="keywords" content="computational oncology, systems biology, biophysical modeling, tumor microenvironment, CAR-T cell therapy, NHE1, Akkermansia muciniphila, acidosis, PFK-1 inhibition, mRNA cancer vaccine limits, in silico oncology, fail-closed logic, Guanes Health, Manuel Enrique Prada Forero" />
+  <meta name="author" content="Manuel Enrique Prada Forero" />
+  <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1" />
+  <link rel="canonical" href="https://health.guanes.biz/" />
+
+  <!-- Open Graph / Facebook / LinkedIn -->
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://health.guanes.biz/" />
+  <meta property="og:site_name" content="Guanes Health" />
+  <meta property="og:title" content="Guanes Health — Deterministic In Silico Biophysical Oncology Simulation Suite" />
+  <meta property="og:description" content="Deterministic Layer B in silico simulation instrument modeling tumor acidosis, NHE1 ion shielding, and Akkermansia mucosal barrier dynamics. DOI: 10.5281/zenodo.22101265." />
+  <meta property="og:locale" content="en_US" />
+  <meta property="og:locale:alternate" content="es_ES" />
+
+  <!-- Twitter / X -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:url" content="https://health.guanes.biz/" />
+  <meta name="twitter:title" content="Guanes Health — Deterministic In Silico Biophysical Oncology Simulation Suite" />
+  <meta name="twitter:description" content="Deterministic Layer B in silico simulation instrument modeling tumor acidosis, NHE1 ion shielding, and Akkermansia mucosal barrier dynamics. DOI: 10.5281/zenodo.22101265." />
+
+  <!-- Academic / Scholarly Metadata -->
+  <meta name="citation_title" content="Guanes Health Simulation Suite: Biophysical and Systemic In Silico Modeling for Cancer Immunotherapy" />
+  <meta name="citation_author" content="Prada Forero, Manuel Enrique" />
+  <meta name="citation_publication_date" content="2026/08/25" />
+  <meta name="citation_doi" content="10.5281/zenodo.22101265" />
+  <meta name="citation_technical_report_institution" content="Guanes Health Collective" />
+
+  <!-- Schema.org JSON-LD Structured Data -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "SoftwareApplication",
+    "name": "Guanes Health Simulation Suite",
+    "applicationCategory": "HealthApplication, DeveloperApplication, Science",
+    "operatingSystem": "Web Browser, Python 3",
+    "description": "Deterministic computational systems biology simulation suite and research instrument modeling the multi-scale coupling between tumor acidosis and the systemic entero-hepatic immune axis.",
+    "url": "https://health.guanes.biz",
+    "author": {
+      "@type": "Person",
+      "name": "Manuel Enrique Prada Forero",
+      "email": "gerente@guanes.biz",
+      "affiliation": "Guanes Health Collective"
+    },
+    "identifier": "https://doi.org/10.5281/zenodo.22101265",
+    "citation": "https://doi.org/10.5281/zenodo.22101265",
+    "softwareVersion": "6.0.0",
+    "datePublished": "2026-08-25",
+    "license": "https://github.com/Manuelenriquep/Guanes-Health/blob/main/LICENSE"
+  }
+  </script>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css?v=6.0.5" />
+</head>
+<body>
+  <div class="hud-overlay"></div>
+
+  <!-- FIXED RESEARCH DISCLAIMER (ABOVE THE FOLD) -->
+  <aside class="research-disclaimer-banner" aria-label="Research Disclaimer">
+    <div class="disclaimer-content">
+      <span class="disclaimer-badge">RESEARCH PROTOTYPE // IN SILICO ONLY</span>
+      <p>This is an independent computational biology research prototype. All outputs are deterministic in-silico simulations under explicit mathematical assumptions. Not a medical device, not clinical advice, and not experimentally validated against patient data.</p>
+      <div class="disclaimer-links">
+        <a href="https://github.com/Manuelenriquep/Guanes-Health#known-limitations" target="_blank" rel="noopener">Limitations ↗</a>
+        <a href="https://github.com/Manuelenriquep/Guanes-Health#parameter-ledger" target="_blank" rel="noopener">Parameter Sources ↗</a>
+      </div>
+    </div>
+  </aside>
+  
+  <header class="site-header">
+    <div class="brand">
+      <div class="brand-mark">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
+      </div>
+      <div>
+        <h1>GUANES HEALTH <span class="dimmed">// MULTISCALE IN-SILICO ENGINE v6.0</span></h1>
+        <p class="subtitle">DETERMINISTIC BIOPHYSICAL RESEARCH INSTRUMENT · COUPLED ODE SIMULATOR</p>
+      </div>
+    </div>
+    
+    <div class="header-badges">
+      <div class="header-status">
+        <div class="status-dot"></div>
+        <span>INVARIANTS ACTIVE</span>
+      </div>
+      <a href="https://doi.org/10.5281/zenodo.22101265" target="_blank" rel="noopener" class="doi-badge" title="Ver archivo de software en Zenodo">
+        <span class="doi-tag">Zenodo Archive</span>
+        <span class="doi-val">DOI: 10.5281/zenodo.22101265 ↗</span>
+      </a>
+      <a href="https://github.com/Manuelenriquep/Guanes-Health" target="_blank" rel="noopener" class="github-badge" title="Ver código fuente en GitHub">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
+        <span>GitHub ↗</span>
+      </a>
+    </div>
+  </header>
+
+  <main class="layout">
+    <!-- BARRA LATERAL: VECTORES DE SIMULACIÓN CLÍNICA -->
+    <aside class="sidebar">
+      <section class="panel panel-glow">
+        <div class="panel-tag">IN-SILICO BENCHMARKS</div>
+        <h2 class="panel-title">[ CO-INTERVENTION SCENARIOS ]</h2>
+        <p class="panel-hint">Select an assumed parameter vector to run the coupled ODE simulation.</p>
+        <div class="demo-grid" id="demo-grid"></div>
+      </section>
+      
+      <section class="panel disclaimer-panel">
+        <div class="warning-icon">⚖</div>
+        <div class="warning-text">
+          <strong>POLÍTICA DE RIGOR // PLACA BASE</strong><br>
+          <code>POLITICA_RELLENO = NUNCA</code>. Cero inferencia heurística sobre variables faltantes. Toda evaluación no conforme culmina en <code>VETO_FAIL_CLOSED</code>.
+        </div>
+      </section>
+
+      <!-- TARJETA DE CITACIÓN RÁPIDA -->
+      <section class="panel citation-panel">
+        <div class="panel-tag tag-primary">OPEN SCIENCE & PRIOR ART</div>
+        <h3 class="citation-title">Citación Formal (CFF v1.2.0)</h3>
+        <p class="citation-hint">Atribución de autoría in silico:</p>
+        <div class="citation-box">
+          <code>Prada Forero, M. E. (2026). Guanes Health Simulation Suite v6.0. Zenodo.</code>
+        </div>
+        <button id="copy-citation-btn" class="btn-outline-sm">COPIAR BIBTEX</button>
+      </section>
+    </aside>
+
+    <!-- ÁREA PRINCIPAL: CONSOLA DE PARÁMETROS DETERMINISTAS Y GRÁFICO EN VIVO -->
+    <div class="main-content">
+      
+      <!-- PANEL DE CONTROL MULTIESCALA -->
+      <section class="panel command-center-panel">
+        <div class="panel-header">
+          <div>
+            <div class="panel-tag tag-primary">ENTRADA EXPLÍCITA · DOS PINZAS</div>
+            <h2 class="panel-title">[ CONSOLA DE PARÁMETROS BIOFÍSICOS Y SISTÉMICOS ]</h2>
+          </div>
+          <div class="system-badge">CONTRATO DETERMINISTA</div>
+        </div>
+
+        <!-- SECCIÓN 1: FRENTE LOCAL (MICROAMBIENTE TUMORAL) -->
+        <div class="section-divider">
+          <span>1. FRENTE LOCAL: ESTROMA TUMORAL & LINFOCITO</span>
+        </div>
+
+        <form id="structured-form" class="parameter-grid">
+          <!-- pH Extracelular -->
+          <div class="param-card">
+            <div class="param-header">
+              <label for="f-ph">pH EXTRACELULAR (pHe)</label>
+              <span class="param-unit">Escala pH (0.01 - 13.99)</span>
+            </div>
+            <div class="input-with-marker">
+              <input type="number" id="f-ph" step="0.01" min="0.01" max="13.99" value="6.20" required />
+              <div class="threshold-indicator" id="ph-threshold">
+                <span class="gate-tag">Gated-6.50</span>
+              </div>
+            </div>
+            <p class="field-hint">pHe ≤ 6.50 anula CD8 nativo por acidosis estromal.</p>
+          </div>
+
+          <!-- Densidad GPC3 -->
+          <div class="param-card">
+            <div class="param-header">
+              <label for="f-gpc3">DENSIDAD GPC3</label>
+              <span class="param-unit">moléculas / célula</span>
+            </div>
+            <input type="number" id="f-gpc3" step="100" min="0" value="19200" required />
+            <p class="field-hint">Umbral antigénico requerido para activación lítica.</p>
+          </div>
+
+          <!-- ATP Celular -->
+          <div class="param-card">
+            <div class="param-header">
+              <label for="f-atp">RESERVA ENERGÉTICA (ATP)</label>
+              <span class="param-unit">Unidades nominales (≥ 0)</span>
+            </div>
+            <input type="number" id="f-atp" step="1" min="0" value="92" required />
+            <p class="field-hint">ATP &lt; 20 induce veto inmediato por colapso isquémico.</p>
+          </div>
+
+          <!-- Resistencia Ácida (NHE1) -->
+          <div class="param-card">
+            <div class="param-header">
+              <label for="f-res">BLINDAJE DE MEMBRANA</label>
+              <span class="param-unit">Constructo de transporte</span>
+            </div>
+            <select id="f-res">
+              <option value="true">CAR-T + NHE1-Shield (Mutante 1K3R4E)</option>
+              <option value="false">Linfocito CD8 Nativo / Vacuna ARNm (Sin Blindaje)</option>
+            </select>
+            <p class="field-hint">NHE1 previene colapso citosólico y preserva ATP.</p>
+          </div>
+        </form>
+
+        <!-- SECCIÓN 2: FRENTE SISTÉMICO (EJE INTESTINO-HÍGADO) -->
+        <div class="section-divider">
+          <span>2. FRENTE SISTÉMICO: BARRERA DE MUCOSA & AKKERMANSIA</span>
+        </div>
+
+        <div class="systemic-grid">
+          <!-- Slider de Integridad Intestinal phi_gut -->
+          <div class="param-card systemic-slider-card">
+            <div class="param-header">
+              <label for="f-phi">INTEGRIDAD MUCOSA INTESTINAL (&phi;<sub>gut</sub>)</label>
+              <span class="param-value-tag" id="phi-val-display">92.0%</span>
+            </div>
+            
+            <div class="slider-wrapper">
+              <input type="range" id="f-phi" min="0" max="100" value="92" step="1" class="gut-slider" />
+              <div class="slider-ticks">
+                <span class="tick danger">0% (Leaky Gut)</span>
+                <span class="tick warning">50% (Endotoxemia)</span>
+                <span class="tick rescue">90% (Umbral Rescate)</span>
+                <span class="tick optimal">100% (Akkermansia)</span>
+              </div>
+            </div>
+
+            <div class="gut-status-bar" id="gut-status-indicator">
+              <span class="status-pill eubiosis">EUBIOSIS ÓPTIMA (Akkermansia Activa)</span>
+            </div>
+          </div>
+
+          <!-- Métricas de Transferencia Portal en Tiempo Real -->
+          <div class="transfer-metrics-card">
+            <div class="transfer-header">TELEMETRÍA PORTAL ESTIMADA (EN VIVO)</div>
+            <div class="transfer-grid">
+              <div class="transfer-item">
+                <span class="t-label">IL-6 Portal</span>
+                <span class="t-val" id="t-il6">68.6 pg/mL</span>
+              </div>
+              <div class="transfer-item">
+                <span class="t-label">PD-L1 Tumoral</span>
+                <span class="t-val" id="t-pdl1">2.6x</span>
+              </div>
+              <div class="transfer-item">
+                <span class="t-label">Metilación H3K27me3</span>
+                <span class="t-val" id="t-h3k27me3">18.2%</span>
+              </div>
+              <div class="transfer-item highlight">
+                <span class="t-label">Tiempo de Lisis (ACT)</span>
+                <span class="t-val active-time" id="t-act">9.0 Horas</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="action-row">
+          <button id="evaluar-btn" type="button" class="btn-primary">
+            <span class="btn-text">EJECUTAR SIMULACIÓN MULTIESCALA // SSoT</span>
+            <span class="btn-fx"></span>
+          </button>
+          <p id="status" class="status-msg" aria-live="polite">PARÁMETROS LISTOS PARA PROCESAMIENTO.</p>
+        </div>
+      </section>
+
+      <!-- VISUALIZADOR CINÉTICO EN TIEMPO REAL (DUAL-PANEL CANVAS) -->
+      <section class="panel live-graph-panel">
+        <div class="panel-header">
+          <div>
+            <div class="panel-tag tag-graph">DINÁMICA TEMPORAL (48 HORAS)</div>
+            <h2 class="panel-title">[ RESPUESTA CINÉTICA EN VIVO ]</h2>
+          </div>
+          <div class="graph-legend" id="graph-legend">
+            <span class="legend-item"><span class="dot cytol"></span> Citólisis Tumoral (%)</span>
+            <span class="legend-item"><span class="dot viab"></span> Viabilidad Linfocito (%)</span>
+            <span class="legend-item"><span class="dot epi"></span> Silenciamiento TOX (%)</span>
+          </div>
+        </div>
+
+        <div class="canvas-container">
+          <canvas id="kinetic-canvas" width="800" height="280"></canvas>
+        </div>
+        
+        <div class="graph-footer-stats">
+          <div class="stat-pill">
+            <span class="stat-k">MÉTRICA LÍTICA (MODELO):</span>
+            <span class="stat-v" id="g-lisis">100.0%</span>
+          </div>
+          <div class="stat-pill">
+            <span class="stat-k">TIEMPO DE ACCIÓN ACTIVO (ACT):</span>
+            <span class="stat-v highlight" id="g-act">9.04 Horas</span>
+          </div>
+          <div class="stat-pill">
+            <span class="stat-k">ESTADO SIMULADO:</span>
+            <span class="stat-v ok" id="g-tumor">LISIS COMPLETA (PARÁMETROS FIJOS)</span>
+          </div>
+        </div>
+      </section>
+
+      <!-- RESULTADO DETALLADO Y AUDITORÍA SSoT (PRE-EVALUADO BENCHMARK) -->
+      <section id="resultado" class="panel resultado">
+        <div class="panel-header">
+          <div>
+            <div class="panel-tag tag-result">INFORME MODELADO CAPA B / IN SILICO</div>
+            <h2 class="panel-title">[ EVALUACIÓN DE RESTRICCIONES DEL MODELO ]</h2>
+          </div>
+          <div class="veredicto-badge ok" id="veredicto-badge">[ SIMULACIÓN COMPLETADA // RESTRICCIONES SATISFECHAS ]</div>
+        </div>
+        
+        <div class="results-grid">
+          <div class="metrics-card">
+            <h3>TELEMETRÍA IN SILICO (PARÁMETROS ASUMIDOS)</h3>
+            <div id="resumen" class="metrics-list">
+              <div class="metric-row"><span class="metric-label">Estado Simulación</span><span class="metric-value highlight"><strong style="color: var(--ok-color)">CONSTRAINTS_SATISFIED</strong></span></div>
+              <div class="metric-row"><span class="metric-label">pH Extracelular (pHe)</span><span class="metric-value highlight">6.20</span></div>
+              <div class="metric-row"><span class="metric-label">Densidad GPC3</span><span class="metric-value highlight">19,200 mol/célula</span></div>
+              <div class="metric-row"><span class="metric-label">Nivel Energético ATP</span><span class="metric-value highlight">92</span></div>
+              <div class="metric-row"><span class="metric-label">Blindaje / NHE1</span><span class="metric-value highlight">ESCENARIO ACTIVO (NHE1-Shield 1K3R4E)</span></div>
+              <div class="metric-row"><span class="metric-label">Integridad Mucosa (phi_gut)</span><span class="metric-value highlight">92.0% (Parámetro Microbiota)</span></div>
+              <div class="metric-row"><span class="metric-label">Score Gated PROJ</span><span class="metric-value highlight">0.9470</span></div>
+              <div class="metric-row"><span class="metric-label">Invariantes Biofísicas</span><span class="metric-value highlight">CUMPLIDAS (Límites in-silico válidos)</span></div>
+            </div>
+          </div>
+          
+          <div class="json-card">
+            <h3>PAYLOAD DE TELEMETRÍA (RAW IN SILICO)</h3>
+            <div class="code-wrapper">
+              <pre id="json-out"><span class="key">"simulation_status"</span>: <span class="string">"CONSTRAINTS_SATISFIED"</span>,
+<span class="key">"capa"</span>: <span class="string">"B_In_Silico"</span>,
+<span class="key">"variables"</span>: {
+  <span class="key">"ph_extracelular"</span>: <span class="number">6.2</span>,
+  <span class="key">"gpc3_density"</span>: <span class="number">19200</span>,
+  <span class="key">"atp_levels"</span>: <span class="number">92</span>,
+  <span class="key">"has_acid_resistance"</span>: <span class="boolean">true</span>,
+  <span class="key">"phi_gut"</span>: <span class="number">0.92</span>
+},
+<span class="key">"multiscale_telemetry"</span>: {
+  <span class="key">"portal_il6_pg_ml"</span>: <span class="number">68.6</span>,
+  <span class="key">"tumor_pdl1_fold"</span>: <span class="number">2.62</span>,
+  <span class="key">"h3k27me3_silencing_pct"</span>: <span class="number">18.2</span>,
+  <span class="key">"active_cytolytic_time_hours"</span>: <span class="number">9.04</span>,
+  <span class="key">"final_lysis_pct"</span>: <span class="number">100.0</span>,
+  <span class="key">"model_output_note"</span>: <span class="string">"Simulated outcome under fixed assumptions (not a clinical prediction)"</span>
+}</pre>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- AUDITORÍA NARRATIVA (PARSER PLACA BASE) -->
+      <section class="panel narrative-audit-panel">
+        <details class="audit-accordion">
+          <summary class="audit-summary">
+            <span>[ EXTRACCIÓN DE PARÁMETROS // PARSER EXPERIMENTAL ]</span>
+            <span class="accordion-hint">Desplegar para evaluar texto libre mediante extracción estructurada</span>
+          </summary>
+          <div class="audit-body">
+            <p class="panel-hint">
+              Extrae variables del texto con <code>POLITICA_RELLENO = NUNCA</code>. Las variables detectadas se cotejarán contra el contrato determinista antes de la simulación.
+            </p>
+            <div class="textarea-wrapper">
+              <textarea id="escenario" rows="4" placeholder="Ingrese reporte de parámetros: 'Escenario HCC in silico: pH extracelular 6.20, GPC3 18,000 mol/cel, ATP 92, NHE1 activo...'"></textarea>
+              <div class="scanline"></div>
+            </div>
+            <div class="presets-row">
+              <span class="presets-label">CASOS DE PRUEBA:</span>
+              <button type="button" class="preset-btn" data-preset="e1">E1 Ácido</button>
+              <button type="button" class="preset-btn" data-preset="e2">E2 CAR-T NHE1</button>
+              <button type="button" class="preset-btn" data-preset="e3">E3 GPC3 Bajo</button>
+              <button type="button" class="preset-btn" data-preset="e4">E4 ATP Isquemia</button>
+              <button type="button" class="preset-btn" data-preset="e5">E5 Anomalía</button>
+            </div>
+            <button id="evaluar-texto-btn" type="button" class="btn-secondary">
+              EXTRAER Y SIMULAR CASO TEXTUAL
+            </button>
+          </div>
+        </details>
+      </section>
+    </div>
+  </main>
+
+  <footer class="site-footer">
+    <div class="footer-content">
+      <p><strong>health.guanes.biz</strong> · Prototipo Computacional de Investigación In Silico · MultiScale ODE Engine</p>
+      <p class="footer-disclaimer" style="font-size: 0.75rem; color: var(--text-muted); margin: 0.5rem 0;"><strong>Scientific & Medical Disclaimer:</strong> This platform is a theoretical research software prototype. Outputs represent deterministic solutions of simplified mathematical models under fixed parameter assumptions. Not intended for clinical diagnosis, therapeutic planning, prognostic assessment, or medical decision-making.</p>
+      <p class="footer-meta">Autor: Manuel Enrique Prada Forero · Licencia: <a href="https://github.com/Manuelenriquep/Guanes-Health/blob/main/LICENSE" target="_blank" rel="noopener">Source-Available v1.1</a> · DOI: <a href="https://doi.org/10.5281/zenodo.22101265" target="_blank" rel="noopener">10.5281/zenodo.22101265</a> · Código: <a href="https://github.com/Manuelenriquep/Guanes-Health" target="_blank" rel="noopener">GitHub Repository</a></p>
+    </div>
+  </footer>
+
+  <script src="config.js?v=6.0.5"></script>
+  <script src="app.js?v=6.0.5"></script>
+</body>
+</html>
+
