@@ -4,6 +4,7 @@
 
 [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.22101265.svg)](https://doi.org/10.5281/zenodo.22101265)
 [![Technical Report](https://img.shields.io/badge/Technical%20Report-White%20Paper%20v6.0-blueviolet.svg)](01_Especificaciones_SSoT/white_paper_guanes_health_v6.md)
+[![Wet-Lab Validation Roadmap](https://img.shields.io/badge/Wet--Lab-Falsification%20Roadmap-orange.svg)](01_Especificaciones_SSoT/experimental_validation_falsification_roadmap.md)
 [![License: Source-Available v1.1](https://img.shields.io/badge/License-Source--Available%20v1.1-blue.svg)](LICENSE)
 [![Online Console](https://img.shields.io/badge/Interactive%20Console-health.guanes.biz-0ea5e9.svg)](https://health.guanes.biz)
 [![Tests: PASS](https://img.shields.io/badge/Tests-14%2F14%20PASS-emerald.svg)](04_Bateria_Inviolable)
@@ -101,7 +102,22 @@ Every physical, enzymatic, and kinetic constant used by the solvers is cataloged
 
 ---
 
-## 5. Technical Report & Formal Specification
+## 5. Experimental Validation & Falsification Roadmap (Wet-Lab)
+
+Validation of this computational framework is strictly defined as **falsifying or calibrating deterministic numerical predictions** against physical wet-lab measurements across a 5-layer de-risking hierarchy:
+
+* **Layer 0 (Software Stability & Invariants):** Fail-closed ODE solvers, sensitivity checks ($0 cost).
+* **Layer 1 (Cellular In-Vitro "Experiment Zero"):** Primary T / CAR-T cells at $\text{pH}_e 7.4 \text{ vs } 6.2 \pm \text{Cariporide/EIPA}$. Direct kinetic measurement of $\text{pH}_i$, $[\text{ATP}]$, and cytolytic killing at 3–6 h.
+* **Layer 2 (Reduced Systemic Axis):** Caco-2 transwell ($\text{TEER}$) + Kupffer/Hepatocyte + 3D tumor spheroids ($\text{LPS} \rightarrow \text{IL-6} \rightarrow \text{PD-L1} \rightarrow \text{TOX}$).
+* **Layer 3 (Preclinical In-Vivo):** Murine HCC models (stromal pH microelectrodes, portal LPS, *Akkermansia* reconstitution).
+* **Layer 4 (Clinical Multi-Omic Corroboration):** Patient cohort biomarker mapping.
+
+👉 **[Complete Wet-Lab Roadmap & Rejection Criteria](01_Especificaciones_SSoT/experimental_validation_falsification_roadmap.md)** (English)  
+👉 **[Hoja de Ruta en Español](01_Especificaciones_SSoT/roadmap_falsacion_experimental_wetlab.md)** (Spanish)
+
+---
+
+## 6. Technical Report & Formal Specification
 
 For a comprehensive derivation of the coupled differential equations, parameter provenance, and 100-patient virtual cohort analysis, please read the complete Technical Report:
 
@@ -109,14 +125,14 @@ For a comprehensive derivation of the coupled differential equations, parameter 
 
 ---
 
-## 6. Interactive Research HUD
+## 7. Interactive Research HUD
 
 An interactive parameter exploration HUD is available at:  
 👉 **[https://health.guanes.biz](https://health.guanes.biz)**
 
 ---
 
-## 7. Citation & Academic Attribution
+## 8. Citation & Academic Attribution
 
 If referencing this computational prototype or its biophysical equations in academic research:
 
@@ -135,20 +151,20 @@ If referencing this computational prototype or its biophysical equations in acad
 ---
 
 
----
+## 9. How to Critique & Falsify This Model
 
-## 8. How to Critique This Model
+We invite peer researchers in mathematical oncology, immunology, and biophysics to test, critique, and attempt to falsify this prototype against the following open questions:
 
-We invite peer researchers in mathematical oncology and biophysics to test, critique, and attempt to falsify this prototype against the following open questions:
-
-1. **Enzyme Kinetics Sensitivity:** Is the Hill cooperative model of PFK-1 inhibition ({\\text{PFK}}=4.0$, $\\text{pKa}=6.80$) adequately calibrated against intact T-cell glycolytic flux data, or does intracellular buffering mitigate the ATP collapse?
-2. **Microbiome Proxy Granularity:** Does the lumped parameter $\\phi_{\\text{gut}}$ represent portal LPS translocation with sufficient fidelity, or are specific bacterial taxa dynamics required?
-3. **NHE1 Flux Feasibility:** Are the continuous proton extrusion rates assumed for the NHE1-Shield (.2 \\times 10^{-14} \\text{mol}/(\\text{s}\\cdot\\text{cell})$) thermodynamically feasible under sustained energetic demands?
+1. **Enzyme Kinetics Sensitivity:** Is the Hill cooperative model of PFK-1 inhibition ($n_{\text{PFK}}=4.0$, $\text{pKa}=6.80$) accurately capturing intact T-cell glycolytic flux, or does cytosolic buffering mitigate the ATP collapse in physiological media?
+2. **Microbiome Proxy Granularity:** Does the lumped parameter $\phi_{\text{gut}}$ represent portal LPS translocation with sufficient fidelity, or are specific bacterial taxa dynamics required?
+3. **NHE1 Flux Feasibility:** Are the continuous proton extrusion rates assumed for the NHE1-Shield ($1.2 \times 10^{-14}\,\text{mol}/(\text{s}\cdot\text{cell})$) thermodynamically feasible under sustained cellular ATP budgets?
 4. **Spatial Gradients:** How would 3D reaction-diffusion equations across a vascularized tumor geometry alter the predicted Active Cytolytic Time (ACT) thresholds?
 
 To propose parameter corrections or report mathematical edge cases, please see [CONTRIBUTING.md](CONTRIBUTING.md) or open an Issue.
 
-## 9. License & Ethics Statement
+---
+
+## 10. License & Ethics Statement
 
 * **Author:** Manuel Enrique Prada Forero (`gerente@guanes.biz`)
 * **License:** [Source-Available v1.1](LICENSE) (Free for academic research, evaluation, and peer review. Commercial application requires authorization).

@@ -182,11 +182,19 @@ A synthetic cohort of $N=100$ virtual patients was simulated across four distinc
 ### 8.1 Current Value of the Prototype
 Guanes Health v6.0 demonstrates that high-affinity antigen recognition is a necessary but insufficient condition for solid tumor clearance if biophysical and systemic constraints are left unaddressed. By modeling the quantitative coupling between enzyme kinetics (PFK-1), membrane transport (NHE1), and mucosal endotoxemia, the suite provides a transparent hypothesis-generating instrument for systems biologists.
 
-### 8.2 Roadmap Toward Experimental Calibration
-To transition from a theoretical research prototype to a calibrated biomedical model, the following empirical measurements are required:
-* **Microfluidic T-Cell Cytometry:** Real-time measurement of cytosolic $\text{pH}_i$ and ATP concentration in TCR-activated T-cells exposed to microfluidic pH gradients ($6.0 - 7.4$).
-* **Seahorse Extracellular Flux Analysis:** Validation of glycolytic proton efflux rates (PER) and mitochondrial oxygen consumption rates (OCR) in NHE1-engineered lymphocytes.
-* **Portal Endotoxin & Cytokine Profiling:** Quantitative correlation between stool *Akkermansia* abundance, portal vein LPS, and hepatic IL-6 in murine models of hepatocellular carcinoma.
+### 8.2 Roadmap Toward Experimental Calibration & Falsification Criteria
+
+Validation in this context does not mean "proving clinical efficacy"; it means **empirically bounding, calibrating, or falsifying the deterministic ODE predictions** against wet-lab measurements.
+
+We establish a formalized 5-layer de-risking hierarchy and an immediate **"Experiment Zero"** protocol:
+* **Layer 0 (Software Stability & Invariants):** Fail-closed parameter boundaries and deterministic solver convergence ($0 cost).
+* **Layer 1 (Cellular In-Vitro Minimum Viable Assay):** Primary CD8+ T-cells or GPC3-CAR-Ts cultured at $\text{pH}_e 7.40 \text{ vs } 6.20 \pm \text{Cariporide/EIPA}$ ($10\,\mu\text{M}$ NHE1 blocker). Primary readouts: ratiometric $\text{pH}_i$ (BCECF-AM), cellular ATP (CellTiter-Glo/Seahorse), and cytolysis at $3\text{--}6\text{ h}$. **Kill Switch:** If unshielded T-cells retain $>25\%$ ATP at 3h under $\text{pH}_e 6.20$, or if NHE1 inhibition causes no bioenergetic penalty in acidic stroma, the PFK-1/NHE1 local hypothesis is formally falsified.
+* **Layer 2 (Reduced Systemic Axis):** Caco-2 transwell monocultures ($\text{TEER}$) coupled with LPS/IL-6 challenged hepatocytes and 3D tumor spheroids to test the STAT3 $\rightarrow$ PD-L1 $\rightarrow$ TOX axis.
+* **Layer 3 (Preclinical In-Vivo Models):** Murine HCC orthotopic models measuring stroma pH microelectrodes, portal endotoxin, and mucosal integrity proxies.
+* **Layer 4 (Clinical Correlation):** Retrospective and prospective multi-omic cohort validation.
+
+*For complete protocols, pre-registration parameters, and latent variable operationalization, see:*  
+[`experimental_validation_falsification_roadmap.md`](experimental_validation_falsification_roadmap.md) (English) / [`roadmap_falsacion_experimental_wetlab.md`](roadmap_falsacion_experimental_wetlab.md) (Spanish).
 
 ---
 
