@@ -194,7 +194,8 @@ We establish a formalized 5-layer de-risking hierarchy and an immediate **"Exper
 * **Layer 4 (Clinical Correlation):** Retrospective and prospective multi-omic cohort validation.
 
 *For complete protocols, pre-registration parameters, and latent variable operationalization, see:*  
-[`experimental_validation_falsification_roadmap.md`](experimental_validation_falsification_roadmap.md) (English) / [`roadmap_falsacion_experimental_wetlab.md`](roadmap_falsacion_experimental_wetlab.md) (Spanish).
+* Pre-Registration Protocol (Layer 1 / Prediction P1): [`preregistro_experimento_cero_p1.md`](preregistro_experimento_cero_p1.md) (*Frozen pre-data contract; no-refit policy; does not imply assay execution*).
+* Full Wet-Lab Hierarchy: [`experimental_validation_falsification_roadmap.md`](experimental_validation_falsification_roadmap.md) (English) / [`roadmap_falsacion_experimental_wetlab.md`](roadmap_falsacion_experimental_wetlab.md) (Spanish).
 
 ---
 
