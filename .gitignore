@@ -1,7 +1,23 @@
+# ==============================================================================
+# GUANES HEALTH & LEGALTECH — REGLAS DE PROTECCIÓN DE IP & GITIGNORE
+# ==============================================================================
+
 # Caché de compilación de Python
 **/__pycache__/
 *.py[cod]
 *$py.class
+*.pyd
+*.so
+*.dll
+
+# Artefactos de compilación Cython / Nuitka / C-Extensions
+build/
+dist/
+*.egg-info/
+*.spec
+*.c
+*.cpp
+*.html.cython_report
 
 # Entornos virtuales locales
 .venv/
@@ -14,9 +30,25 @@ env/
 .vscode/
 .idea/
 *.log
+.pipeline_execution.log
 
 # Evitar subir reportes duplicados de scratch
 /workspace/scratch/
+scratch/
 
-# Núcleo privado NS-LBN — NO PUBLICAR (gitignored)
+# ==============================================================================
+# BÓVEDA PRIVADA DE PROPIEDAD INTELECTUAL (IP / TRADE SECRET)
+# ==============================================================================
+# Núcleos privados y arquitecturas de placas base protegidas
 _privado/
+private/
+vault/
+*.vault.json
+*.secret.json
+
+# Especificaciones maestras de arquitectura interna (Descomentar para despliegue público)
+# 01_Especificaciones_SSoT/
+
+# Scripts locales de búnker y automatización de producción local
+*.bat
+compilar_placas_a_binarios.py

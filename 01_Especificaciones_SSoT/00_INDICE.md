@@ -1,7 +1,7 @@
 # Índice SSoT (operativo)
 
-Mapa de especificaciones del repositorio.  
-La **narrativa amplia del método** (libro) está fuera de este repo; aquí solo lo necesario para operar código, agentes y auditoría.
+Mapa de especificaciones del repositorio **`Guanes Health v6.0`** (DOI: `10.5281/zenodo.22101265`).  
+La **síntesis teórica, filosófica y cibernética general** que fundamenta este modelo (*Teoría General de los Atractores Soberanos*, Secciones 2.5 y 2.6, y *Cláusula de Demarcación Ética In-Silico Alterum non laedere*) se encuentra desarrollada en el tratado homónimo del autor: ***La Física de la Libertad*** (`C:\Video YOUTUBE\Libros\LA_FISICA_DE_LA_LIBERTAD.pdf`). Aquí se documenta exclusivamente el núcleo computacional *in-silico* para operar código, agentes y auditoría.
 
 | Documento | Rol | Estado |
 |-----------|-----|--------|
@@ -30,6 +30,15 @@ La **narrativa amplia del método** (libro) está fuera de este repo; aquí solo
 | [`reporte_onco_homeostasis_v6.md`](./reporte_onco_homeostasis_v6.md) | Ecosistema acoplado v6.0: Sinergia de barrera intestinal (*Akkermansia*) y rescate de lisis | Activo (v6) |
 | [`reporte_limites_vacunas_arn.md`](./reporte_limites_vacunas_arn.md) | Límites biofísicos de vacunas ARNm: Parálisis glucolítica (PFK-1/ATP) vs NHE1-Shield | Activo |
 | [`white_paper_guanes_health_v6.md`](./white_paper_guanes_health_v6.md) | **White Paper Maestro v6.0 (Inglés)**: Marco biofísico determinista y eje entero-hepático | Normativo (v6) |
+| [`investigacion_michael_levin_software_bioelectrico.md`](./investigacion_michael_levin_software_bioelectrico.md) | **Software Bioeléctrico & Morfogénesis (M. Levin)**: Isomorfismo ADN/Hardware vs Vmem/Software y Desconexión de Red | **Normativo (2026)** |
+| [`Placa_Base_Logica_v6_Unificada.md`](./Placa_Base_Logica_v6_Unificada.md) | **Placa Base de Lógica Unificada v6.0**: Control Multiescala (Homeostasis, Código Bioeléctrico Levin, Cortafuegos Fail-Closed y Trampa Ácida) | **Normativo (v6.0)** |
+| [`Placa_Base_Subversion_y_Normalizacion_5_Niveles.md`](./Placa_Base_Subversion_y_Normalizacion_5_Niveles.md) | **Placa Base 5 Niveles (Guanes Health + Levin)**: Retropresión protónica ($\Delta \mu_{H^+}$), NHE1-Shield, $V_m$ y Conexinas | **Normativo (2026)** |
+| [`reporte_bio_game_ipd_ms.md`](./reporte_bio_game_ipd_ms.md) | **Reporte Técnico BIO-GAME-01**: Teoría de juegos con jugadores de autoescala (Shreesha, Pigozzi, Goldstein, Levin 2025) acoplada a MET-01 | **Activo (2026)** |
+| [`reporte_normalizacion_bioelectrica.md`](./reporte_normalizacion_bioelectrica.md) | **Reporte Cuantitativo ODE (48 h)**: Reversión fenotípica *in-silico* ($100\% \to 5.1\%$ expresión oncogénica / $84.8\%$ integración) | Activo (v1) |
+| [`anexo_tecnico_trampa_bioelectrica_y_preacondicionamiento_estromal.md`](./anexo_tecnico_trampa_bioelectrica_y_preacondicionamiento_estromal.md) | **Anexo Técnico — Trampa Bioeléctrica**: Succión electro-osmótica de protones ($pH_e = 6.20$), colapso de ATP ($1.07\%$) y Pre-acondicionamiento | **Normativo (2026)** |
+| [`pliego_requerimientos_wet_lab.md`](./pliego_requerimientos_wet_lab.md) | **Pliego Experimental Wet-Lab (WP1–WP5)**: Calibración Capa A $\leftrightarrow$ Capa B (MET-01) $\leftrightarrow$ Capa C (Cono de Luz Cognitivo / $V_{mem}$) | **Normativo (2026)** |
+| [`met01_bioelectric_ledger.json`](./met01_bioelectric_ledger.json) | **Ledger Conector Bioeléctrico MET-01**: Parámetros de acoplamiento $pHi \to V_{mem} \to G_{GJ} \to CLC$ (`S703A` vs `1K3R4E`) | **Activo (v1.2)** |
+| [`wetlab_bioelectric_ingestion_template.json`](./wetlab_bioelectric_ingestion_template.json) | **Plantilla de Ingesta Wet-Lab**: Esquema JSON para lecturas $\text{DiBAC}_4(3)$, BCECF-AM y Lucifer Yellow | **Activo (v1.2)** |
 
 Manual operativo del stack hepático: [`../README-HEPATIC.md`](../README-HEPATIC.md).
 

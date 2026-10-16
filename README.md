@@ -5,6 +5,7 @@
 [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.22101265.svg)](https://doi.org/10.5281/zenodo.22101265)
 [![Technical Report](https://img.shields.io/badge/Technical%20Report-White%20Paper%20v6.0-blueviolet.svg)](01_Especificaciones_SSoT/white_paper_guanes_health_v6.md)
 [![Wet-Lab Validation Roadmap](https://img.shields.io/badge/Wet--Lab-Falsification%20Roadmap-orange.svg)](01_Especificaciones_SSoT/experimental_validation_falsification_roadmap.md)
+[![Bioelectric Framework](https://img.shields.io/badge/Theory-Levin%20Bioelectric%20Software-indigo.svg)](01_Especificaciones_SSoT/investigacion_michael_levin_software_bioelectrico.md)
 [![License: Source-Available v1.1](https://img.shields.io/badge/License-Source--Available%20v1.1-blue.svg)](LICENSE)
 [![Online Console](https://img.shields.io/badge/Interactive%20Console-health.guanes.biz-0ea5e9.svg)](https://health.guanes.biz)
 [![Tests: PASS](https://img.shields.io/badge/Tests-14%2F14%20PASS-emerald.svg)](04_Bateria_Inviolable)

@@ -1,0 +1,56 @@
+{
+  "schema_version": "1.2.0-MET01-BIOELECTRIC",
+  "instrument_metadata": {
+    "spectrofluorometer_model": "Biotek Synergy Neo2 / Confocal Dual-Channel",
+    "temperature_celsius": 37.0,
+    "co2_percent": 5.0,
+    "operator_id": "UNRESOLVED_WETLAB_OPERATOR"
+  },
+  "dIbAC4_3_vmem_calibration_curve": {
+    "probe_concentration_uM": 0.5,
+    "excitation_nm": 490,
+    "emission_nm": 516,
+    "gramicidin_valinomycin_clamping_points": [
+      { "K_ext_mM": 5.0,   "theoretical_Vmem_mV": -82.0, "F_over_F0_measured": null },
+      { "K_ext_mM": 15.0,  "theoretical_Vmem_mV": -58.0, "F_over_F0_measured": null },
+      { "K_ext_mM": 50.0,  "theoretical_Vmem_mV": -30.0, "F_over_F0_measured": null },
+      { "K_ext_mM": 120.0, "theoretical_Vmem_mV": -10.0, "F_over_F0_measured": null }
+    ]
+  },
+  "bcecf_am_phi_calibration": {
+    "pKa_apparent": 7.102,
+    "R_min_pH_4_5": 0.851,
+    "R_max_pH_9_5": 3.328,
+    "nigericin_concentration_uM": 10.0
+  },
+  "experimental_runs_pHe_6_20": [
+    {
+      "variant_id": "S703A",
+      "replicate": 1,
+      "pHe_medium": 6.20,
+      "BCECF_ratio_490_440": null,
+      "derived_pHi": 5.495,
+      "DiBAC4_3_F_over_F0": null,
+      "derived_Vmem_mV": -30.00,
+      "Lucifer_Yellow_transfer_pct": null,
+      "Rhodamine_Dextran_leak_pct": 0.0,
+      "derived_G_GJ": 0.141,
+      "derived_CLC_index": 0.141,
+      "cognitive_state": "SHRUNK_SELF"
+    },
+    {
+      "variant_id": "1K3R4E",
+      "replicate": 1,
+      "pHe_medium": 6.20,
+      "BCECF_ratio_490_440": null,
+      "derived_pHi": 6.697,
+      "DiBAC4_3_F_over_F0": null,
+      "derived_Vmem_mV": -60.17,
+      "Lucifer_Yellow_transfer_pct": null,
+      "Rhodamine_Dextran_leak_pct": 0.0,
+      "derived_G_GJ": 0.911,
+      "derived_CLC_index": 0.911,
+      "cognitive_state": "INTEGRATED_SELF"
+    }
+  ]
+}

@@ -1,0 +1,42 @@
+{
+  "MET_01_bioelectric_connector_ledger": {
+    "version": "1.2.0",
+    "framework_reference": "Levin, M. (2014-2026); Palacios-Prado & Bukauskas (2009); Grodstein, Levin et al. (2024)",
+    "metabolic_load_parameters": {
+      "q_met_pmol_min": 180.0,
+      "N_cells": 20000.0,
+      "V_cell_liters": 1.15e-12,
+      "q_met_cyto_mM_min": 7.826087,
+      "pHe_stroma_acidic": 6.20,
+      "pHi_initial": 7.20,
+      "pHi_floor_uncompensated": 5.45,
+      "beta_i_mM_pH": 28.0
+    },
+    "vmem_coupling_parameters": {
+      "Vmem_depolarized_max_mV": -30.0,
+      "Vmem_hyperpolarized_span_mV": 40.0,
+      "pHi_midpoint_anergy_gate": 6.60,
+      "slope_factor_pH": 0.20,
+      "Vmem_healthy_stroma_mV": -70.0,
+      "equation": "Vmem(pHi) = -30.0 - 40.0 / (1.0 + 10^((6.60 - pHi) / 0.20))"
+    },
+    "connexin_gap_junction_gating": {
+      "connexin_isoform": "Cx43/Cx43 homotypic",
+      "G_min": 0.05,
+      "G_max": 1.00,
+      "V0_half_inactivation_mV": 25.0,
+      "A_voltage_sensitivity_inv_mV": 0.15,
+      "equation": "G_GJ(Delta_Vmem) = G_min + (G_max - G_min) / (1.0 + exp(A * (|Vmem_cell - Vmem_stroma| - V0)))"
+    },
+    "cognitive_light_cone_thresholds": {
+      "integrated_self_min_clc": 0.70,
+      "shrunk_self_max_clc": 0.30
+    },
+    "wetlab_calibration_specs": {
+      "vmem_probe": "DiBAC4(3) (0.5 - 1.0 uM) or CC2-DMPE/DiSBAC2(3)",
+      "phi_probe": "BCECF-AM ratiometric (490/440 nm, em 535 nm)",
+      "gjc_tracer_permeable": "Lucifer Yellow (LY, 0.522 kDa)",
+      "gjc_tracer_impermeable": "Rhodamine-Lysinated Dextran (RLD, 10 kDa)"
+    }
+  }
+}
