@@ -11,6 +11,7 @@ def run_pipeline():
     print("")
     bateria_dir = os.path.dirname(os.path.abspath(__file__))
     motor_dir = os.path.abspath(os.path.join(bateria_dir, "..", "03_Motor_Oncologico"))
+    vis_dir = os.path.abspath(os.path.join(bateria_dir, "..", "02_Simulaciones_Visuales"))
     log_file = os.path.join(bateria_dir, "pipeline_execution.log")
 
     suites = [
@@ -28,12 +29,20 @@ def run_pipeline():
         "test_simulador_onco_hepatico_v3.py",
         "test_cart_hcc_interaccion.py",
         "test_analisis_sensibilidad_local_cart.py",
+        "test_auditor_neuro_simbolico.py",
+        "test_guanes_bioelectrico.py",
+        "test_guanes_biofisica.py",
+        "test_guanes_kernel_level0.py",
+        "test_guanes_pkpd.py",
+        "test_guanes_bioelectrico_3d.py",
+        "test_guanes_visualizer.py",
+        "guanes_stress_tests.py",
     ]
 
     env = os.environ.copy()
     sep = os.pathsep
     env["PYTHONPATH"] = sep.join(
-        [motor_dir, bateria_dir, env.get("PYTHONPATH", "")]
+        [motor_dir, vis_dir, bateria_dir, env.get("PYTHONPATH", "")]
     )
 
     overall_ok = True
