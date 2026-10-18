@@ -776,16 +776,18 @@ function loadPreset(key) {
 }
 
 function renderDemoCards() {
-  demoGrid.innerHTML = Object.entries(DEMOS)
-    .map(
-      ([key, d]) => `
-      <button type="button" class="demo-card" data-demo="${key}">
-        <span class="demo-id">${d.id}</span>
-        <span class="demo-title">${d.title}</span>
-        <span class="demo-hint">${d.hint}</span>
-      </button>`
-    )
-    .join("");
+  if (!demoGrid.querySelector("[data-demo]")) {
+    demoGrid.innerHTML = Object.entries(DEMOS)
+      .map(
+        ([key, d]) => `
+        <button type="button" class="demo-card" data-demo="${key}">
+          <span class="demo-id">${d.id}</span>
+          <span class="demo-title">${d.title}</span>
+          <span class="demo-hint">${d.hint}</span>
+        </button>`
+      )
+      .join("");
+  }
   demoGrid.querySelectorAll("[data-demo]").forEach((btn) => {
     btn.addEventListener("click", () => loadDemo(btn.getAttribute("data-demo")));
   });

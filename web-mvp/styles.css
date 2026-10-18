@@ -206,7 +206,7 @@ h1 { font-family: var(--font-mono); font-size: 1.05rem; letter-spacing: 0.1em; f
 .sidebar { display: flex; flex-direction: column; gap: 1.5rem; }
 .main-content { display: flex; flex-direction: column; gap: 1.5rem; }
 
-.demo-grid { display: flex; flex-direction: column; gap: 0.75rem; }
+.demo-grid { display: flex; flex-direction: column; gap: 0.75rem; min-height: 460px; contain: layout style; }
 
 .demo-card {
   background: rgba(0,0,0,0.45);
@@ -827,15 +827,15 @@ textarea:focus {
 }
 
 /* Resultados */
-.resultado { opacity: 1; transform: translateY(0); transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1); display: block; }
-.resultado.hidden { opacity: 0; transform: translateY(20px); pointer-events: none; position: absolute; visibility: hidden; }
+.resultado { opacity: 1; transform: translateY(0); transition: opacity 0.3s ease; display: block; min-height: 520px; contain: layout; }
+.resultado.hidden { opacity: 0; pointer-events: none; visibility: hidden; }
 
 .veredicto-badge { font-family: var(--font-mono); font-size: 0.88rem; font-weight: 700; padding: 0.45rem 1.2rem; border-radius: 4px; border: 1px solid currentColor; letter-spacing: 0.06em;}
 .veredicto-badge.ok { color: var(--ok-color); background: rgba(52,211,153,0.1); border-color: var(--ok-color); box-shadow: 0 0 15px rgba(52,211,153,0.2);}
 .veredicto-badge.veto { color: var(--veto-color); background: rgba(251,146,60,0.1); border-color: var(--veto-color); box-shadow: 0 0 15px rgba(251,146,60,0.2);}
 .veredicto-badge.alarma { color: var(--danger-color); background: rgba(248,113,113,0.1); border-color: var(--danger-color); box-shadow: 0 0 15px rgba(248,113,113,0.2);}
 
-.results-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; }
+.results-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; min-height: 420px; }
 
 .metrics-card h3, .json-card h3 { font-family: var(--font-mono); font-size: 0.78rem; color: var(--text-muted); margin-bottom: 1rem; letter-spacing: 0.06em; border-bottom: 1px solid rgba(255,255,255,0.06); padding-bottom: 0.5rem;}
 
@@ -851,7 +851,7 @@ textarea:focus {
 
 .code-wrapper {
   background: rgba(0,0,0,0.65); border: 1px solid rgba(255,255,255,0.06); border-radius: 8px;
-  padding: 1.25rem; height: calc(100% - 2.5rem); overflow: auto; position: relative;
+  padding: 1.25rem; height: calc(100% - 2.5rem); min-height: 380px; max-height: 480px; overflow: auto; position: relative;
 }
 .code-wrapper::after {
   content: ''; position: absolute; top: 0; left: 0; right: 0; bottom: 0;

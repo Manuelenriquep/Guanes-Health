@@ -117,7 +117,33 @@
         <div class="panel-tag">IN-SILICO BENCHMARKS</div>
         <h2 class="panel-title">[ CO-INTERVENTION SCENARIOS ]</h2>
         <p class="panel-hint">Select an assumed parameter vector to run the coupled bioelectric &amp; metabolic ODE simulation.</p>
-        <div class="demo-grid" id="demo-grid"></div>
+        <div class="demo-grid" id="demo-grid">
+          <button type="button" class="demo-card active" data-demo="d1">
+            <span class="demo-id">GH-2026-V6-SYN</span>
+            <span class="demo-title">Full Multi-Scale Synergy — NHE1-Shield (1K3R4E) + Mucosal 92%</span>
+            <span class="demo-hint">Expected: CONSTRAINTS_SATISFIED · Vmem = -60.2 mV · CLC = 0.911</span>
+          </button>
+          <button type="button" class="demo-card" data-demo="d2">
+            <span class="demo-id">GH-2026-V6-LEAK</span>
+            <span class="demo-title">Permeable Mucosal Barrier — Native Unshielded CD8 (S703A)</span>
+            <span class="demo-hint">Expected: VETO_FAIL_CLOSED · Vmem = -30.0 mV · CLC = 0.141</span>
+          </button>
+          <button type="button" class="demo-card" data-demo="d3">
+            <span class="demo-id">GH-2026-V6-VACC</span>
+            <span class="demo-title">mRNA Vaccine Alone — Zero Shield / Acidic Stroma (pHe = 6.20)</span>
+            <span class="demo-hint">Expected: VETO_FAIL_CLOSED · Rapid ATP Depletion · CLC = 0.141</span>
+          </button>
+          <button type="button" class="demo-card" data-demo="d4">
+            <span class="demo-id">GH-2026-V6-NHE1</span>
+            <span class="demo-title">Isolated NHE1-Shield — Dysbiotic Gut Barrier (phi_gut = 20%)</span>
+            <span class="demo-hint">Expected: VETO_FAIL_CLOSED · High PD-L1 Exhaustion · CLC = 0.850</span>
+          </button>
+          <button type="button" class="demo-card" data-demo="d5">
+            <span class="demo-id">GH-2026-V6-FAIL</span>
+            <span class="demo-title">Electrophysiological Sensor Drift (Vmem = +15 mV Out of Bounds)</span>
+            <span class="demo-hint">Expected: VETO_FAIL_CLOSED · Invariant Boundary Failure</span>
+          </button>
+        </div>
       </section>
       
       <section class="panel disclaimer-panel">
@@ -343,7 +369,7 @@
           <a href="met01_bioelectric_connector_dashboard.png" target="_blank" rel="noopener" class="btn-outline-sm" style="text-decoration: none;">OPEN FULL RESOLUTION &nearr;</a>
         </div>
         <div style="margin-top: 0.75rem; border-radius: 6px; overflow: hidden; border: 1px solid rgba(61, 214, 198, 0.2);">
-          <img src="met01_bioelectric_connector_dashboard.png" alt="MET-01 Bioelectric Connector 4-Panel Dashboard comparing S703A vs 1K3R4E under pHe = 6.20 stromal acidosis" style="width: 100%; height: auto; display: block;" />
+          <img src="met01_bioelectric_connector_dashboard.png" width="2860" height="2090" loading="lazy" decoding="async" fetchpriority="low" alt="MET-01 Bioelectric Connector 4-Panel Dashboard comparing S703A vs 1K3R4E under pHe = 6.20 stromal acidosis" style="width: 100%; height: auto; aspect-ratio: 2860 / 2090; display: block;" />
         </div>
       </section>
 
@@ -421,7 +447,7 @@
 
             <!-- Scientific Dashboard Figure Preview -->
             <div style="border-radius: 6px; overflow: hidden; border: 1px solid rgba(168, 85, 247, 0.25); background: #061224;">
-              <img src="met01_ipd_ms_dashboard.png" alt="4-Panel IPD-ms Self-Scaling Simulation Dashboard" style="width: 100%; height: auto; display: block;" />
+              <img src="met01_ipd_ms_dashboard.png" width="5400" height="3600" loading="lazy" decoding="async" fetchpriority="low" alt="4-Panel IPD-ms Self-Scaling Simulation Dashboard" style="width: 100%; height: auto; aspect-ratio: 5400 / 3600; display: block;" />
             </div>
           </div>
         </div>
