@@ -62,9 +62,11 @@ body {
   border-bottom: 1px solid rgba(251, 146, 60, 0.4);
   padding: 0.6rem 1.5rem;
   font-size: 0.8rem;
+  line-height: 1.4;
   color: #cbd5e1;
   position: relative;
   z-index: 101;
+  contain: layout;
 }
 
 .disclaimer-content {
@@ -127,6 +129,8 @@ body {
   position: relative;
   z-index: 10;
   box-shadow: 0 4px 30px rgba(0, 0, 0, 0.6);
+  min-height: 78px;
+  contain: layout;
 }
 
 .brand { display: flex; align-items: center; gap: 1.25rem; }
@@ -167,6 +171,7 @@ h1 { font-family: var(--font-mono); font-size: 1.05rem; letter-spacing: 0.1em; f
   display: grid; grid-template-columns: 360px 1fr; gap: 2rem;
   max-width: 1440px; margin: 0 auto; padding: 2rem 2.5rem;
   flex: 1; position: relative; z-index: 10;
+  contain: layout;
 }
 
 .panel {
@@ -263,6 +268,7 @@ h1 { font-family: var(--font-mono); font-size: 1.05rem; letter-spacing: 0.1em; f
   grid-template-columns: repeat(2, 1fr);
   gap: 1.25rem;
   margin-bottom: 1.75rem;
+  contain: layout style;
 }
 
 .param-card {
@@ -273,6 +279,9 @@ h1 { font-family: var(--font-mono); font-size: 1.05rem; letter-spacing: 0.1em; f
   display: flex;
   flex-direction: column;
   gap: 0.6rem;
+  min-height: 145px;
+  justify-content: space-between;
+  contain: layout;
   transition: border-color 0.2s ease, box-shadow 0.2s ease;
 }
 .param-card:focus-within {
@@ -716,11 +725,14 @@ textarea:focus {
   padding: 0.5rem;
   margin: 1rem 0;
   overflow: hidden;
+  min-height: 290px;
+  contain: layout;
 }
 
 #kinetic-canvas {
   width: 100%;
   height: auto;
+  aspect-ratio: 800 / 280;
   display: block;
 }
 
