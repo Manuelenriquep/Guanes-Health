@@ -19,7 +19,9 @@ import time
 from dataclasses import dataclass, field
 from enum import Enum
 from typing import Any, Dict, List, Optional, Tuple
+import numpy as np
 
+from base_kernel_level0 import BaseKernelLevel0
 from guanes_bioelectrico import (
     GHKBioelectricEngine,
     BioelectricLattice2D,
@@ -79,14 +81,50 @@ class TrajectoryAuditResult:
     elapsed_ms: float = 0.0
     sha256_hash: str = ""
 
+    def __getitem__(self, item: str):
+        mapping = {
+            "inference_latency_ms": self.elapsed_ms,
+            "latency_ms": self.elapsed_ms,
+            "elapsed_ms": self.elapsed_ms,
+            "sha256_signature": self.sha256_hash,
+            "sha256_hash": self.sha256_hash,
+            "sha256": self.sha256_hash,
+            "trajectory_id": self.trajectory_id,
+            "admitted": self.admitted,
+            "status": self.status,
+            "free_energy_f": self.free_energy_f,
+            "hamilton_action_delta_s": self.hamilton_action_delta_s,
+            "veto_code": self.veto_code,
+            "veto_reason": self.veto_reason,
+            "post_vmem_mv": self.post_vmem_mv,
+            "post_phi_gut": self.post_phi_gut,
+            "post_atp_pct": self.post_atp_pct,
+            "post_pdl1_factor": self.post_pdl1_factor,
+        }
+        if item in mapping:
+            return mapping[item]
+        if hasattr(self, item):
+            return getattr(self, item)
+        raise KeyError(item)
 
-class GuanesKernelLevel0:
+    @property
+    def inference_latency_ms(self) -> float:
+        return self.elapsed_ms
+
+    @property
+    def sha256_signature(self) -> str:
+        return self.sha256_hash
+
+
+class GuanesKernelLevel0(BaseKernelLevel0):
     """
     Núcleo Determinista Nivel 0 de Inferencia Activa y Bioseguridad.
     Supervisa la evolución dinámica de los tejidos y garantiza el principio Fail-Closed.
+    Hereda de BaseKernelLevel0 para unificación neuro-simbólica y mallas de Markov.
     """
 
-    def __init__(self):
+    def __init__(self, kernel_id: str = "GUANES_HEALTH_L0"):
+        super().__init__(kernel_id=kernel_id)
         self.bioelectric_engine = GHKBioelectricEngine()
         self.biophysical_engine = BiophysicalMicroenvironmentEngine()
         self.pkpd_simulator = PKPDSimulator()
@@ -98,12 +136,51 @@ class GuanesKernelLevel0:
         self.w_atp = 1.0 / (10.0 ** 2)        # Desviación típica admisible en ATP: ~10%
         self.w_pdl1 = 1.0 / (0.5 ** 2)        # Desviación admisible en PD-L1: ~0.5x
 
+        # Vector de precisión Π = Σ^(-1) para interoperabilidad
+        self.health_precision_weights = np.array([self.w_vmem, self.w_phi, self.w_atp, self.w_pdl1])
+
+        # Registro de cortafuegos en la clase base para compatibilidad cruzada
+        self._register_health_firewalls()
+
+    def _register_health_firewalls(self) -> None:
+        """Registra los cortafuegos Fail-Closed en la infraestructura de BaseKernelLevel0."""
+        self.register_firewall(
+            "FC-BIO-01",
+            "Ruptura de barrera entérica",
+            lambda s: (s.get("phi_gut", 1.0) < PHI_GUT_UMBRAL_RESCATE, f"phi_gut < {PHI_GUT_UMBRAL_RESCATE}")
+        )
+        self.register_firewall(
+            "FC-BIO-02",
+            "Colapso metabólico de ATP",
+            lambda s: (s.get("atp_pct", 100.0) < 15.0, "Disponibilidad de ATP < 15%")
+        )
+        self.register_firewall(
+            "FC-BIO-03",
+            "Persistencia de Smaller Self",
+            lambda s: (s.get("v_mem_mv", -75.0) >= UMBRAL_ONCOGENICO_VM_MV, f"Vmem >= {UMBRAL_ONCOGENICO_VM_MV} mV")
+        )
+        self.register_firewall(
+            "FC-BIO-04",
+            "Escudo tumoral PD-L1 o agotamiento T",
+            lambda s: (s.get("pdl1_factor", 1.0) > 5.0 or s.get("tox_exhaustion", 0.0) > 0.80, "PD-L1 > 5.0x o TOX > 0.80")
+        )
+        self.register_firewall(
+            "FC-PKPD-01",
+            "Dosis farmacológica no física",
+            lambda s: (any(v < 0 or not np.isfinite(v) for v in s.get("doses", [])), "Dosis no finita o negativa")
+        )
+        self.register_firewall(
+            "FC-PKPD-02",
+            "Exceso de límite MTD en Cariporida",
+            lambda s: (s.get("cmax_cariporide", 0.0) > CARIPORIDE_MTD_UM, f"Cmax Cariporida > {CARIPORIDE_MTD_UM} uM")
+        )
+
     def compute_variational_free_energy(
         self,
-        v_mem: float,
-        phi_gut: float,
-        atp_pct: float,
-        pdl1_factor: float,
+        v_mem: Any,
+        phi_gut: Any = None,
+        atp_pct: float = 100.0,
+        pdl1_factor: float = 1.0,
         target_vmem: float = -75.0,
         target_phi: float = 1.0,
         target_atp: float = 100.0,
@@ -113,11 +190,16 @@ class GuanesKernelLevel0:
         Calcula la Energía Libre Variacional (F):
         F = Sum_i [ w_i * (estado_observado_i - estado_meta_i)^2 ]
         Representa el error de predicción cuadrático ponderado por precisión. F -> 0 implica homeostasis óptima.
+        Soporta tanto invocación escalar tradicional como vectorial numpy mediante BaseKernelLevel0.
         """
-        err_v = (v_mem - target_vmem) ** 2 * self.w_vmem
-        err_phi = (phi_gut - target_phi) ** 2 * self.w_phi
-        err_atp = (atp_pct - target_atp) ** 2 * self.w_atp
-        err_pdl1 = (pdl1_factor - target_pdl1) ** 2 * self.w_pdl1
+        if isinstance(v_mem, np.ndarray) and isinstance(phi_gut, np.ndarray):
+            precision = atp_pct if isinstance(atp_pct, np.ndarray) else self.health_precision_weights
+            return super().compute_variational_free_energy(v_mem, phi_gut, precision)
+
+        err_v = (float(v_mem) - target_vmem) ** 2 * self.w_vmem
+        err_phi = (float(phi_gut) - target_phi) ** 2 * self.w_phi
+        err_atp = (float(atp_pct) - target_atp) ** 2 * self.w_atp
+        err_pdl1 = (float(pdl1_factor) - target_pdl1) ** 2 * self.w_pdl1
 
         return float(err_v + err_phi + err_atp + err_pdl1)
 

@@ -13,6 +13,7 @@ Valida:
 
 import os
 import sys
+import tempfile
 import unittest
 
 VIS_DIR = os.path.abspath(os.path.join(os.path.dirname(__file__), "..", "02_Simulaciones_Visuales"))
@@ -26,8 +27,16 @@ class TestGuanesVisualizer(unittest.TestCase):
     """Pruebas del motor gráfico."""
 
     def setUp(self):
-        self.output_test_png = os.path.join(VIS_DIR, "test_render_output.png")
-        self.visualizer = GuanesHighFidelityVisualizer(output_dir=VIS_DIR)
+        out_dir = VIS_DIR if os.access(VIS_DIR, os.W_OK) else tempfile.gettempdir()
+        try:
+            test_probe = os.path.join(out_dir, ".write_probe")
+            with open(test_probe, "w") as f:
+                f.write("ok")
+            os.remove(test_probe)
+        except OSError:
+            out_dir = tempfile.gettempdir()
+        self.output_test_png = os.path.join(out_dir, "test_render_output.png")
+        self.visualizer = GuanesHighFidelityVisualizer(output_dir=out_dir)
 
     def tearDown(self):
         # Limpieza de archivo temporal generado para el test
