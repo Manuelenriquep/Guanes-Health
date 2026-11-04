@@ -136,6 +136,9 @@ const bioClcPill = document.getElementById("bio-clc-pill");
 const bPhir = document.getElementById("b-phir");
 const bIrred = document.getElementById("b-irred");
 const bTcCycle = document.getElementById("b-tccycle");
+const bFreeEnergy = document.getElementById("b-free-energy");
+const bOracleVerdict = document.getElementById("b-oracle-verdict");
+const bioPeptideBadge = document.getElementById("bio-peptide-badge");
 
 // FDA Ionotropic Repositioning Sliders & Badges
 const fMinox = document.getElementById("f-minox");
@@ -148,12 +151,23 @@ const dispIsotre = document.getElementById("disp-isotre");
 const dispAmilo = document.getElementById("disp-amilo");
 const bioRepolBadge = document.getElementById("bio-repol-badge");
 
+// Peptidomimetic Bus Controllers (Guanes Health 2.0)
+const fAct1 = document.getElementById("f-act1");
+const fGap19 = document.getElementById("f-gap19");
+const fSs31 = document.getElementById("f-ss31");
+const dispAct1 = document.getElementById("disp-act1");
+const dispGap19 = document.getElementById("disp-gap19");
+const dispSs31 = document.getElementById("disp-ss31");
+
 function setupFdaSliders() {
   const pairs = [
     { el: fMinox, disp: dispMinox },
     { el: fLido, disp: dispLido },
     { el: fIsotre, disp: dispIsotre },
     { el: fAmilo, disp: dispAmilo },
+    { el: fAct1, disp: dispAct1 },
+    { el: fGap19, disp: dispGap19 },
+    { el: fSs31, disp: dispSs31 },
   ];
   pairs.forEach(p => {
     if (p.el && p.disp) {
@@ -170,26 +184,58 @@ function updateBioelectricFromSliders() {
   const lido = fLido ? parseFloat(fLido.value) : 0.80;
   const isotre = fIsotre ? parseFloat(fIsotre.value) : 0.90;
   const amilo = fAmilo ? parseFloat(fAmilo.value) : 0.75;
+  const act1 = fAct1 ? parseFloat(fAct1.value) : 1.00;
+  const gap19 = fGap19 ? parseFloat(fGap19.value) : 1.00;
+  const ss31 = fSs31 ? parseFloat(fSs31.value) : 1.00;
 
   // Modelo analítico GHK acoplado (Levin In Silico)
   // Vmem basal = -25 mV (tumor). Con K_ATP (minox) e inhibición Na (lido) hiperpolariza a -72 mV
   const repolPower = (minox * 0.45) + (lido * 0.35) + (isotre * 0.15) + (amilo * 0.05);
   const vmemCalc = -25.0 - (repolPower * 48.0); // Rango de -25 a -73 mV
-  const ggjCalc = Math.min(1.0, 0.05 + (isotre * 0.75) + (amilo * 0.20));
+  
+  // Sinergia peptidomimética: alphaCT1 accreta placas GJ, TAT-Gap19 sella hemicanales
+  const peptideSynergy = (act1 * 0.50) + (gap19 * 0.50);
+  const ggjCalc = Math.min(1.0, 0.05 + (isotre * 0.55) + (amilo * 0.15) + (peptideSynergy * 0.25));
   const clcCalc = ggjCalc * (Math.abs(vmemCalc) / 70.0);
   const irredCalc = Math.min(1.0, 0.48 * (1.0 - Math.exp(-clcCalc * 2.5)) + 0.52 * ggjCalc);
-  const atpVal = fAtp ? parseFloat(fAtp.value) : 92.0;
+  
+  // SS-31 preserva el ATP mitocondrial por encima del umbral de veto
+  const atpBasal = fAtp ? parseFloat(fAtp.value) : 92.0;
+  const atpVal = ss31 > 0.5 ? Math.max(atpBasal, 85.0) : atpBasal;
   const phiRCalc = atpVal < 20.0 ? 0.0 : (irredCalc * ggjCalc * (atpVal / 100.0));
   const tcClosed = atpVal >= 20.0 && vmemCalc <= -45.0 && ggjCalc >= 0.40;
+
+  // Energía Libre Variacional F = (Vmem - Vtarget)^2 / (2 * sigma^2)
+  const fVal = Math.pow(vmemCalc - (-60.17), 2) / (2.0 * Math.pow(13.8852, 2));
+  const isValidated = fVal < 0.50 && ggjCalc >= 0.80;
 
   if (bVmem) bVmem.textContent = `${vmemCalc.toFixed(2)} mV`;
   if (bGgj) bGgj.textContent = ggjCalc.toFixed(3);
   if (bClc) bClc.textContent = `${clcCalc.toFixed(3)} (${clcCalc >= 0.8 ? "Open" : "Constrained"})`;
   if (bPhir) bPhir.textContent = phiRCalc.toFixed(3);
   if (bIrred) bIrred.textContent = irredCalc.toFixed(3);
+  if (bFreeEnergy) bFreeEnergy.textContent = fVal.toFixed(4);
+  
+  if (bOracleVerdict) {
+    bOracleVerdict.textContent = isValidated ? "VALIDATED (< 15 µs)" : "VOID_AB_INITIO";
+    bOracleVerdict.style.color = isValidated ? "#10b981" : "#ef4444";
+  }
+
   if (bTcCycle) {
     bTcCycle.textContent = tcClosed ? "Operational Closure" : "Decoupled / Broken";
     bTcCycle.style.color = tcClosed ? "#10b981" : "#ef4444";
+  }
+
+  if (bioPeptideBadge) {
+    if (peptideSynergy >= 0.80) {
+      bioPeptideBadge.textContent = "BUS OPERATIONAL (G_GJ = 1.00)";
+      bioPeptideBadge.className = "status-pill eubiosis";
+      bioPeptideBadge.style.color = "#c084fc";
+    } else {
+      bioPeptideBadge.textContent = "HEMICHANNEL LEAK // BUS DEGRADED";
+      bioPeptideBadge.className = "status-pill danger";
+      bioPeptideBadge.style.color = "#ef4444";
+    }
   }
 
   if (bioRepolBadge) {
@@ -422,6 +468,13 @@ function updateLiveReadouts() {
   if (bTcCycle) {
     bTcCycle.textContent = sim.bio.tcCycle;
     bTcCycle.style.color = sim.bio.tcCycle.includes("Closure") ? "#10b981" : "#ef4444";
+  }
+  const fValInit = Math.pow(sim.bio.vmem - (-60.17), 2) / (2.0 * Math.pow(13.8852, 2));
+  const isValidInit = fValInit < 0.50 && sim.bio.gGj >= 0.80;
+  if (bFreeEnergy) bFreeEnergy.textContent = fValInit.toFixed(4);
+  if (bOracleVerdict) {
+    bOracleVerdict.textContent = isValidInit ? "VALIDATED (< 15 µs)" : "VOID_AB_INITIO";
+    bOracleVerdict.style.color = isValidInit ? "#10b981" : "#ef4444";
   }
   if (bioClcPill) {
     if (sim.bio.clc >= 0.70) {

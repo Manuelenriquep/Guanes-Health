@@ -37,6 +37,8 @@ def run_pipeline():
         "test_guanes_bioelectrico_3d.py",
         "test_guanes_visualizer.py",
         "guanes_stress_tests.py",
+        "test_autopoiesis_biolocus.py",
+        "stress_test_vmem_peptides_v2.py",
     ]
 
     env = os.environ.copy()
